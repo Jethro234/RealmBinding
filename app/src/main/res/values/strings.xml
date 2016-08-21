@@ -1,0 +1,57 @@
+<resources>
+    <string name="app_name">RealmBinding</string>
+    <string name="btn_record_wod">Record a WOD</string>
+    <string name="lbl_record_a_wod">Record Wod</string>
+    <string name="lbl_wod_details">Additional WOD Details</string>
+    <string name="lbl_available_wods">Available WODs</string>
+    <string name="lbl_view_progress">View Progress</string>
+    <string name="lbl_add_wod">Add WOD</string>
+    <string name="lbl_wod_exercise_details">WOD Exercise Details</string>
+
+    <string name="warn_enter_a_date">Please enter a date</string>
+    <string name="warn_no_row_inserted">An error occurred inserting a new row</string>
+    <string name="warn_new_row_insert">New Row inserted</string>
+    <string name="warn_enter_all_details">Please enter all required details</string>
+    <string name="warn_no_details">No details to submit</string>
+
+    <string name="lbl_date">Date: </string>
+    <string name="lbl_skill">Skill:  </string>
+    <string name="lbl_exercise">Exercise:  </string>
+    <string name="lbl_weight">Weight:  </string>
+    <string name="lbl_wod_name">WOD Details: </string>
+    <string name="lbl_wod_time">WOD Time: </string>
+    <string name="lbl_kg">kg</string>
+    <string name="lbl_add_details">Add Details:</string>
+    <string name="lbl_add_exercise">Add Exercise:</string>
+    <string name="lbl_details_added">Details Added</string>
+
+    <string name="lbl_sets">Sets</string>
+    <string name="lbl_reps">Reps</string>
+    <string name="lbl_submit_details">Submit Details</string>
+    <string name="lbl_add">Add</string>
+    <string name="lbl_clear">Clear</string>
+
+    <!-- WOD skill array -->
+    <string-array name="skills_array">
+        <item>Push Press</item>
+        <item>Deadlift</item>
+        <item>Squat</item>
+        <item>Thrusters</item>
+        <item>Snatch</item>
+        <item>Clean</item>
+        <item>Clean and Jerk</item>
+        <item>Muscle Ups</item>
+    </string-array>
+
+    <!-- WOD Exercise array -->
+    <string-array name="exercise_array">
+        <item>Push Ups</item>
+        <item>Air Squats</item>
+        <item>Kettle Bell Swings</item>
+        <item>Slam Balls</item>
+        <item>Burpees</item>
+        <item>Wall Balls</item>
+    </string-array>
+
+    <string name="msg_functionality_TBC_warning">Functionality to be implemented shortly</string>
+</resources>

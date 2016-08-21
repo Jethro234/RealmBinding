@@ -1,0 +1,40 @@
+<resources>
+
+    <!-- Columns application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <!-- Columns Button theme -->
+    <style name="BaseButtonTheme">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:padding">@dimen/btn_padding</item>
+    </style>
+
+    <!-- Standard Text View -->
+    <style name="StandardTextView">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:imeOptions">actionDone</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:textSize">@dimen/txt_label_size</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <!-- Text View Lighter Gray-->
+    <style name="TextLightGray" parent="StandardTextView">
+        <item name="android:textColor">@color/lightGray</item>
+    </style>
+
+    <!-- Main Menu Button theme -->
+    <style name="MainMenuButtonTheme" parent="BaseButtonTheme">
+        <item name="android:layout_height">@dimen/btn_height</item>
+        <item name="android:layout_width">@dimen/btn_width</item>
+        <item name="android:layout_weight">1</item>
+    </style>
+
+</resources>
