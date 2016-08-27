@@ -17,7 +17,10 @@ import com.appeaser.sublimepickerlibrary.helpers.SublimeOptions;
 import com.appeaser.sublimepickerlibrary.recurrencepicker.SublimeRecurrencePicker;
 import com.example.james.realmbinding.R;
 import com.example.james.realmbinding.calendar.*;
+import com.example.james.realmbinding.data.WorkoutDaoImpl;
 import com.example.james.realmbinding.databinding.RecordWodBinding;
+import com.example.james.realmbinding.interfaces.RealmCallback;
+import com.example.james.realmbinding.interfaces.WorkoutDao;
 import com.example.james.realmbinding.model.Workout;
 import com.example.james.realmbinding.modelview.WorkoutViewModel;
 
@@ -34,12 +37,12 @@ import io.realm.RealmResults;
  * Project: Crossfit Calendar App
  * Created by James on 07-Aug-16.
  */
-public class RecordWOD extends AppCompatActivity {
+public class RecordWOD extends AppCompatActivity implements RealmCallback {
     private RecordWodBinding recordWodBinding;
     private int mHour, mMinute;
     private Context context;
     private WorkoutViewModel workoutViewModel;
-    private Realm realm = null;
+    private WorkoutDao workoutDao;
 
     SublimePickerFragment.Callback mFragmentCallback = new SublimePickerFragment.Callback() {
         @Override
@@ -72,7 +75,7 @@ public class RecordWOD extends AppCompatActivity {
 
         // Obtain realm instance
         RealmConfiguration config = new RealmConfiguration.Builder(context).build();
-        realm = Realm.getInstance(config);
+        workoutDao = new WorkoutDaoImpl(config);
 
         // Get Resources
         Resources res = getResources();
@@ -86,34 +89,34 @@ public class RecordWOD extends AppCompatActivity {
         recordWodBinding.btnAddWod.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                realm.executeTransaction(new Realm.Transaction() {
-                    @Override
-                    public void execute(Realm realm) {
-
-                        long initialId = (realm.where(Workout.class).max("id") != null) ? realm.where(Workout.class).max("id").longValue() + 1 : 0;
-
-                        Workout workout = realm.createObject(Workout.class, initialId);
-                        workout.setWodDateTime(workoutViewModel.getWodDateTime());
-                        workout.setWodExercise(recordWodBinding.spinnerWodExercise.getSelectedItem().toString());
-
-                        Toast.makeText(context, "Record added", Toast.LENGTH_SHORT).show();
-                    }
-                });
+                workoutViewModel.setWodExercise(recordWodBinding.spinnerWodExercise.getSelectedItem().toString());
+                workoutDao.insertWorkout(workoutViewModel, (RealmCallback)context);
             }
         });
 
-        realm.addChangeListener(new RealmChangeListener<Realm>() {
+        /*realm.addChangeListener(new RealmChangeListener<Realm>() {
             @Override
             public void onChange(Realm element) {
                 workoutViewModel.notifyChange();
             }
-        });
+        });*/
     }
 
     @Override
     protected void onResume() {
         super.onResume();
         displayCalender(context);
+    }
+
+    @Override
+    public void Failure(Throwable e, String errorMessage) {
+        Toast.makeText(context, errorMessage, Toast.LENGTH_SHORT).show();
+        e.printStackTrace();
+    }
+
+    @Override
+    public void Success() {
+        Toast.makeText(context, "Record added", Toast.LENGTH_SHORT).show();
     }
 
     public void displayCalender(Context context) {

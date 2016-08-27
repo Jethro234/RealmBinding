@@ -13,6 +13,12 @@ public class Workout extends RealmObject{
     private String wodDateTime;
     private String wodExercise;
 
+    public static class Fields {
+        public static final String ID = "id";
+        public static final String WODDATETIME = "wodDateTime";
+        public static final String WODEXERCISE = "wodExercise";
+    }
+
     public Workout() {
     }
 
