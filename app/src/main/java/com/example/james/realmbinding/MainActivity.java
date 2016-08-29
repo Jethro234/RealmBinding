@@ -10,6 +10,7 @@ import android.view.View;
 
 import com.example.james.realmbinding.databinding.MainActivityBinding;
 import com.example.james.realmbinding.progress.ViewProgress;
+import com.example.james.realmbinding.scan.OcrCaptureActivity;
 import com.example.james.realmbinding.workout.RecordWOD;
 
 /**
@@ -26,6 +27,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         mainActivity = DataBindingUtil.setContentView(this, R.layout.main_activity);
         context = this;
+    }
+
+    public void onScanWodClick(View view) {
+        Intent i = new Intent(context, OcrCaptureActivity.class);
+        startActivity(i);
     }
 
     public void onRecordWodClick(View view){

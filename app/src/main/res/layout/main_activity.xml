@@ -11,6 +11,14 @@
         android:orientation="vertical">
 
         <Button
+            android:id="@+id/btn_scan_wod"
+            android:layout_height="60dp"
+            android:layout_width="match_parent"
+            android:layout_margin="10dp"
+            android:onClick="onScanWodClick"
+            android:text="@string/lbl_scan_wod" />
+
+        <Button
             android:id="@+id/btn_record_wod"
             android:layout_width="match_parent"
             android:layout_height="60dp"
