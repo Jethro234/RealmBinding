@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.appeaser.sublimepickerlibrary.datepicker.SelectedDate;
@@ -35,6 +36,7 @@ import io.realm.RealmConfiguration;
 public class RecordWOD extends AppCompatActivity implements RealmCallback {
     Spinner spinnerWodExercise;
     Button btn_addWod;
+    TextView txt_wod_date;
 
     private int mHour, mMinute;
     private Context context;
@@ -59,7 +61,9 @@ public class RecordWOD extends AppCompatActivity implements RealmCallback {
             workoutViewModel = new WorkoutViewModel(new Workout());
 
             DateTime dateTime = new DateTime(selectedDate.getFirstDate().getTime());
-            workoutViewModel.setWodDateTime(dateTime.toLocalDate().toString());
+            workoutViewModel.setWodDateTime(String.format("%s %s:%s",
+                    dateTime.toLocalDate().toString(), mHour, mMinute));
+            txt_wod_date.setText(workoutViewModel.getWodDateTime());
         }
     };
 
@@ -72,6 +76,7 @@ public class RecordWOD extends AppCompatActivity implements RealmCallback {
 
         spinnerWodExercise = (Spinner) findViewById(R.id.spinner_wod_exercise);
         btn_addWod = (Button) findViewById(R.id.btn_add_wod);
+        txt_wod_date = (TextView) findViewById(R.id.txt_wod_date);
 
         // Obtain realm instance
         RealmConfiguration config = new RealmConfiguration.Builder(context).build();
