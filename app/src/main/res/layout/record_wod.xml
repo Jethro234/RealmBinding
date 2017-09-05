@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
-
-    <data>
-
-        <variable
-            name="workoutt"
-            type="com.example.james.realmbinding.modelview.WorkoutViewModel" />
-    </data>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -31,7 +26,6 @@
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/normal_margin"
             android:layout_toEndOf="@+id/header_wod_date"
-            android:text="@{workoutt.wodDateTime}"
             android:textSize="@dimen/txt_label_size" />
 
         <TextView
@@ -140,4 +134,4 @@
             android:text="@string/lbl_add_wod" />
 
     </RelativeLayout>
-</layout>
+</LinearLayout>

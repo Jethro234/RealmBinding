@@ -2,7 +2,6 @@ package com.example.james.realmbinding.workout;
 
 import android.content.Context;
 import android.content.res.Resources;
-import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
@@ -10,6 +9,8 @@ import android.support.v4.util.Pair;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.appeaser.sublimepickerlibrary.datepicker.SelectedDate;
@@ -18,7 +19,6 @@ import com.appeaser.sublimepickerlibrary.recurrencepicker.SublimeRecurrencePicke
 import com.example.james.realmbinding.R;
 import com.example.james.realmbinding.calendar.*;
 import com.example.james.realmbinding.data.WorkoutDaoImpl;
-import com.example.james.realmbinding.databinding.RecordWodBinding;
 import com.example.james.realmbinding.interfaces.RealmCallback;
 import com.example.james.realmbinding.interfaces.WorkoutDao;
 import com.example.james.realmbinding.model.Workout;
@@ -26,19 +26,16 @@ import com.example.james.realmbinding.modelview.WorkoutViewModel;
 
 import org.joda.time.DateTime;
 
-import java.util.concurrent.atomic.AtomicLong;
-
-import io.realm.Realm;
-import io.realm.RealmChangeListener;
 import io.realm.RealmConfiguration;
-import io.realm.RealmResults;
 
 /**
  * Project: Crossfit Calendar App
  * Created by James on 07-Aug-16.
  */
 public class RecordWOD extends AppCompatActivity implements RealmCallback {
-    private RecordWodBinding recordWodBinding;
+    Spinner spinnerWodExercise;
+    Button btn_addWod;
+
     private int mHour, mMinute;
     private Context context;
     private WorkoutViewModel workoutViewModel;
@@ -63,15 +60,18 @@ public class RecordWOD extends AppCompatActivity implements RealmCallback {
 
             DateTime dateTime = new DateTime(selectedDate.getFirstDate().getTime());
             workoutViewModel.setWodDateTime(dateTime.toLocalDate().toString());
-            recordWodBinding.setWorkoutt(workoutViewModel);
         }
     };
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        recordWodBinding = DataBindingUtil.setContentView(this, R.layout.record_wod);
+        setContentView(R.layout.record_wod);
+
         context = this;
+
+        spinnerWodExercise = (Spinner) findViewById(R.id.spinner_wod_exercise);
+        btn_addWod = (Button) findViewById(R.id.btn_add_wod);
 
         // Obtain realm instance
         RealmConfiguration config = new RealmConfiguration.Builder(context).build();
@@ -85,21 +85,15 @@ public class RecordWOD extends AppCompatActivity implements RealmCallback {
         final ArrayAdapter<String> wodExercisesAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item,
                 WodArray);
         wodExercisesAdapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
-        recordWodBinding.spinnerWodExercise.setAdapter(wodExercisesAdapter);
-        recordWodBinding.btnAddWod.setOnClickListener(new View.OnClickListener() {
+        spinnerWodExercise.setAdapter(wodExercisesAdapter);
+
+        btn_addWod.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                workoutViewModel.setWodExercise(recordWodBinding.spinnerWodExercise.getSelectedItem().toString());
+            public void onClick(View v) {
+                workoutViewModel.setWodExercise(spinnerWodExercise.getSelectedItem().toString());
                 workoutDao.insertWorkout(workoutViewModel, (RealmCallback)context);
             }
         });
-
-        /*realm.addChangeListener(new RealmChangeListener<Realm>() {
-            @Override
-            public void onChange(Realm element) {
-                workoutViewModel.notifyChange();
-            }
-        });*/
     }
 
     @Override
