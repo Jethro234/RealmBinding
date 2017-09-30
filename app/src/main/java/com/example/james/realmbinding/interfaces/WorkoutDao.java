@@ -6,7 +6,7 @@ import com.example.james.realmbinding.modelview.WorkoutViewModel;
 import java.util.List;
 
 /**
- * Project: Crossfit Calendar App
+ * Project: Workout Logger App
  * Created by James on 27-Aug-16.
  */
 public interface WorkoutDao {

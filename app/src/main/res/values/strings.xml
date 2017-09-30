@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">RealmBinding</string>
+    <string name="app_name">Workout Logger</string>
     <string name="btn_record_wod">Record a WOD</string>
     <string name="lbl_record_a_wod">Record Wod</string>
     <string name="lbl_wod_details">Additional WOD Details</string>
@@ -14,6 +14,8 @@
     <string name="warn_new_row_insert">New Row inserted</string>
     <string name="warn_enter_all_details">Please enter all required details</string>
     <string name="warn_no_details">No details to submit</string>
+
+    <string name="error_realm_cannot_close">Could not close Realm</string>
 
     <string name="ok">OK</string>
     <string name="permission_camera_rationale">Access to the camera is needed for detection</string>

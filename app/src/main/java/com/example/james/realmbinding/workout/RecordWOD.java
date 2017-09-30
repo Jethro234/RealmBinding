@@ -30,7 +30,7 @@ import org.joda.time.DateTime;
 import io.realm.RealmConfiguration;
 
 /**
- * Project: Crossfit Calendar App
+ * Project: Workout Logger App
  * Created by James on 07-Aug-16.
  */
 public class RecordWOD extends AppCompatActivity implements RealmCallback {
@@ -74,13 +74,13 @@ public class RecordWOD extends AppCompatActivity implements RealmCallback {
 
         context = this;
 
-        spinnerWodExercise = (Spinner) findViewById(R.id.spinner_wod_exercise);
-        btn_addWod = (Button) findViewById(R.id.btn_add_wod);
-        txt_wod_date = (TextView) findViewById(R.id.txt_wod_date);
+        spinnerWodExercise = findViewById(R.id.spinner_wod_exercise);
+        btn_addWod = findViewById(R.id.btn_add_wod);
+        txt_wod_date = findViewById(R.id.txt_wod_date);
 
         // Obtain realm instance
         RealmConfiguration config = new RealmConfiguration.Builder(context).build();
-        workoutDao = new WorkoutDaoImpl(config);
+        workoutDao = new WorkoutDaoImpl(context, config);
 
         // Get Resources
         Resources res = getResources();

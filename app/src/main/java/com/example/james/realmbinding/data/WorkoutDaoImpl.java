@@ -1,8 +1,11 @@
 package com.example.james.realmbinding.data;
 
 
+import android.content.Context;
+import android.content.res.Resources;
 import android.util.Log;
 
+import com.example.james.realmbinding.R;
 import com.example.james.realmbinding.interfaces.RealmCallback;
 import com.example.james.realmbinding.interfaces.WorkoutDao;
 import com.example.james.realmbinding.model.Workout;
@@ -13,14 +16,18 @@ import java.util.List;
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
 /**
- * Project: Crossfit Calendar App
+ * Project: Workout Logger App
  * Created by James on 27-Aug-16.
  */
 public class WorkoutDaoImpl implements WorkoutDao {
 
+    private Context context;
+    private Resources res;
     private RealmConfiguration realmConfiguration;
 
-    public WorkoutDaoImpl(RealmConfiguration realmConfiguration) {
+    public WorkoutDaoImpl(Context context, RealmConfiguration realmConfiguration) {
+        this.context = context;
+        this.res = context.getResources();
         this.realmConfiguration = realmConfiguration;
     }
 
@@ -54,7 +61,7 @@ public class WorkoutDaoImpl implements WorkoutDao {
                     if (realm.isClosed()) {
                         realmCallback.Success();
                     } else {
-                        realmCallback.Failure(null, "Could not close Realm");
+                        realmCallback.Failure(null, res.getString(R.string.error_realm_cannot_close));
                     }
                 }
             }, new Realm.Transaction.OnError() {
@@ -64,7 +71,7 @@ public class WorkoutDaoImpl implements WorkoutDao {
                     if (realm.isClosed()) {
                         realmCallback.Failure(error, error.getMessage());
                     } else {
-                        realmCallback.Failure(null, "Could not close Realm");
+                        realmCallback.Failure(null, res.getString(R.string.error_realm_cannot_close));
                     }
                 }
             });
@@ -89,7 +96,7 @@ public class WorkoutDaoImpl implements WorkoutDao {
                     if (realm.isClosed()) {
                         realmCallback.Success();
                     } else {
-                        realmCallback.Failure(null, "Could not close Realm");
+                        realmCallback.Failure(null, res.getString(R.string.error_realm_cannot_close));
                     }
                 }
             }, new Realm.Transaction.OnError() {
@@ -99,7 +106,7 @@ public class WorkoutDaoImpl implements WorkoutDao {
                     if (realm.isClosed()) {
                         realmCallback.Failure(error, error.getMessage());
                     } else {
-                        realmCallback.Failure(null, "Could not close Realm");
+                        realmCallback.Failure(null, res.getString(R.string.error_realm_cannot_close));
                     }
                 }
             });
@@ -127,7 +134,7 @@ public class WorkoutDaoImpl implements WorkoutDao {
                     if (realm.isClosed()) {
                         realmCallback.Success();
                     } else {
-                        realmCallback.Failure(null, "Could not close Realm");
+                        realmCallback.Failure(null, res.getString(R.string.error_realm_cannot_close));
                     }
                 }
             }, new Realm.Transaction.OnError() {
@@ -137,7 +144,7 @@ public class WorkoutDaoImpl implements WorkoutDao {
                     if (realm.isClosed()) {
                         realmCallback.Failure(error, error.getMessage());
                     } else {
-                        realmCallback.Failure(null, "Could not close Realm");
+                        realmCallback.Failure(null, res.getString(R.string.error_realm_cannot_close));
                     }
                 }
             });

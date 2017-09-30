@@ -17,17 +17,14 @@ import com.example.james.realmbinding.modelview.WorkoutViewModel;
 import java.util.ArrayList;
 import java.util.List;
 
-import io.realm.Realm;
 import io.realm.RealmConfiguration;
-import io.realm.RealmQuery;
-import io.realm.RealmResults;
 
 /**
- * Project: Crossfit Calendar App
+ * Project: Workout Logger App
  * Created by James on 14-Aug-16.
  */
 public class ViewProgress extends AppCompatActivity {
-    private Context mContext;
+    private Context context;
     private WorkoutDao workoutDao;
     private RecyclerView mRecyclerView;
 
@@ -35,15 +32,15 @@ public class ViewProgress extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.view_progress);
-        mContext = this;
+        context = this;
 
         // Set realm config
-        RealmConfiguration config = new RealmConfiguration.Builder(mContext).build();
+        RealmConfiguration config = new RealmConfiguration.Builder(context).build();
 
-        workoutDao = new WorkoutDaoImpl(config);
+        workoutDao = new WorkoutDaoImpl(context, config);
         List<WorkoutViewModel> workoutViewModels = getWorkoutViewModels(workoutDao.queryWorkout(-1));
 
-        mRecyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
+        mRecyclerView = findViewById(R.id.my_recycler_view);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mRecyclerView.setAdapter(new WorkoutAdapter(workoutViewModels));
 

@@ -3,7 +3,7 @@ package com.example.james.realmbinding.modelview;
 import com.example.james.realmbinding.model.Workout;
 
 /**
- * Project: Crossfit Calendar App
+ * Project: Workout Logger App
  * Created by James on 14-Aug-16.
  */
 public class WorkoutViewModel {

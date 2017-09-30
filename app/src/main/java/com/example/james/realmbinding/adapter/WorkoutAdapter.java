@@ -12,7 +12,7 @@ import com.example.james.realmbinding.modelview.WorkoutViewModel;
 import java.util.List;
 
 /**
- * Project: Crossfit Calendar App
+ * Project: Workout Logger App
  * Created by James on 28-Aug-16.
  */
 public class WorkoutAdapter extends RecyclerView.Adapter<WorkoutAdapter.ViewHolder> {
@@ -25,8 +25,8 @@ public class WorkoutAdapter extends RecyclerView.Adapter<WorkoutAdapter.ViewHold
 
         public ViewHolder(View v) {
             super(v);
-            list_item_wod_date = (TextView) v.findViewById(R.id.list_item_wod_date);
-            list_item_wod_skill = (TextView) v.findViewById(R.id.list_item_wod_skill);
+            list_item_wod_date = v.findViewById(R.id.list_item_wod_date);
+            list_item_wod_skill = v.findViewById(R.id.list_item_wod_skill);
         }
     }
 
@@ -46,8 +46,6 @@ public class WorkoutAdapter extends RecyclerView.Adapter<WorkoutAdapter.ViewHold
         holder.list_item_wod_date.setText(workoutViewModel.getWodDateTime());
         holder.list_item_wod_skill.setText(workoutViewModel.getWodExercise());
     }
-
-
 
     @Override
     public int getItemViewType(int position) {

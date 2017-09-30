@@ -9,10 +9,15 @@ import android.view.View;
 
 import com.example.james.realmbinding.progress.ViewProgress;
 import com.example.james.realmbinding.scan.OcrCaptureActivity;
+import com.example.james.realmbinding.utils.Constants;
 import com.example.james.realmbinding.workout.RecordWOD;
 
+import java.util.List;
+
+import static com.example.james.realmbinding.utils.Constants.*;
+
 /**
- * Project: Crossfit Calendar App
+ * Project: Workout Logger App
  * Created by James on 06-Aug-16.
  */
 public class MainActivity extends AppCompatActivity {
@@ -28,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void onScanWodClick(View view) {
         Intent i = new Intent(context, OcrCaptureActivity.class);
-        startActivity(i);
+        startActivityForResult(i, Constants.SCAN_WOD);
     }
 
     public void onRecordWodClick(View view){
@@ -39,6 +44,18 @@ public class MainActivity extends AppCompatActivity {
     public void onViewProgress(View view) {
         Intent i = new Intent(context, ViewProgress.class);
         startActivity(i);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == Constants.SCAN_WOD) {
+            if (resultCode == RESULT_OK) {
+                Bundle scan_wod_bundle = data.getBundleExtra(SCAN_WOD_BUNDLE_KEY);
+                //TODO Add this to local storage
+                List<String> scannedExercises = scan_wod_bundle.getStringArrayList(SCANNED_EXERCISES);
+            }
+        }
     }
 
     @Override
