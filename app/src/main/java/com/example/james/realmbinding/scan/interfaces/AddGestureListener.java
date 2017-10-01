@@ -5,5 +5,5 @@ package com.example.james.realmbinding.scan.interfaces;
  */
 
 public interface AddGestureListener {
-    void addGesture(String gesture);
+    void addGesture();
 }

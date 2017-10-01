@@ -40,7 +40,9 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.james.realmbinding.R;
+import com.example.james.realmbinding.interfaces.ScannedResultsCallback;
 import com.example.james.realmbinding.scan.interfaces.AddGestureListener;
+import com.example.james.realmbinding.scan.utils.CaptureTools;
 import com.example.james.realmbinding.scan.utils.DetectedGestureArrayList;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
@@ -51,8 +53,12 @@ import com.google.android.gms.vision.text.TextBlock;
 import com.google.android.gms.vision.text.TextRecognizer;
 
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static com.example.james.realmbinding.utils.Constants.*;
 
@@ -61,7 +67,7 @@ import static com.example.james.realmbinding.utils.Constants.*;
  * rear facing camera. During detection overlay graphics are drawn to indicate the position,
  * size, and contents of each TextBlock.
  */
-public final class OcrCaptureActivity extends AppCompatActivity implements AddGestureListener {
+public final class OcrCaptureActivity extends AppCompatActivity implements AddGestureListener, ScannedResultsCallback {
     private static final String TAG = "OcrCaptureActivity";
 
     // Intent request code to handle updating play services if needed.
@@ -84,6 +90,12 @@ public final class OcrCaptureActivity extends AppCompatActivity implements AddGe
 
     public List<String> gestureResults;
     Button btnSubmit;
+
+    private List<String> confirmedExercises = new ArrayList<>();
+    private List<String> confirmedTime = new ArrayList<>();
+
+    private boolean exercisesProcessed = false;
+    private boolean timesProcessed = false;
 
     /**
      * Initializes the UI and creates the detector pipeline.
@@ -121,7 +133,7 @@ public final class OcrCaptureActivity extends AppCompatActivity implements AddGe
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                confirmCapturedExercises(gestureResults);
+                confirmCapturedExercises();
             }
         });
     }
@@ -329,7 +341,7 @@ public final class OcrCaptureActivity extends AppCompatActivity implements AddGe
         if (graphic != null) {
             text = graphic.getTextBlock();
             if (text != null && text.getValue() != null) {
-                gestureResults.add(text.getValue());
+                gestureResults.addAll(Arrays.asList(text.getValue().split("\\n")));
                 Toast.makeText(this, "Added detected exercise", Toast.LENGTH_SHORT).show();
                 Log.d(TAG, "Added detected exercise - " + text.getValue());
             }
@@ -344,44 +356,42 @@ public final class OcrCaptureActivity extends AppCompatActivity implements AddGe
     }
 
     @Override
-    public void addGesture(String gesture) {
+    public void addGesture() {
         btnSubmit.setText("Submit Results (" + gestureResults.size() +")");
     }
 
-    private void confirmCapturedExercises(List<String> gestureResults) {
-        final List<String> confirmedExercises = new ArrayList<>();
-        final CharSequence[] items = gestureResults.toArray(new CharSequence[gestureResults.size()]);
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Confirm Captured Exercises:");
-        builder.setMultiChoiceItems(items, null, new DialogInterface.OnMultiChoiceClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i, boolean b) {
-                confirmedExercises.add(items[i].toString());
-            }
-        });
 
-        builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                Bundle bundle = new Bundle();
-                bundle.putStringArrayList(SCANNED_EXERCISES, (ArrayList<String>)confirmedExercises);
+    private void confirmCapturedExercises() {
+        CaptureTools.displayDialog(this, getString(R.string.msg_confirm_exercise), gestureResults);
+    }
 
-                Intent data = new Intent();
-                data.putExtra(SCAN_WOD_BUNDLE_KEY, bundle);
+    @Override
+    public void processSelection(String key, List<String> results) {
 
-                setResult(RESULT_OK, data);
-                finish();
-            }
-        });
-        builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                dialogInterface.dismiss();
-            }
-        });
-        AlertDialog alertDialog = builder.create();
-        alertDialog.show();
+        if (key.equals(getString(R.string.msg_confirm_exercise))) {
+            confirmedExercises.addAll(results);
+            exercisesProcessed = true;
+            CaptureTools.displayDialog(this, getString(R.string.msg_confirm_time), gestureResults);
+        } else {
+            confirmedTime.addAll(results);
+            timesProcessed = true;
+        }
+
+        if (exercisesProcessed && timesProcessed) {
+            submitAndFinish(confirmedExercises, confirmedTime);
+        }
+    }
+
+    private void submitAndFinish(List<String> confirmedExercises, List<String> confirmedTime) {
+        Bundle bundle = new Bundle();
+        bundle.putStringArrayList(SCANNED_EXERCISE, (ArrayList<String>)confirmedExercises);
+        bundle.putStringArrayList(SCANNED_TIME, (ArrayList<String>)confirmedTime);
+
+        Intent data = new Intent();
+        data.putExtra(SCAN_WOD_BUNDLE_KEY, bundle);
+        setResult(RESULT_OK, data);
+        finish();
     }
 
     private class CaptureGestureListener extends GestureDetector.SimpleOnGestureListener {

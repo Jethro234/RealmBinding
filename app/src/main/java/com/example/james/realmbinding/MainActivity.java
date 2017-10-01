@@ -63,8 +63,10 @@ public class MainActivity extends AppCompatActivity implements RealmCallback {
         if (requestCode == Constants.SCAN_WOD) {
             if (resultCode == RESULT_OK) {
                 Bundle scan_wod_bundle = data.getBundleExtra(SCAN_WOD_BUNDLE_KEY);
-                List<String> scannedExercises = scan_wod_bundle.getStringArrayList(SCANNED_EXERCISES);
-                DetectedGestureArrayList detectedGestureArrayList = new DetectedGestureArrayList(scannedExercises);
+                DetectedGestureArrayList confirmedExercises = new DetectedGestureArrayList(scan_wod_bundle.getStringArrayList(SCANNED_EXERCISE));
+                DetectedGestureArrayList confirmedTime = new DetectedGestureArrayList(scan_wod_bundle.getStringArrayList(SCANNED_TIME));
+
+
 
                 // Obtain realm instance
                 RealmConfiguration config = new RealmConfiguration.Builder(context).build();
@@ -75,8 +77,12 @@ public class MainActivity extends AppCompatActivity implements RealmCallback {
                 DateTime dateTime = new DateTime();
                 workoutViewModel.setWodDateTime(String.format("%s", dateTime.toLocalDate().toString()));
 
-                if (detectedGestureArrayList.size() > 0) {
-                    workoutViewModel.setWodDetails(detectedGestureArrayList.toString());
+                if (confirmedExercises.size() > 0) {
+                    workoutViewModel.setWodDetails(confirmedExercises.toString());
+                }
+
+                if (confirmedTime.size() > 0) {
+                    workoutViewModel.setWodTime(confirmedTime.toString());
                 }
 
                 workoutDao.insertWorkout(workoutViewModel, (RealmCallback)context);

@@ -5,6 +5,7 @@ import android.content.Context;
 import com.example.james.realmbinding.scan.OcrCaptureActivity;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -20,8 +21,10 @@ public class DetectedGestureArrayList extends ArrayList<String> {
     }
 
     public DetectedGestureArrayList(List<String> prePopulatedItems) {
-        this.prePopulatedItems = prePopulatedItems;
-        this.addAll(prePopulatedItems);
+        if (prePopulatedItems != null && prePopulatedItems.size() > 0) {
+            this.prePopulatedItems = prePopulatedItems;
+            super.addAll(prePopulatedItems);
+        }
     }
 
     public DetectedGestureArrayList(Context context) {
@@ -31,7 +34,14 @@ public class DetectedGestureArrayList extends ArrayList<String> {
     @Override
     public boolean add(String s) {
         boolean result = super.add(s);
-        ((OcrCaptureActivity) context).addGesture(s);
+        ((OcrCaptureActivity) context).addGesture();
+        return result;
+    }
+
+    @Override
+    public boolean addAll(Collection<? extends String> c) {
+        boolean result = super.addAll(c);
+        ((OcrCaptureActivity) context).addGesture();
         return result;
     }
 

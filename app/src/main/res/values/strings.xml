@@ -52,6 +52,9 @@
     <string name="lbl_clear">Clear</string>
     <string name="lbl_met_con">MET-CON</string>
 
+    <string name="msg_confirm_exercise">Confirm Captured Exercise:</string>
+    <string name="msg_confirm_time">Confirm Captured Time:</string>
+
     <!-- WOD Sets -->
     <string-array name="sets_array">
         <item>1 Rep MAX</item>
