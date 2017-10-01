@@ -52,7 +52,11 @@ public class WorkoutDaoImpl implements WorkoutDao {
 
                     Workout workout = realm.createObject(Workout.class, initialId);
                     workout.setWodDateTime(workoutViewModel.getWodDateTime());
+                    workout.setWodSets(workoutViewModel.getWodSets());
                     workout.setWodExercise(workoutViewModel.getWodExercise());
+                    workout.setWodWeight(workoutViewModel.getWodWeight());
+                    workout.setWodDetails(workoutViewModel.getWodDetails());
+                    workout.setWodTime(workoutViewModel.getWodTime());
                 }
             }, new Realm.Transaction.OnSuccess() {
                 @Override

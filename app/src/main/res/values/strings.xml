@@ -2,7 +2,7 @@
     <string name="app_name">Workout Logger</string>
     <string name="btn_record_wod">Record a WOD</string>
     <string name="lbl_record_a_wod">Record Wod</string>
-    <string name="lbl_wod_details">Additional WOD Details</string>
+    <string name="lbl_wod_add_details">Additional WOD Details</string>
     <string name="lbl_available_wods">Available WODs</string>
     <string name="lbl_view_progress">View Progress</string>
     <string name="lbl_add_wod">Add WOD</string>
@@ -34,18 +34,30 @@
     <string name="lbl_skill">Skill:  </string>
     <string name="lbl_exercise">Exercise:  </string>
     <string name="lbl_weight">Weight:  </string>
-    <string name="lbl_wod_name">WOD Details: </string>
-    <string name="lbl_wod_time">WOD Time: </string>
     <string name="lbl_kg">kg</string>
     <string name="lbl_add_details">Add Details:</string>
     <string name="lbl_add_exercise">Add Exercise:</string>
     <string name="lbl_details_added">Details Added</string>
+
+    <!-- Adapter Labels -->
+    <string name="lbl_wod_date">WOD Date: </string>
+    <string name="lbl_wod_exercise">Movement: </string>
+    <string name="lbl_wod_details">WOD: </string>
+    <string name="lbl_wod_time">Time: </string>
 
     <string name="lbl_sets">Sets</string>
     <string name="lbl_reps">Reps</string>
     <string name="lbl_submit_details">Submit Details</string>
     <string name="lbl_add">Add</string>
     <string name="lbl_clear">Clear</string>
+    <string name="lbl_met_con">MET-CON</string>
+
+    <!-- WOD Sets -->
+    <string-array name="sets_array">
+        <item>1 Rep MAX</item>
+        <item>5 Sets of 5 Reps</item>
+        <item>3 Set of 10 Reps</item>
+    </string-array>
 
     <!-- WOD skill array -->
     <string-array name="skills_array">

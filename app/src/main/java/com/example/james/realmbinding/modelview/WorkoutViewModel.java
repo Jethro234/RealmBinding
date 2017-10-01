@@ -26,6 +26,14 @@ public class WorkoutViewModel {
         workout.setId(id);
     }
 
+    public void setWodSets(String wodSets) {
+        workout.setWodSets(wodSets);
+    }
+
+    public String getWodSets() {
+        return workout.getWodSets();
+    }
+
     public String getWodDateTime() {
         return workout.getWodDateTime();
     }
@@ -40,5 +48,29 @@ public class WorkoutViewModel {
 
     public void setWodExercise(String wodExercise) {
         workout.setWodExercise(wodExercise);
+    }
+
+    public String getWodWeight() {
+        return workout.getWodWeight();
+    }
+
+    public void setWodWeight(String wodWeight) {
+        workout.setWodWeight(wodWeight);
+    }
+
+    public String getWodDetails() {
+        return workout.getWodDetails();
+    }
+
+    public void setWodDetails(String wodDetails) {
+        workout.setWodDetails(wodDetails);
+    }
+
+    public String getWodTime() {
+        return workout.getWodTime();
+    }
+
+    public void setWodTime(String wodTime) {
+        workout.setWodTime(wodTime);
     }
 }

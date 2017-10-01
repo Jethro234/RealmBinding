@@ -22,11 +22,17 @@ public class WorkoutAdapter extends RecyclerView.Adapter<WorkoutAdapter.ViewHold
     public static class ViewHolder extends RecyclerView.ViewHolder {
         TextView list_item_wod_date;
         TextView list_item_wod_skill;
+        TextView list_item_wod_sets;
+        TextView list_item_wod_details;
+        TextView list_item_wod_time;
 
         public ViewHolder(View v) {
             super(v);
             list_item_wod_date = v.findViewById(R.id.list_item_wod_date);
             list_item_wod_skill = v.findViewById(R.id.list_item_wod_skill);
+            list_item_wod_sets = v.findViewById(R.id.list_item_wod_sets);
+            list_item_wod_details = v.findViewById(R.id.list_item_wod_details);
+            list_item_wod_time = v.findViewById(R.id.list_item_wod_time);
         }
     }
 
@@ -44,7 +50,10 @@ public class WorkoutAdapter extends RecyclerView.Adapter<WorkoutAdapter.ViewHold
     public void onBindViewHolder(WorkoutAdapter.ViewHolder holder, int position) {
         final WorkoutViewModel workoutViewModel = workoutList.get(position);
         holder.list_item_wod_date.setText(workoutViewModel.getWodDateTime());
-        holder.list_item_wod_skill.setText(workoutViewModel.getWodExercise());
+        holder.list_item_wod_sets.setText(workoutViewModel.getWodSets());
+        holder.list_item_wod_skill.setText(workoutViewModel.getWodExercise() + " - " + workoutViewModel.getWodWeight());
+        holder.list_item_wod_details.setText(workoutViewModel.getWodDetails());
+        holder.list_item_wod_time.setText(workoutViewModel.getWodTime());
     }
 
     @Override

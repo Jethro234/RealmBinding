@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -35,6 +36,7 @@ import io.realm.RealmConfiguration;
  */
 public class RecordWOD extends AppCompatActivity implements RealmCallback {
     Spinner spinnerWodExercise;
+    Spinner spinnerWodSets;
     Button btn_addWod;
     TextView txt_wod_date;
 
@@ -75,8 +77,12 @@ public class RecordWOD extends AppCompatActivity implements RealmCallback {
         context = this;
 
         spinnerWodExercise = findViewById(R.id.spinner_wod_exercise);
+        spinnerWodSets = findViewById(R.id.spinner_wod_sets);
         btn_addWod = findViewById(R.id.btn_add_wod);
         txt_wod_date = findViewById(R.id.txt_wod_date);
+        final EditText txt_wod_weight = findViewById(R.id.txt_weight);
+        final EditText txt_wod_details = findViewById(R.id.txt_wod_details);
+        final EditText txt_wod_time = findViewById(R.id.txt_wod_time);
 
         // Obtain realm instance
         RealmConfiguration config = new RealmConfiguration.Builder(context).build();
@@ -85,6 +91,7 @@ public class RecordWOD extends AppCompatActivity implements RealmCallback {
         // Get Resources
         Resources res = getResources();
         final String[] WodArray = res.getStringArray(R.array.skills_array);
+        final String[] WodSetsArray= res.getStringArray(R.array.sets_array);
 
         //Set up the spinner
         final ArrayAdapter<String> wodExercisesAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item,
@@ -92,10 +99,20 @@ public class RecordWOD extends AppCompatActivity implements RealmCallback {
         wodExercisesAdapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
         spinnerWodExercise.setAdapter(wodExercisesAdapter);
 
+        //Set up the sets spinner
+        final ArrayAdapter<String> wodSetsAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item,
+                WodSetsArray);
+        wodExercisesAdapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
+        spinnerWodSets.setAdapter(wodSetsAdapter);
+
         btn_addWod.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                workoutViewModel.setWodSets(spinnerWodSets.getSelectedItem().toString());
                 workoutViewModel.setWodExercise(spinnerWodExercise.getSelectedItem().toString());
+                workoutViewModel.setWodWeight(txt_wod_weight.getText().toString());
+                workoutViewModel.setWodDetails(txt_wod_details.getText().toString());
+                workoutViewModel.setWodTime(txt_wod_time.getText().toString());
                 workoutDao.insertWorkout(workoutViewModel, (RealmCallback)context);
             }
         });

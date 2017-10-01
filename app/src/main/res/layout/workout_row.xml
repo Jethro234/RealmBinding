@@ -6,12 +6,12 @@
 
     <android.support.v7.widget.CardView
         android:id="@+id/card_view"
-        card_view:cardCornerRadius="5dp"
-        card_view:cardUseCompatPadding="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
         android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp">
+        card_view:cardCornerRadius="5dp"
+        card_view:cardUseCompatPadding="true">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -25,13 +25,47 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:id="@+id/list_item_wod_date"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="WOD Date: "
-                    android:textSize="@dimen/txt_label_size" />
+                    android:gravity="center_horizontal"
+                    android:padding="5dp"
+                    android:textSize="@dimen/txt_label_size"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/list_item_wod_date"
+                    android:id="@+id/list_item_wod_sets"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:padding="5dp"
+                    android:textSize="@dimen/txt_label_size"
+                    android:textStyle="italic" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_wod_exercise_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="5dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/lbl_wod_exercise"
+                    android:textSize="@dimen/txt_label_size"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/list_item_wod_skill"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/txt_label_size" />
@@ -39,19 +73,60 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/ll_wod_exercise_container"
+                android:id="@+id/ll_wod_met_con_container"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:padding="5dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:text="@string/lbl_met_con"
+                    android:textSize="@dimen/txt_large_label_size"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_wod_details_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="5dp">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="WOD Exercise: "
-                    android:textSize="@dimen/txt_label_size" />
+                    android:text="@string/lbl_wod_details"
+                    android:textSize="@dimen/txt_label_size"
+                    android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/list_item_wod_skill"
+                    android:id="@+id/list_item_wod_details"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/txt_label_size" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_wod_time_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="5dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/lbl_wod_time"
+                    android:textSize="@dimen/txt_label_size"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/list_item_wod_time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/txt_label_size" />
