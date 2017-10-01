@@ -6,13 +6,24 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.Toast;
 
+import com.example.james.realmbinding.data.WorkoutDaoImpl;
+import com.example.james.realmbinding.interfaces.RealmCallback;
+import com.example.james.realmbinding.model.Workout;
+import com.example.james.realmbinding.modelview.WorkoutViewModel;
 import com.example.james.realmbinding.progress.ViewProgress;
 import com.example.james.realmbinding.scan.OcrCaptureActivity;
+import com.example.james.realmbinding.scan.utils.DetectedGestureArrayList;
 import com.example.james.realmbinding.utils.Constants;
 import com.example.james.realmbinding.workout.RecordWOD;
 
+import org.joda.time.DateTime;
+
+import java.util.ArrayList;
 import java.util.List;
+
+import io.realm.RealmConfiguration;
 
 import static com.example.james.realmbinding.utils.Constants.*;
 
@@ -20,7 +31,7 @@ import static com.example.james.realmbinding.utils.Constants.*;
  * Project: Workout Logger App
  * Created by James on 06-Aug-16.
  */
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements RealmCallback {
 
     Context context;
 
@@ -52,10 +63,36 @@ public class MainActivity extends AppCompatActivity {
         if (requestCode == Constants.SCAN_WOD) {
             if (resultCode == RESULT_OK) {
                 Bundle scan_wod_bundle = data.getBundleExtra(SCAN_WOD_BUNDLE_KEY);
-                //TODO Add this to local storage
                 List<String> scannedExercises = scan_wod_bundle.getStringArrayList(SCANNED_EXERCISES);
+                DetectedGestureArrayList detectedGestureArrayList = new DetectedGestureArrayList(scannedExercises);
+
+                // Obtain realm instance
+                RealmConfiguration config = new RealmConfiguration.Builder(context).build();
+                WorkoutDaoImpl workoutDao = new WorkoutDaoImpl(context, config);
+
+                WorkoutViewModel workoutViewModel = new WorkoutViewModel(new Workout());
+
+                DateTime dateTime = new DateTime();
+                workoutViewModel.setWodDateTime(String.format("%s", dateTime.toLocalDate().toString()));
+
+                if (detectedGestureArrayList.size() > 0) {
+                    workoutViewModel.setWodDetails(detectedGestureArrayList.toString());
+                }
+
+                workoutDao.insertWorkout(workoutViewModel, (RealmCallback)context);
             }
         }
+    }
+
+    @Override
+    public void Success() {
+        Toast.makeText(context, "Record added", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void Failure(Throwable error, String errorMessage) {
+        Toast.makeText(context, errorMessage, Toast.LENGTH_SHORT).show();
+        error.printStackTrace();
     }
 
     @Override

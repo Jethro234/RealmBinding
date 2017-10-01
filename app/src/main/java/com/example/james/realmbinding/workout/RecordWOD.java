@@ -40,7 +40,6 @@ public class RecordWOD extends AppCompatActivity implements RealmCallback {
     Button btn_addWod;
     TextView txt_wod_date;
 
-    private int mHour, mMinute;
     private Context context;
     private WorkoutViewModel workoutViewModel;
     private WorkoutDao workoutDao;
@@ -56,15 +55,10 @@ public class RecordWOD extends AppCompatActivity implements RealmCallback {
                                             SublimeRecurrencePicker.RecurrenceOption recurrenceOption,
                                             String recurrenceRule) {
 
-            //Pass selected values here
-            mHour = hourOfDay;
-            mMinute = minute;
-
             workoutViewModel = new WorkoutViewModel(new Workout());
 
             DateTime dateTime = new DateTime(selectedDate.getFirstDate().getTime());
-            workoutViewModel.setWodDateTime(String.format("%s %s:%s",
-                    dateTime.toLocalDate().toString(), mHour, mMinute));
+            workoutViewModel.setWodDateTime(String.format("%s", dateTime.toLocalDate().toString()));
             txt_wod_date.setText(workoutViewModel.getWodDateTime());
         }
     };
