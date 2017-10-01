@@ -25,7 +25,11 @@ public class CaptureTools {
         builder.setMultiChoiceItems(items, null, new DialogInterface.OnMultiChoiceClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i, boolean b) {
-                confirmedResults.add(items[i].toString());
+                if (b) {
+                    confirmedResults.add(items[i].toString());
+                } else {
+                    confirmedResults.remove(items[i].toString());
+                }
             }
         });
 
