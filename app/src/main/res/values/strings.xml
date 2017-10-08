@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Workout Logger</string>
     <string name="btn_record_wod">Record a WOD</string>
-    <string name="lbl_record_a_wod">Record Wod</string>
+    <string name="lbl_record_a_wod">Record a WOD</string>
     <string name="lbl_wod_add_details">Additional WOD Details</string>
     <string name="lbl_available_wods">Available WODs</string>
     <string name="lbl_view_progress">View Progress</string>
@@ -55,6 +55,15 @@
     <string name="msg_confirm_exercise">Confirm Captured Exercise:</string>
     <string name="msg_confirm_time">Confirm Captured Time:</string>
 
+    <!-- Menu Titles -->
+    <string name="tle_menu_communicate">Communicate</string>
+
+    <!-- Menu Labels -->
+    <string name="lbl_menu_record_a_wod">Record Wod</string>
+    <string name="lbl_menu_view_progress">View Progress</string>
+    <string name="lbl_menu_tools">Tools</string>
+    <string name="lbl_menu_share">Share</string>
+
     <!-- WOD Sets -->
     <string-array name="sets_array">
         <item>1 Rep MAX</item>
@@ -85,4 +94,10 @@
     </string-array>
 
     <string name="msg_functionality_TBC_warning">Functionality to be implemented shortly</string>
+    <string name="title_activity_main2">MainActivity2</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
 </resources>

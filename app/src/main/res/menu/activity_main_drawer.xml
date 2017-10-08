@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_record_wod"
+            android:icon="@drawable/ic_assignment_turned_in_black_24dp"
+            android:title="@string/lbl_menu_record_a_wod" />
+
+        <item
+            android:id="@+id/nav_view_progress"
+            android:icon="@drawable/ic_show_chart_black_24dp"
+            android:title="@string/lbl_menu_view_progress"/>
+
+        <item
+            android:id="@+id/nav_tools"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="@string/lbl_menu_tools" />
+    </group>
+
+    <item android:title="@string/tle_menu_communicate">
+        <menu>
+            <item
+                android:id="@+id/nav_share"
+                android:icon="@drawable/ic_menu_share"
+                android:title="@string/lbl_menu_share" />
+        </menu>
+    </item>
+
+</menu>
