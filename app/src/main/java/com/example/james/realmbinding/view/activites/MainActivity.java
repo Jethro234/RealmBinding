@@ -1,4 +1,4 @@
-package com.example.james.realmbinding;
+package com.example.james.realmbinding.view.activites;
 
 import android.content.Context;
 import android.content.Intent;
@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Toast;
 
+import com.example.james.realmbinding.R;
 import com.example.james.realmbinding.data.WorkoutDaoImpl;
 import com.example.james.realmbinding.interfaces.RealmCallback;
 import com.example.james.realmbinding.model.Workout;
