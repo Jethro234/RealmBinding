@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.example.james.realmbinding.scan;
+package com.example.james.realmbinding.ui.scan;
 
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -21,7 +21,7 @@ import android.graphics.Paint;
 import android.graphics.RectF;
 
 import com.example.james.realmbinding.BuildConfig;
-import com.example.james.realmbinding.scan.ui.camera.GraphicOverlay;
+import com.example.james.realmbinding.ui.scan.ui.camera.GraphicOverlay;
 import com.google.android.gms.vision.text.Text;
 import com.google.android.gms.vision.text.TextBlock;
 

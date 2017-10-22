@@ -1,4 +1,4 @@
-package com.example.james.realmbinding.view.activites;
+package com.example.james.realmbinding.ui.main;
 
 import android.content.Context;
 import android.content.Intent;
@@ -17,17 +17,15 @@ import android.widget.Toast;
 
 import com.example.james.realmbinding.R;
 import com.example.james.realmbinding.data.WorkoutDaoImpl;
-import com.example.james.realmbinding.interfaces.RealmCallback;
+import com.example.james.realmbinding.data.interfaces.RealmCallback;
 import com.example.james.realmbinding.model.Workout;
-import com.example.james.realmbinding.progress.ViewProgress;
-import com.example.james.realmbinding.scan.OcrCaptureActivity;
-import com.example.james.realmbinding.scan.utils.DetectedGestureArrayList;
+import com.example.james.realmbinding.ui.progress.ViewProgress;
+import com.example.james.realmbinding.ui.scan.OcrCaptureActivity;
+import com.example.james.realmbinding.ui.scan.utils.DetectedGestureArrayList;
 import com.example.james.realmbinding.utils.Constants;
-import com.example.james.realmbinding.workout.RecordWOD;
+import com.example.james.realmbinding.ui.record.RecordWOD;
 
 import org.joda.time.DateTime;
-
-import io.realm.RealmConfiguration;
 
 import static com.example.james.realmbinding.utils.Constants.SCANNED_EXERCISE;
 import static com.example.james.realmbinding.utils.Constants.SCANNED_TIME;

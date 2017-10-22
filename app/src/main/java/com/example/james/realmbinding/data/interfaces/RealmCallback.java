@@ -1,4 +1,4 @@
-package com.example.james.realmbinding.interfaces;
+package com.example.james.realmbinding.data.interfaces;
 
 /**
  * Project: Workout Logger App

@@ -1,4 +1,4 @@
-package com.example.james.realmbinding.adapter;
+package com.example.james.realmbinding.ui.progress;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;

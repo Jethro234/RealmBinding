@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.example.james.realmbinding.scan;
+package com.example.james.realmbinding.ui.scan;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
@@ -40,25 +40,22 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.james.realmbinding.R;
-import com.example.james.realmbinding.interfaces.ScannedResultsCallback;
-import com.example.james.realmbinding.scan.interfaces.AddGestureListener;
-import com.example.james.realmbinding.scan.utils.CaptureTools;
-import com.example.james.realmbinding.scan.utils.DetectedGestureArrayList;
+import com.example.james.realmbinding.ui.scan.interfaces.ScannedResultsCallback;
+import com.example.james.realmbinding.ui.scan.interfaces.AddGestureListener;
+import com.example.james.realmbinding.ui.scan.utils.CaptureTools;
+import com.example.james.realmbinding.ui.scan.utils.DetectedGestureArrayList;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
-import com.example.james.realmbinding.scan.ui.camera.CameraSource;
-import com.example.james.realmbinding.scan.ui.camera.CameraSourcePreview;
-import com.example.james.realmbinding.scan.ui.camera.GraphicOverlay;
+import com.example.james.realmbinding.ui.scan.ui.camera.CameraSource;
+import com.example.james.realmbinding.ui.scan.ui.camera.CameraSourcePreview;
+import com.example.james.realmbinding.ui.scan.ui.camera.GraphicOverlay;
 import com.google.android.gms.vision.text.TextBlock;
 import com.google.android.gms.vision.text.TextRecognizer;
 
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import static com.example.james.realmbinding.utils.Constants.*;
 

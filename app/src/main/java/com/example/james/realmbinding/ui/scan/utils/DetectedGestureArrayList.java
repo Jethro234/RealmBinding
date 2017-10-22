@@ -1,8 +1,8 @@
-package com.example.james.realmbinding.scan.utils;
+package com.example.james.realmbinding.ui.scan.utils;
 
 import android.content.Context;
 
-import com.example.james.realmbinding.scan.OcrCaptureActivity;
+import com.example.james.realmbinding.ui.scan.OcrCaptureActivity;
 
 import java.util.ArrayList;
 import java.util.Collection;

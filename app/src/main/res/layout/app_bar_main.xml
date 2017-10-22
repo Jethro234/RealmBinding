@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.james.realmbinding.view.activites.MainActivity">
+    tools:context="com.example.james.realmbinding.ui.main.MainActivity">
 
     <include layout="@layout/app_bar_custom_layout" />
 

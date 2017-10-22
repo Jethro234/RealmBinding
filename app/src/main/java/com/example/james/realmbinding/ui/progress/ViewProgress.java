@@ -1,4 +1,4 @@
-package com.example.james.realmbinding.progress;
+package com.example.james.realmbinding.ui.progress;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -9,15 +9,12 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 
 import com.example.james.realmbinding.R;
-import com.example.james.realmbinding.adapter.WorkoutAdapter;
 import com.example.james.realmbinding.data.WorkoutDaoImpl;
-import com.example.james.realmbinding.interfaces.WorkoutDao;
+import com.example.james.realmbinding.data.WorkoutDao;
 import com.example.james.realmbinding.model.Workout;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import io.realm.RealmConfiguration;
 
 /**
  * Project: Workout Logger App

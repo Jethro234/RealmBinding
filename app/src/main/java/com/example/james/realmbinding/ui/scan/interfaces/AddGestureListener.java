@@ -1,4 +1,4 @@
-package com.example.james.realmbinding.scan.interfaces;
+package com.example.james.realmbinding.ui.scan.interfaces;
 
 /**
  * Created by jimmy on 30/09/2017.

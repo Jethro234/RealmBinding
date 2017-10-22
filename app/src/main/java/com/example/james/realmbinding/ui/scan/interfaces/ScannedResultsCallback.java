@@ -1,4 +1,4 @@
-package com.example.james.realmbinding.interfaces;
+package com.example.james.realmbinding.ui.scan.interfaces;
 
 import java.util.List;
 

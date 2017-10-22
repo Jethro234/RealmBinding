@@ -1,10 +1,12 @@
-package com.example.james.realmbinding.view.activites;
+package com.example.james.realmbinding.ui.splash;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+
+import com.example.james.realmbinding.ui.main.MainActivity;
 
 /**
  * Created by jimmy on 08/10/2017.

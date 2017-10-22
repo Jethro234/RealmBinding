@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.example.james.realmbinding.calendar;
+package com.example.james.realmbinding.ui.calendar;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;

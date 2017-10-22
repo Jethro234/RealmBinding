@@ -1,4 +1,4 @@
-package com.example.james.realmbinding.workout;
+package com.example.james.realmbinding.ui.record;
 
 import android.content.Context;
 import android.content.res.Resources;
@@ -20,15 +20,13 @@ import com.appeaser.sublimepickerlibrary.datepicker.SelectedDate;
 import com.appeaser.sublimepickerlibrary.helpers.SublimeOptions;
 import com.appeaser.sublimepickerlibrary.recurrencepicker.SublimeRecurrencePicker;
 import com.example.james.realmbinding.R;
-import com.example.james.realmbinding.calendar.*;
 import com.example.james.realmbinding.data.WorkoutDaoImpl;
-import com.example.james.realmbinding.interfaces.RealmCallback;
-import com.example.james.realmbinding.interfaces.WorkoutDao;
+import com.example.james.realmbinding.data.interfaces.RealmCallback;
+import com.example.james.realmbinding.data.WorkoutDao;
 import com.example.james.realmbinding.model.Workout;
+import com.example.james.realmbinding.ui.calendar.SublimePickerFragment;
 
 import org.joda.time.DateTime;
-
-import io.realm.RealmConfiguration;
 
 /**
  * Project: Workout Logger App

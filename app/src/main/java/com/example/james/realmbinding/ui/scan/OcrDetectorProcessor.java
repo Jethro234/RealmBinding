@@ -13,14 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.example.james.realmbinding.scan;
+package com.example.james.realmbinding.ui.scan;
 
 import android.util.Log;
 import android.util.SparseArray;
 
-import com.example.james.realmbinding.scan.ui.camera.GraphicOverlay;
+import com.example.james.realmbinding.ui.scan.ui.camera.GraphicOverlay;
 import com.google.android.gms.vision.Detector;
 import com.google.android.gms.vision.text.TextBlock;
+import com.example.james.realmbinding.ui.scan.OcrGraphic;
 
 /**
  * A very simple Processor which gets detected TextBlocks and adds them to the overlay

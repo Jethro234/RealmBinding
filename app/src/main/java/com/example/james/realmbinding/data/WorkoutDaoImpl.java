@@ -6,14 +6,13 @@ import android.content.res.Resources;
 import android.util.Log;
 
 import com.example.james.realmbinding.R;
-import com.example.james.realmbinding.interfaces.RealmCallback;
-import com.example.james.realmbinding.interfaces.WorkoutDao;
+import com.example.james.realmbinding.data.interfaces.RealmCallback;
 import com.example.james.realmbinding.model.Workout;
 
 import java.util.List;
 
 import io.realm.Realm;
-import io.realm.RealmConfiguration;
+
 /**
  * Project: Workout Logger App
  * Created by James on 27-Aug-16.
