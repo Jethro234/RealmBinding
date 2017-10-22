@@ -1,6 +1,5 @@
 package com.example.james.realmbinding.ui.progress;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -16,28 +15,31 @@ import com.example.james.realmbinding.data.model.Workout;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 /**
  * Project: Workout Logger App
  * Created by James on 14-Aug-16.
  */
 public class ViewProgress extends AppCompatActivity {
-    private Context context;
     private WorkoutDao workoutDao;
-    private RecyclerView mRecyclerView;
+
+    @BindView(R.id.my_recycler_view)
+    RecyclerView mRecyclerView;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.view_progress);
+        ButterKnife.bind(this);
+
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        context = this;
-
-        workoutDao = new WorkoutDaoImpl(context);
+        workoutDao = new WorkoutDaoImpl(this);
         List<Workout> workouts = getWorkoutViewModels(workoutDao.queryWorkout(-1));
 
-        mRecyclerView = findViewById(R.id.my_recycler_view);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mRecyclerView.setAdapter(new WorkoutAdapter(workouts));
 

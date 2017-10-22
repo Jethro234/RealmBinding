@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.util.Pair;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -24,23 +23,43 @@ import com.example.james.realmbinding.data.WorkoutDaoImpl;
 import com.example.james.realmbinding.data.interfaces.RealmCallback;
 import com.example.james.realmbinding.data.WorkoutDao;
 import com.example.james.realmbinding.data.model.Workout;
+import com.example.james.realmbinding.ui.base.BaseActivity;
+import com.example.james.realmbinding.ui.base.MvpView;
 import com.example.james.realmbinding.ui.calendar.SublimePickerFragment;
 
 import org.joda.time.DateTime;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 /**
  * Project: Workout Logger App
  * Created by James on 07-Aug-16.
  */
-public class RecordWOD extends AppCompatActivity implements RealmCallback {
+public class RecordWOD extends BaseActivity implements RealmCallback, MvpView {
+    // Bind the views
+    @BindView(R.id.spinner_wod_exercise)
     Spinner spinnerWodExercise;
+    @BindView(R.id.spinner_wod_sets)
     Spinner spinnerWodSets;
+    @BindView(R.id.btn_add_wod)
     Button btn_addWod;
+    @BindView(R.id.txt_wod_date)
     TextView txt_wod_date;
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
+    @BindView(R.id.txt_weight)
+    EditText txt_wod_weight;
+    @BindView(R.id.txt_wod_details)
+    EditText txt_wod_details;
+    @BindView(R.id.txt_wod_time)
+    EditText txt_wod_time;
 
     private Context context;
     private Workout workout;
     private WorkoutDao workoutDao;
+
+    private RecordWODPresenter recordWODPresenter;
 
     SublimePickerFragment.Callback mFragmentCallback = new SublimePickerFragment.Callback() {
         @Override
@@ -64,18 +83,13 @@ public class RecordWOD extends AppCompatActivity implements RealmCallback {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.record_wod);
-        Toolbar toolbar = findViewById(R.id.toolbar);
+        ButterKnife.bind(this);
+
         setSupportActionBar(toolbar);
 
-        context = this;
+        recordWODPresenter = new RecordWODPresenter(this);
 
-        spinnerWodExercise = findViewById(R.id.spinner_wod_exercise);
-        spinnerWodSets = findViewById(R.id.spinner_wod_sets);
-        btn_addWod = findViewById(R.id.btn_add_wod);
-        txt_wod_date = findViewById(R.id.txt_wod_date);
-        final EditText txt_wod_weight = findViewById(R.id.txt_weight);
-        final EditText txt_wod_details = findViewById(R.id.txt_wod_details);
-        final EditText txt_wod_time = findViewById(R.id.txt_wod_time);
+        context = this;
 
         workoutDao = new WorkoutDaoImpl(context);
 
@@ -124,6 +138,7 @@ public class RecordWOD extends AppCompatActivity implements RealmCallback {
     @Override
     public void Success() {
         Toast.makeText(context, "Record added", Toast.LENGTH_SHORT).show();
+        finish();
     }
 
     public void displayCalender(Context context) {
