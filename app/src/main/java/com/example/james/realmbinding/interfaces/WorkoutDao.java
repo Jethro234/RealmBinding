@@ -1,7 +1,6 @@
 package com.example.james.realmbinding.interfaces;
 
 import com.example.james.realmbinding.model.Workout;
-import com.example.james.realmbinding.modelview.WorkoutViewModel;
 
 import java.util.List;
 
@@ -11,7 +10,6 @@ import java.util.List;
  */
 public interface WorkoutDao {
     List<Workout> queryWorkout(long id);
-    void deleteWorkout(WorkoutViewModel workoutViewModel, RealmCallback realmCallback);
-    void updateWorkout(WorkoutViewModel workoutViewModel, RealmCallback realmCallback);
-    void insertWorkout(WorkoutViewModel workoutViewModel, RealmCallback realmCallback);
+    void deleteWorkout(Workout workout, RealmCallback realmCallback);
+    void insertOrUpdateWorkout(Workout workout, RealmCallback realmCallback);
 }

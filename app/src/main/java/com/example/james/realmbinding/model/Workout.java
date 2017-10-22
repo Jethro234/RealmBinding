@@ -1,5 +1,6 @@
 package com.example.james.realmbinding.model;
 
+import io.realm.Realm;
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
 
@@ -28,6 +29,8 @@ public class Workout extends RealmObject{
     }
 
     public Workout() {
+        id = (Realm.getDefaultInstance().where(Workout.class).max("id") != null)
+                ? Realm.getDefaultInstance().where(Workout.class).max("id").longValue() + 1 : 0;
     }
 
     public Workout(long id, String wodDateTime, String wodSets, String wodExercise, String wodWeight, String wodDetails, String wodTime) {

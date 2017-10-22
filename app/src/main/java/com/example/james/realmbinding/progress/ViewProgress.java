@@ -13,7 +13,6 @@ import com.example.james.realmbinding.adapter.WorkoutAdapter;
 import com.example.james.realmbinding.data.WorkoutDaoImpl;
 import com.example.james.realmbinding.interfaces.WorkoutDao;
 import com.example.james.realmbinding.model.Workout;
-import com.example.james.realmbinding.modelview.WorkoutViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,22 +37,19 @@ public class ViewProgress extends AppCompatActivity {
 
         context = this;
 
-        // Set realm config
-        RealmConfiguration config = new RealmConfiguration.Builder(context).build();
-
-        workoutDao = new WorkoutDaoImpl(context, config);
-        List<WorkoutViewModel> workoutViewModels = getWorkoutViewModels(workoutDao.queryWorkout(-1));
+        workoutDao = new WorkoutDaoImpl(context);
+        List<Workout> workouts = getWorkoutViewModels(workoutDao.queryWorkout(-1));
 
         mRecyclerView = findViewById(R.id.my_recycler_view);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        mRecyclerView.setAdapter(new WorkoutAdapter(workoutViewModels));
+        mRecyclerView.setAdapter(new WorkoutAdapter(workouts));
 
     }
 
-    private ArrayList<WorkoutViewModel> getWorkoutViewModels(List<Workout> workoutRealmResults) {
-        ArrayList<WorkoutViewModel> workoutViewModelArrayList = new ArrayList<>();
+    private ArrayList<Workout> getWorkoutViewModels(List<Workout> workoutRealmResults) {
+        ArrayList<Workout> workoutViewModelArrayList = new ArrayList<>();
         for (Workout workout : workoutRealmResults){
-            workoutViewModelArrayList.add(new WorkoutViewModel(workout));
+            workoutViewModelArrayList.add(workout);
         }
 
         return workoutViewModelArrayList;

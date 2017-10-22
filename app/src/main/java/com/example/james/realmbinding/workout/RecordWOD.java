@@ -25,7 +25,6 @@ import com.example.james.realmbinding.data.WorkoutDaoImpl;
 import com.example.james.realmbinding.interfaces.RealmCallback;
 import com.example.james.realmbinding.interfaces.WorkoutDao;
 import com.example.james.realmbinding.model.Workout;
-import com.example.james.realmbinding.modelview.WorkoutViewModel;
 
 import org.joda.time.DateTime;
 
@@ -42,7 +41,7 @@ public class RecordWOD extends AppCompatActivity implements RealmCallback {
     TextView txt_wod_date;
 
     private Context context;
-    private WorkoutViewModel workoutViewModel;
+    private Workout workout;
     private WorkoutDao workoutDao;
 
     SublimePickerFragment.Callback mFragmentCallback = new SublimePickerFragment.Callback() {
@@ -56,11 +55,11 @@ public class RecordWOD extends AppCompatActivity implements RealmCallback {
                                             SublimeRecurrencePicker.RecurrenceOption recurrenceOption,
                                             String recurrenceRule) {
 
-            workoutViewModel = new WorkoutViewModel(new Workout());
+            workout = new Workout();
 
             DateTime dateTime = new DateTime(selectedDate.getFirstDate().getTime());
-            workoutViewModel.setWodDateTime(String.format("%s", dateTime.toLocalDate().toString()));
-            txt_wod_date.setText(workoutViewModel.getWodDateTime());
+            workout.setWodDateTime(String.format("%s", dateTime.toLocalDate().toString()));
+            txt_wod_date.setText(workout.getWodDateTime());
         }
     };
 
@@ -81,9 +80,7 @@ public class RecordWOD extends AppCompatActivity implements RealmCallback {
         final EditText txt_wod_details = findViewById(R.id.txt_wod_details);
         final EditText txt_wod_time = findViewById(R.id.txt_wod_time);
 
-        // Obtain realm instance
-        RealmConfiguration config = new RealmConfiguration.Builder(context).build();
-        workoutDao = new WorkoutDaoImpl(context, config);
+        workoutDao = new WorkoutDaoImpl(context);
 
         // Get Resources
         Resources res = getResources();
@@ -105,12 +102,12 @@ public class RecordWOD extends AppCompatActivity implements RealmCallback {
         btn_addWod.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                workoutViewModel.setWodSets(spinnerWodSets.getSelectedItem().toString());
-                workoutViewModel.setWodExercise(spinnerWodExercise.getSelectedItem().toString());
-                workoutViewModel.setWodWeight(txt_wod_weight.getText().toString());
-                workoutViewModel.setWodDetails(txt_wod_details.getText().toString());
-                workoutViewModel.setWodTime(txt_wod_time.getText().toString());
-                workoutDao.insertWorkout(workoutViewModel, (RealmCallback)context);
+                workout.setWodSets(spinnerWodSets.getSelectedItem().toString());
+                workout.setWodExercise(spinnerWodExercise.getSelectedItem().toString());
+                workout.setWodWeight(txt_wod_weight.getText().toString());
+                workout.setWodDetails(txt_wod_details.getText().toString());
+                workout.setWodTime(txt_wod_time.getText().toString());
+                workoutDao.insertOrUpdateWorkout(workout, (RealmCallback)context);
             }
         });
     }

@@ -19,7 +19,6 @@ import com.example.james.realmbinding.R;
 import com.example.james.realmbinding.data.WorkoutDaoImpl;
 import com.example.james.realmbinding.interfaces.RealmCallback;
 import com.example.james.realmbinding.model.Workout;
-import com.example.james.realmbinding.modelview.WorkoutViewModel;
 import com.example.james.realmbinding.progress.ViewProgress;
 import com.example.james.realmbinding.scan.OcrCaptureActivity;
 import com.example.james.realmbinding.scan.utils.DetectedGestureArrayList;
@@ -124,23 +123,22 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 
                 // Obtain realm instance
-                RealmConfiguration config = new RealmConfiguration.Builder(context).build();
-                WorkoutDaoImpl workoutDao = new WorkoutDaoImpl(context, config);
+                WorkoutDaoImpl workoutDao = new WorkoutDaoImpl(context);
 
-                WorkoutViewModel workoutViewModel = new WorkoutViewModel(new Workout());
+                Workout workout = new Workout();
 
                 DateTime dateTime = new DateTime();
-                workoutViewModel.setWodDateTime(String.format("%s", dateTime.toLocalDate().toString()));
+                workout.setWodDateTime(String.format("%s", dateTime.toLocalDate().toString()));
 
                 if (confirmedExercises.size() > 0) {
-                    workoutViewModel.setWodDetails(confirmedExercises.toString());
+                    workout.setWodDetails(confirmedExercises.toString());
                 }
 
                 if (confirmedTime.size() > 0) {
-                    workoutViewModel.setWodTime(confirmedTime.toString());
+                    workout.setWodTime(confirmedTime.toString());
                 }
 
-                workoutDao.insertWorkout(workoutViewModel, (RealmCallback)context);
+                workoutDao.insertOrUpdateWorkout(workout, this);
             }
         }
     }

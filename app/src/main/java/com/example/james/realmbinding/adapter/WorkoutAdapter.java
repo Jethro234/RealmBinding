@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.james.realmbinding.R;
-import com.example.james.realmbinding.modelview.WorkoutViewModel;
+import com.example.james.realmbinding.model.Workout;
 
 import java.util.List;
 
@@ -17,7 +17,7 @@ import java.util.List;
  */
 public class WorkoutAdapter extends RecyclerView.Adapter<WorkoutAdapter.ViewHolder> {
 
-    private List<WorkoutViewModel> workoutList;
+    private List<Workout> workoutList;
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         TextView list_item_wod_date;
@@ -36,7 +36,7 @@ public class WorkoutAdapter extends RecyclerView.Adapter<WorkoutAdapter.ViewHold
         }
     }
 
-    public WorkoutAdapter(List<WorkoutViewModel> workoutList) {
+    public WorkoutAdapter(List<Workout> workoutList) {
         this.workoutList = workoutList;
     }
 
@@ -48,12 +48,12 @@ public class WorkoutAdapter extends RecyclerView.Adapter<WorkoutAdapter.ViewHold
 
     @Override
     public void onBindViewHolder(WorkoutAdapter.ViewHolder holder, int position) {
-        final WorkoutViewModel workoutViewModel = workoutList.get(position);
-        holder.list_item_wod_date.setText(workoutViewModel.getWodDateTime());
-        holder.list_item_wod_sets.setText(workoutViewModel.getWodSets());
-        holder.list_item_wod_skill.setText(workoutViewModel.getWodExercise() + " - " + workoutViewModel.getWodWeight());
-        holder.list_item_wod_details.setText(workoutViewModel.getWodDetails());
-        holder.list_item_wod_time.setText(workoutViewModel.getWodTime());
+        final Workout workout = workoutList.get(position);
+        holder.list_item_wod_date.setText(workout.getWodDateTime());
+        holder.list_item_wod_sets.setText(workout.getWodSets());
+        holder.list_item_wod_skill.setText(workout.getWodExercise() + " - " + workout.getWodWeight());
+        holder.list_item_wod_details.setText(workout.getWodDetails());
+        holder.list_item_wod_time.setText(workout.getWodTime());
     }
 
     @Override
