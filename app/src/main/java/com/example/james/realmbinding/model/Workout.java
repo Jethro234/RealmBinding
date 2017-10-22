@@ -29,8 +29,14 @@ public class Workout extends RealmObject{
     }
 
     public Workout() {
-        id = (Realm.getDefaultInstance().where(Workout.class).max("id") != null)
+        this.id = (Realm.getDefaultInstance().where(Workout.class).max("id") != null)
                 ? Realm.getDefaultInstance().where(Workout.class).max("id").longValue() + 1 : 0;
+    }
+
+    public Workout(String wodDateTime) {
+        this.id = (Realm.getDefaultInstance().where(Workout.class).max("id") != null)
+                ? Realm.getDefaultInstance().where(Workout.class).max("id").longValue() + 1 : 0;
+        this.wodDateTime = wodDateTime;
     }
 
     public Workout(long id, String wodDateTime, String wodSets, String wodExercise, String wodWeight, String wodDetails, String wodTime) {

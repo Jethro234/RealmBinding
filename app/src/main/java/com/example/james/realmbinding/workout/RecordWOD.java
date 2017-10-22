@@ -55,10 +55,9 @@ public class RecordWOD extends AppCompatActivity implements RealmCallback {
                                             SublimeRecurrencePicker.RecurrenceOption recurrenceOption,
                                             String recurrenceRule) {
 
-            workout = new Workout();
-
             DateTime dateTime = new DateTime(selectedDate.getFirstDate().getTime());
-            workout.setWodDateTime(String.format("%s", dateTime.toLocalDate().toString()));
+            // Create the workout object with the datetime selected
+            workout = new Workout(String.format("%s", dateTime.toLocalDate().toString()));
             txt_wod_date.setText(workout.getWodDateTime());
         }
     };
