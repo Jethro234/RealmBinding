@@ -57,7 +57,6 @@ public class RecordWOD extends BaseActivity implements RealmCallback, MvpView {
 
     private Context context;
     private Workout workout;
-    private WorkoutDao workoutDao;
 
     private RecordWODPresenter recordWODPresenter;
 
@@ -87,11 +86,9 @@ public class RecordWOD extends BaseActivity implements RealmCallback, MvpView {
 
         setSupportActionBar(toolbar);
 
-        recordWODPresenter = new RecordWODPresenter(this);
+        recordWODPresenter = new RecordWODPresenter(RecordWOD.this);
 
         context = this;
-
-        workoutDao = new WorkoutDaoImpl(context);
 
         // Get Resources
         Resources res = getResources();
@@ -118,7 +115,7 @@ public class RecordWOD extends BaseActivity implements RealmCallback, MvpView {
                 workout.setWodWeight(txt_wod_weight.getText().toString());
                 workout.setWodDetails(txt_wod_details.getText().toString());
                 workout.setWodTime(txt_wod_time.getText().toString());
-                workoutDao.insertOrUpdateWorkout(workout, (RealmCallback)context);
+                recordWODPresenter.insertOrUpdateWorkout(workout, (RealmCallback)context);
             }
         });
     }
@@ -164,7 +161,7 @@ public class RecordWOD extends BaseActivity implements RealmCallback, MvpView {
     }
 
     // Validates & returns SublimePicker options
-    Pair<Boolean, SublimeOptions> getOptions() {
+    private Pair<Boolean, SublimeOptions> getOptions() {
         SublimeOptions options = new SublimeOptions();
         int displayOptions = 0;
 
@@ -180,5 +177,11 @@ public class RecordWOD extends BaseActivity implements RealmCallback, MvpView {
 
         // If 'displayOptions' is zero, the chosen options are not valid
         return new Pair<>(displayOptions != 0 ? Boolean.TRUE : Boolean.FALSE, options);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        recordWODPresenter.onDetach();
     }
 }
