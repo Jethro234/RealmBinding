@@ -23,7 +23,7 @@ import com.example.james.realmbinding.R;
 import com.example.james.realmbinding.data.WorkoutDaoImpl;
 import com.example.james.realmbinding.data.interfaces.RealmCallback;
 import com.example.james.realmbinding.data.WorkoutDao;
-import com.example.james.realmbinding.model.Workout;
+import com.example.james.realmbinding.data.model.Workout;
 import com.example.james.realmbinding.ui.calendar.SublimePickerFragment;
 
 import org.joda.time.DateTime;

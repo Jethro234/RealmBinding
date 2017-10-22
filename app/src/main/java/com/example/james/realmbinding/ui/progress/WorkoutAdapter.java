@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.james.realmbinding.R;
-import com.example.james.realmbinding.model.Workout;
+import com.example.james.realmbinding.data.model.Workout;
 
 import java.util.List;
 

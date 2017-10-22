@@ -1,7 +1,7 @@
 package com.example.james.realmbinding.data;
 
 import com.example.james.realmbinding.data.interfaces.RealmCallback;
-import com.example.james.realmbinding.model.Workout;
+import com.example.james.realmbinding.data.model.Workout;
 
 import java.util.List;
 

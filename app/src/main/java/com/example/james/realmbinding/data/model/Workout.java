@@ -1,4 +1,4 @@
-package com.example.james.realmbinding.model;
+package com.example.james.realmbinding.data.model;
 
 import io.realm.Realm;
 import io.realm.RealmObject;

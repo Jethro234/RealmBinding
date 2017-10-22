@@ -18,7 +18,7 @@ import android.widget.Toast;
 import com.example.james.realmbinding.R;
 import com.example.james.realmbinding.data.WorkoutDaoImpl;
 import com.example.james.realmbinding.data.interfaces.RealmCallback;
-import com.example.james.realmbinding.model.Workout;
+import com.example.james.realmbinding.data.model.Workout;
 import com.example.james.realmbinding.ui.progress.ViewProgress;
 import com.example.james.realmbinding.ui.scan.OcrCaptureActivity;
 import com.example.james.realmbinding.ui.scan.utils.DetectedGestureArrayList;

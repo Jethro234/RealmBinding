@@ -11,7 +11,7 @@ import android.support.v7.widget.Toolbar;
 import com.example.james.realmbinding.R;
 import com.example.james.realmbinding.data.WorkoutDaoImpl;
 import com.example.james.realmbinding.data.WorkoutDao;
-import com.example.james.realmbinding.model.Workout;
+import com.example.james.realmbinding.data.model.Workout;
 
 import java.util.ArrayList;
 import java.util.List;
