@@ -60,24 +60,6 @@ public class RecordWOD extends BaseActivity implements RealmCallback, MvpView {
 
     private RecordWODPresenter recordWODPresenter;
 
-    SublimePickerFragment.Callback mFragmentCallback = new SublimePickerFragment.Callback() {
-        @Override
-        public void onCancelled() {
-            finish();
-        }
-
-        @Override
-        public void onDateTimeRecurrenceSet(SelectedDate selectedDate, int hourOfDay, int minute,
-                                            SublimeRecurrencePicker.RecurrenceOption recurrenceOption,
-                                            String recurrenceRule) {
-
-            DateTime dateTime = new DateTime(selectedDate.getFirstDate().getTime());
-            // Create the workout object with the datetime selected
-            workout = new Workout(String.format("%s", dateTime.toLocalDate().toString()));
-            txt_wod_date.setText(workout.getWodDateTime());
-        }
-    };
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -137,6 +119,24 @@ public class RecordWOD extends BaseActivity implements RealmCallback, MvpView {
         Toast.makeText(context, "Record added", Toast.LENGTH_SHORT).show();
         finish();
     }
+
+    SublimePickerFragment.Callback mFragmentCallback = new SublimePickerFragment.Callback() {
+        @Override
+        public void onCancelled() {
+            finish();
+        }
+
+        @Override
+        public void onDateTimeRecurrenceSet(SelectedDate selectedDate, int hourOfDay, int minute,
+                                            SublimeRecurrencePicker.RecurrenceOption recurrenceOption,
+                                            String recurrenceRule) {
+
+            DateTime dateTime = new DateTime(selectedDate.getFirstDate().getTime());
+            // Create the workout object with the datetime selected
+            workout = new Workout(String.format("%s", dateTime.toLocalDate().toString()));
+            txt_wod_date.setText(workout.getWodDateTime());
+        }
+    };
 
     public void displayCalender(Context context) {
         // DialogFragment to host SublimePicker
