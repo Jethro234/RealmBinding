@@ -4,6 +4,12 @@
 
     <uses-permission android:name="android.permission.CAMERA" />
 
+    <supports-screens
+        android:largeScreens="true"
+        android:normalScreens="true"
+        android:smallScreens="true"
+        android:xlargeScreens="true" />
+
     <application
         android:name=".ControlApplication"
         android:allowBackup="true"
@@ -12,7 +18,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".ui.splash.SplashActivity" android:theme="@style/SplashTheme">
+            android:name=".ui.splash.SplashActivity"
+            android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
