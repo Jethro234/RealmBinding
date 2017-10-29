@@ -70,4 +70,9 @@ public class WorkoutAdapter extends RecyclerView.Adapter<WorkoutAdapter.ViewHold
     public long getItemId(int position) {
         return super.getItemId(position);
     }
+
+    public void refreshData(List<Workout> workouts) {
+        this.workoutList = workouts;
+        notifyDataSetChanged();
+    }
 }

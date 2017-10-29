@@ -11,6 +11,7 @@ import com.example.james.realmbinding.R;
 import com.example.james.realmbinding.data.WorkoutDaoImpl;
 import com.example.james.realmbinding.data.WorkoutDao;
 import com.example.james.realmbinding.data.model.Workout;
+import com.example.james.realmbinding.ui.base.MvpView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,8 +23,9 @@ import butterknife.ButterKnife;
  * Project: Workout Logger App
  * Created by James on 14-Aug-16.
  */
-public class ViewProgress extends AppCompatActivity {
-    private WorkoutDao workoutDao;
+public class ViewProgress extends AppCompatActivity implements MvpView {
+    private ViewProgressPresenter viewProgressPresenter;
+    private WorkoutAdapter workoutAdapter;
 
     @BindView(R.id.my_recycler_view)
     RecyclerView mRecyclerView;
@@ -37,17 +39,18 @@ public class ViewProgress extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        workoutDao = new WorkoutDaoImpl(this);
-        List<Workout> workouts = workoutDao.queryWorkout(-1);
+        viewProgressPresenter = new ViewProgressPresenter(ViewProgress.this);
 
+        workoutAdapter = new WorkoutAdapter(new ArrayList<Workout>());
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        mRecyclerView.setAdapter(new WorkoutAdapter(workouts));
-
+        mRecyclerView.setAdapter(workoutAdapter);
     }
 
     @Override
     protected void onStart() {
         super.onStart();
+        List<Workout> workouts = viewProgressPresenter.getRecordedWorkouts();
+        workoutAdapter.refreshData(workouts);
     }
 
     @Override
