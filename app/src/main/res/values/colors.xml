@@ -8,5 +8,5 @@
     <color name="black">#000000</color>
     <color name="white">#FFFFFF</color>
 
-    <color name="progress_card_bg">#FFF7DB</color>
+    <color name="progress_card_bg">@color/colorAccent</color>
 </resources>

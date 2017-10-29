@@ -38,20 +38,11 @@ public class ViewProgress extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         workoutDao = new WorkoutDaoImpl(this);
-        List<Workout> workouts = getWorkoutViewModels(workoutDao.queryWorkout(-1));
+        List<Workout> workouts = workoutDao.queryWorkout(-1);
 
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mRecyclerView.setAdapter(new WorkoutAdapter(workouts));
 
-    }
-
-    private ArrayList<Workout> getWorkoutViewModels(List<Workout> workoutRealmResults) {
-        ArrayList<Workout> workoutViewModelArrayList = new ArrayList<>();
-        for (Workout workout : workoutRealmResults){
-            workoutViewModelArrayList.add(workout);
-        }
-
-        return workoutViewModelArrayList;
     }
 
     @Override
