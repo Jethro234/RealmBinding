@@ -7,13 +7,29 @@ import android.support.v7.widget.Toolbar;
 
 import com.example.james.realmbinding.R;
 
+import butterknife.Unbinder;
+
 /**
  * Created by jimmy on 22/10/2017.
  */
 
-public class BaseActivity extends AppCompatActivity {
+public abstract class BaseActivity extends AppCompatActivity {
+    private Unbinder unBinder;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+    }
+
+    public void setUnBinder(Unbinder unBinder) {
+        this.unBinder = unBinder;
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (unBinder != null) {
+            unBinder.unbind();
+        }
     }
 }

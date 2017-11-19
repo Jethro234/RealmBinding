@@ -43,9 +43,15 @@ dependencies {
     implementation "com.jakewharton:butterknife:$rootProject.butterKnifeVersion"
     annotationProcessor "com.jakewharton:butterknife-compiler:$rootProject.butterKnifeVersion"
 
+    // dependency injection
+    implementation "com.google.dagger:dagger:$rootProject.dagger2Version"
+    annotationProcessor "com.google.dagger:dagger-compiler:$rootProject.dagger2Version"
+    compileOnly 'javax.annotation:jsr250-api:1.0'
+    implementation 'javax.inject:javax.inject:1'
+
     implementation 'com.appeaser.sublimepickerlibrary:sublimepickerlibrary:2.0.0'
     implementation 'joda-time:joda-time:2.9.9'
-    implementation 'com.google.android.gms:play-services-vision:11.0.4'
+    implementation 'com.google.android.gms:play-services-vision:11.6.0'
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
 
     testImplementation 'junit:junit:4.12'

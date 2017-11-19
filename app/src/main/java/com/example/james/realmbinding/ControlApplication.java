@@ -1,8 +1,10 @@
 package com.example.james.realmbinding;
 
 import android.app.Application;
-import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
+
+import com.example.james.realmbinding.di.component.ApplicationComponent;
+import com.example.james.realmbinding.di.component.DaggerApplicationComponent;
+import com.example.james.realmbinding.di.module.ApplicationModule;
 
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
@@ -13,14 +15,16 @@ import io.realm.RealmConfiguration;
 
 public class ControlApplication extends Application {
 
-    private static ControlApplication controlApplication;
-    private static SharedPreferences sharedPreferences;
+    private ApplicationComponent applicationComponent;
 
     @Override
     public void onCreate() {
         super.onCreate();
-        controlApplication = this;
-        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+
+        applicationComponent = DaggerApplicationComponent.builder()
+                .applicationModule(new ApplicationModule(this))
+                .build();
+        applicationComponent.inject(this);
 
         Realm.init(this);
         RealmConfiguration config = new RealmConfiguration.Builder()
@@ -29,16 +33,16 @@ public class ControlApplication extends Application {
         Realm.setDefaultConfiguration(config);
     }
 
+    public ApplicationComponent getApplicationComponent() {
+        return applicationComponent;
+    }
+
+    public void setApplicationComponent(ApplicationComponent applicationComponent) {
+        this.applicationComponent = applicationComponent;
+    }
+
     @Override
     public void onTerminate() {
         super.onTerminate();
-    }
-
-    public static ControlApplication getControlApplication() {
-        return controlApplication;
-    }
-
-    public static SharedPreferences getSharedPreferences() {
-        return sharedPreferences;
     }
 }
