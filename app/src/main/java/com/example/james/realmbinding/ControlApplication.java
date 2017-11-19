@@ -22,7 +22,8 @@ public class ControlApplication extends Application {
         controlApplication = this;
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
 
-        RealmConfiguration config = new RealmConfiguration.Builder(this)
+        Realm.init(this);
+        RealmConfiguration config = new RealmConfiguration.Builder()
                 .name("workoutDB.realm")
                 .build();
         Realm.setDefaultConfiguration(config);
