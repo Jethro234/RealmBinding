@@ -19,7 +19,7 @@ import com.example.james.realmbinding.R;
 import com.example.james.realmbinding.data.WorkoutDaoImpl;
 import com.example.james.realmbinding.data.interfaces.RealmCallback;
 import com.example.james.realmbinding.data.model.Workout;
-import com.example.james.realmbinding.ui.progress.ViewProgress;
+import com.example.james.realmbinding.ui.progress.ViewProgressActivity;
 import com.example.james.realmbinding.ui.scan.OcrCaptureActivity;
 import com.example.james.realmbinding.ui.scan.utils.DetectedGestureArrayList;
 import com.example.james.realmbinding.utils.Constants;
@@ -108,7 +108,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     public void viewProgress() {
-        Intent i = new Intent(context, ViewProgress.class);
+        Intent i = new Intent(context, ViewProgressActivity.class);
         startActivity(i);
     }
 
