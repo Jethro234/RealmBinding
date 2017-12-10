@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.util.Pair;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -36,7 +37,7 @@ import butterknife.ButterKnife;
  * Project: Workout Logger App
  * Created by James on 07-Aug-16.
  */
-public class RecordWOD extends BaseActivity implements RealmCallback, MvpView {
+public class RecordWOD extends AppCompatActivity implements RealmCallback, MvpView {
     // Bind the views
     @BindView(R.id.spinner_wod_exercise)
     Spinner spinnerWodExercise;

@@ -2,15 +2,15 @@ package com.example.james.realmbinding.ui.base;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 
 import butterknife.Unbinder;
+import dagger.android.support.DaggerAppCompatActivity;
 
 /**
  * Created by jimmy on 22/10/2017.
  */
 
-public abstract class BaseActivity extends AppCompatActivity {
+public abstract class BaseActivity extends DaggerAppCompatActivity {
     private Unbinder unBinder;
 
     @Override

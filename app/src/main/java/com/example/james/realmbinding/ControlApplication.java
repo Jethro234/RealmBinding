@@ -1,11 +1,9 @@
 package com.example.james.realmbinding;
 
-import android.app.Application;
-
-import com.example.james.realmbinding.di.component.ApplicationComponent;
 import com.example.james.realmbinding.di.component.DaggerApplicationComponent;
-import com.example.james.realmbinding.di.module.ApplicationModule;
 
+import dagger.android.AndroidInjector;
+import dagger.android.DaggerApplication;
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
 
@@ -13,18 +11,11 @@ import io.realm.RealmConfiguration;
  * Created by jimmy on 08/10/2017.
  */
 
-public class ControlApplication extends Application {
-
-    private ApplicationComponent applicationComponent;
+public class ControlApplication extends DaggerApplication {
 
     @Override
     public void onCreate() {
         super.onCreate();
-
-        applicationComponent = DaggerApplicationComponent.builder()
-                .applicationModule(new ApplicationModule(this))
-                .build();
-        applicationComponent.inject(this);
 
         Realm.init(this);
         RealmConfiguration config = new RealmConfiguration.Builder()
@@ -33,16 +24,8 @@ public class ControlApplication extends Application {
         Realm.setDefaultConfiguration(config);
     }
 
-    public ApplicationComponent getApplicationComponent() {
-        return applicationComponent;
-    }
-
-    public void setApplicationComponent(ApplicationComponent applicationComponent) {
-        this.applicationComponent = applicationComponent;
-    }
-
     @Override
-    public void onTerminate() {
-        super.onTerminate();
+    protected AndroidInjector<? extends DaggerApplication> applicationInjector() {
+        return DaggerApplicationComponent.builder().application(this).build();
     }
 }

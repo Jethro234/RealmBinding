@@ -18,6 +18,7 @@ public class ViewProgressPresenter extends BasePresenter implements ViewProgress
     private final static String TAG = ViewProgressPresenter.class.getSimpleName();
     private WorkoutDao workoutDao;
 
+    @Inject
     public ViewProgressPresenter(ViewProgressActivity mvpView) {
         super(mvpView);
         workoutDao = new WorkoutDaoImpl(super.getContext());
