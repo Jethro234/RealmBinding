@@ -36,6 +36,7 @@ import static com.example.james.realmbinding.utils.Constants.SCAN_WOD_BUNDLE_KEY
 public class MainActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener, RealmCallback {
 
     private Context context;
+    private SmoothActionBarDrawerToggle smoothToggle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,10 +57,10 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         });
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+        smoothToggle = new SmoothActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.setDrawerListener(toggle);
-        toggle.syncState();
+        drawer.setDrawerListener(smoothToggle);
+        smoothToggle.syncState();
 
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
@@ -165,10 +166,20 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 
         switch (id) {
             case R.id.nav_record_wod:
-                recordWod();
+                smoothToggle.runWhenIdle(new Runnable() {
+                    @Override
+                    public void run() {
+                        recordWod();
+                    }
+                });
                 break;
             case R.id.nav_view_progress:
-                viewProgress();
+                smoothToggle.runWhenIdle(new Runnable() {
+                    @Override
+                    public void run() {
+                        viewProgress();
+                    }
+                });
                 break;
         }
 
