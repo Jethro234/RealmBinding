@@ -1,7 +1,7 @@
 package com.example.james.realmbinding.di.module;
 
 import com.example.james.realmbinding.di.ActivityScoped;
-import com.example.james.realmbinding.ui.progress.ViewProgressMvpPresenter;
+import com.example.james.realmbinding.ui.progress.ViewProgressMvp;
 import com.example.james.realmbinding.ui.progress.ViewProgressPresenter;
 
 import dagger.Binds;
@@ -16,5 +16,5 @@ public abstract class ViewProgressModule {
 
     @ActivityScoped
     @Binds
-    abstract ViewProgressMvpPresenter viewProgressMvpPresenter(ViewProgressPresenter viewProgressPresenter);
+    abstract ViewProgressMvp viewProgressMvpPresenter(ViewProgressPresenter viewProgressPresenter);
 }

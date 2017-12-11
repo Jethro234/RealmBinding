@@ -13,7 +13,7 @@ import javax.inject.Inject;
  * Created by jimmy on 29/10/2017.
  */
 
-public class ViewProgressPresenter extends BasePresenter implements ViewProgressMvpPresenter {
+public class ViewProgressPresenter extends BasePresenter implements ViewProgressMvp {
 
     private final static String TAG = ViewProgressPresenter.class.getSimpleName();
     private WorkoutDao workoutDao;

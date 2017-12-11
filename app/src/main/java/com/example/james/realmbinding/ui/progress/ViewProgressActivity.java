@@ -28,7 +28,7 @@ import butterknife.ButterKnife;
 public class ViewProgressActivity extends BaseActivity implements MvpView {
 
     @Inject
-    ViewProgressMvpPresenter viewProgressPresenter;
+    ViewProgressMvp viewProgressPresenter;
 
     @BindView(R.id.my_recycler_view) RecyclerView mRecyclerView;
     @BindView(R.id.toolbar) Toolbar toolbar;

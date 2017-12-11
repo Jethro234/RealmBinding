@@ -9,6 +9,6 @@ import java.util.List;
  * Created by jimmy on 29/10/2017.
  */
 
-public interface ViewProgressMvpPresenter extends MvpView {
+public interface ViewProgressMvp extends MvpView {
     List<Workout> getRecordedWorkouts();
 }
