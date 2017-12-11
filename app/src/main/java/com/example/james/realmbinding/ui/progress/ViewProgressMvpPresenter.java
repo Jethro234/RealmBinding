@@ -1,7 +1,7 @@
 package com.example.james.realmbinding.ui.progress;
 
 import com.example.james.realmbinding.data.model.Workout;
-import com.example.james.realmbinding.ui.base.MvpView;
+import com.example.james.realmbinding.MvpView;
 
 import java.util.List;
 

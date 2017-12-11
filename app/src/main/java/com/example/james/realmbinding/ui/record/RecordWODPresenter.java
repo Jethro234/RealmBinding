@@ -5,7 +5,7 @@ import com.example.james.realmbinding.data.WorkoutDaoImpl;
 import com.example.james.realmbinding.data.interfaces.RealmCallback;
 import com.example.james.realmbinding.data.model.Workout;
 import com.example.james.realmbinding.ui.base.BasePresenter;
-import com.example.james.realmbinding.ui.base.MvpView;
+import com.example.james.realmbinding.MvpView;
 
 /**
  * Created by jimmy on 22/10/2017.

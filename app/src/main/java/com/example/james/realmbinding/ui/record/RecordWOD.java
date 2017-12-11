@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.util.Pair;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -20,12 +21,9 @@ import com.appeaser.sublimepickerlibrary.datepicker.SelectedDate;
 import com.appeaser.sublimepickerlibrary.helpers.SublimeOptions;
 import com.appeaser.sublimepickerlibrary.recurrencepicker.SublimeRecurrencePicker;
 import com.example.james.realmbinding.R;
-import com.example.james.realmbinding.data.WorkoutDaoImpl;
 import com.example.james.realmbinding.data.interfaces.RealmCallback;
-import com.example.james.realmbinding.data.WorkoutDao;
 import com.example.james.realmbinding.data.model.Workout;
-import com.example.james.realmbinding.ui.base.BaseActivity;
-import com.example.james.realmbinding.ui.base.MvpView;
+import com.example.james.realmbinding.MvpView;
 import com.example.james.realmbinding.ui.calendar.SublimePickerFragment;
 
 import org.joda.time.DateTime;
@@ -58,7 +56,7 @@ public class RecordWOD extends AppCompatActivity implements RealmCallback, MvpVi
 
     private Context context;
     private Workout workout;
-
+    private ActionBar actionBar;
     private RecordWODPresenter recordWODPresenter;
 
     @Override

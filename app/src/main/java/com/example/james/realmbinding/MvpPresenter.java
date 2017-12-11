@@ -1,4 +1,4 @@
-package com.example.james.realmbinding.ui.base;
+package com.example.james.realmbinding;
 
 import android.content.Context;
 

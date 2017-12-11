@@ -10,7 +10,7 @@ import com.example.james.realmbinding.R;
 import com.example.james.realmbinding.data.model.Workout;
 import com.example.james.realmbinding.di.ActivityScoped;
 import com.example.james.realmbinding.ui.base.BaseActivity;
-import com.example.james.realmbinding.ui.base.MvpView;
+import com.example.james.realmbinding.MvpView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,10 +30,10 @@ public class ViewProgressActivity extends BaseActivity implements MvpView {
     @Inject
     ViewProgressMvpPresenter viewProgressPresenter;
 
-    private WorkoutAdapter workoutAdapter;
+    @BindView(R.id.my_recycler_view) RecyclerView mRecyclerView;
+    @BindView(R.id.toolbar) Toolbar toolbar;
 
-    @BindView(R.id.my_recycler_view)
-    RecyclerView mRecyclerView;
+    private WorkoutAdapter workoutAdapter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -42,7 +42,6 @@ public class ViewProgressActivity extends BaseActivity implements MvpView {
 
         setUnBinder(ButterKnife.bind(this));
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         workoutAdapter = new WorkoutAdapter(new ArrayList<Workout>());

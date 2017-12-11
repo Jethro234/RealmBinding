@@ -1,4 +1,4 @@
-package com.example.james.realmbinding.ui.base;
+package com.example.james.realmbinding;
 
 /**
  * Created by jimmy on 22/10/2017.
