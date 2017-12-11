@@ -11,6 +11,7 @@ import com.example.james.realmbinding.data.model.Workout;
 import com.example.james.realmbinding.di.ActivityScoped;
 import com.example.james.realmbinding.ui.base.BaseActivity;
 import com.example.james.realmbinding.MvpView;
+import com.example.james.realmbinding.utils.ActivityUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,12 +29,9 @@ import butterknife.ButterKnife;
 public class ViewProgressActivity extends BaseActivity implements MvpView {
 
     @Inject
-    ViewProgressMvp viewProgressPresenter;
+    ViewProgressFrag viewProgressFrag;
 
-    @BindView(R.id.my_recycler_view) RecyclerView mRecyclerView;
     @BindView(R.id.toolbar) Toolbar toolbar;
-
-    private WorkoutAdapter workoutAdapter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -44,21 +42,12 @@ public class ViewProgressActivity extends BaseActivity implements MvpView {
 
         setSupportActionBar(toolbar);
 
-        workoutAdapter = new WorkoutAdapter(new ArrayList<Workout>());
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        mRecyclerView.setAdapter(workoutAdapter);
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        List<Workout> workouts = viewProgressPresenter.getRecordedWorkouts();
-        workoutAdapter.refreshData(workouts);
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
+        //Initialise the fragment
+        ViewProgressFrag cachedViewProgressFrag =
+                (ViewProgressFrag) getSupportFragmentManager().findFragmentById(R.id.contentFrame);
+        if (cachedViewProgressFrag == null) {
+            ActivityUtils.addFragmentToActivity(getSupportFragmentManager(), viewProgressFrag, R.id.contentFrame);
+        }
     }
 
     @Override
