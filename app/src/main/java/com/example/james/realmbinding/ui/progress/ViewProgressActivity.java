@@ -24,7 +24,7 @@ import butterknife.ButterKnife;
  * Project: Workout Logger App
  * Created by James on 14-Aug-16.
  */
-@ActivityScoped
+
 public class ViewProgressActivity extends BaseActivity implements MvpView {
 
     @Inject

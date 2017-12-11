@@ -20,6 +20,7 @@ import com.example.james.realmbinding.R;
 import com.example.james.realmbinding.data.WorkoutDaoImpl;
 import com.example.james.realmbinding.data.interfaces.RealmCallback;
 import com.example.james.realmbinding.data.model.Workout;
+import com.example.james.realmbinding.ui.base.BaseActivity;
 import com.example.james.realmbinding.ui.progress.ViewProgressActivity;
 import com.example.james.realmbinding.ui.scan.OcrCaptureActivity;
 import com.example.james.realmbinding.ui.scan.utils.DetectedGestureArrayList;
@@ -32,7 +33,7 @@ import static com.example.james.realmbinding.utils.Constants.SCANNED_EXERCISE;
 import static com.example.james.realmbinding.utils.Constants.SCANNED_TIME;
 import static com.example.james.realmbinding.utils.Constants.SCAN_WOD_BUNDLE_KEY;
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, RealmCallback {
+public class MainActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener, RealmCallback {
 
     private Context context;
 

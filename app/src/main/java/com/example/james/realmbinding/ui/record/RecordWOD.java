@@ -24,6 +24,7 @@ import com.example.james.realmbinding.R;
 import com.example.james.realmbinding.data.interfaces.RealmCallback;
 import com.example.james.realmbinding.data.model.Workout;
 import com.example.james.realmbinding.MvpView;
+import com.example.james.realmbinding.ui.base.BaseActivity;
 import com.example.james.realmbinding.ui.calendar.SublimePickerFragment;
 
 import org.joda.time.DateTime;
@@ -35,28 +36,19 @@ import butterknife.ButterKnife;
  * Project: Workout Logger App
  * Created by James on 07-Aug-16.
  */
-public class RecordWOD extends AppCompatActivity implements RealmCallback, MvpView {
+public class RecordWOD extends BaseActivity implements RealmCallback, MvpView {
     // Bind the views
-    @BindView(R.id.spinner_wod_exercise)
-    Spinner spinnerWodExercise;
-    @BindView(R.id.spinner_wod_sets)
-    Spinner spinnerWodSets;
-    @BindView(R.id.btn_add_wod)
-    Button btn_addWod;
-    @BindView(R.id.txt_wod_date)
-    TextView txt_wod_date;
-    @BindView(R.id.toolbar)
-    Toolbar toolbar;
-    @BindView(R.id.txt_weight)
-    EditText txt_wod_weight;
-    @BindView(R.id.txt_wod_details)
-    EditText txt_wod_details;
-    @BindView(R.id.txt_wod_time)
-    EditText txt_wod_time;
+    @BindView(R.id.spinner_wod_exercise) Spinner spinnerWodExercise;
+    @BindView(R.id.spinner_wod_sets) Spinner spinnerWodSets;
+    @BindView(R.id.btn_add_wod) Button btn_addWod;
+    @BindView(R.id.txt_wod_date) TextView txt_wod_date;
+    @BindView(R.id.toolbar) Toolbar toolbar;
+    @BindView(R.id.txt_weight) EditText txt_wod_weight;
+    @BindView(R.id.txt_wod_details) EditText txt_wod_details;
+    @BindView(R.id.txt_wod_time) EditText txt_wod_time;
 
     private Context context;
     private Workout workout;
-    private ActionBar actionBar;
     private RecordWODPresenter recordWODPresenter;
 
     @Override
