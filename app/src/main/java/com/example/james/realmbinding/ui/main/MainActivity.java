@@ -4,18 +4,16 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v7.app.ActionBar;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.example.james.realmbinding.MvpView;
 import com.example.james.realmbinding.R;
 import com.example.james.realmbinding.data.WorkoutDaoImpl;
 import com.example.james.realmbinding.data.interfaces.RealmCallback;
@@ -36,7 +34,7 @@ import static com.example.james.realmbinding.utils.Constants.SCANNED_EXERCISE;
 import static com.example.james.realmbinding.utils.Constants.SCANNED_TIME;
 import static com.example.james.realmbinding.utils.Constants.SCAN_WOD_BUNDLE_KEY;
 
-public class MainActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener, RealmCallback {
+public class MainActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener, RealmCallback, MvpView {
 
     private Context context;
     private SmoothActionBarDrawerToggle smoothToggle;
