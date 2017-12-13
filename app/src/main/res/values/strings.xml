@@ -65,6 +65,7 @@
     <string name="tle_menu_communicate">Communicate</string>
 
     <!-- Menu Labels -->
+    <string name="lbl_menu_home">Home</string>
     <string name="lbl_menu_record_a_wod">Record Wod</string>
     <string name="lbl_menu_view_progress">View Progress</string>
     <string name="lbl_menu_tools">Tools</string>

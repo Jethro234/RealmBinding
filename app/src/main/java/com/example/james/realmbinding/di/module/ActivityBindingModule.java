@@ -20,7 +20,7 @@ public abstract class ActivityBindingModule {
     abstract ViewProgressActivity viewProgressActivity();
 
     @ActivityScoped
-    @ContributesAndroidInjector()
+    @ContributesAndroidInjector(modules = MainActivityModule.class)
     abstract MainActivity mainActivity();
 
     @ActivityScoped

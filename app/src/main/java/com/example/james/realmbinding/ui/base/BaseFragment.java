@@ -10,7 +10,7 @@ import dagger.android.support.DaggerFragment;
  * Created by buxtonj on 11/12/2017.
  */
 
-public class BaseFragment extends DaggerFragment {
+public abstract class BaseFragment extends DaggerFragment {
 
     private Unbinder unBinder;
 

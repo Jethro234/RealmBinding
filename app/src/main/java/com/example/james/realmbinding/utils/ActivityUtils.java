@@ -25,4 +25,13 @@ public class ActivityUtils {
         transaction.add(frameId, fragment);
         transaction.commit();
     }
+
+    public static void replaceFragmentInActivity (@NonNull FragmentManager fragmentManager,
+                                              @NonNull Fragment fragment, int frameId) {
+        checkNotNull(fragmentManager);
+        checkNotNull(fragment);
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        transaction.replace(frameId, fragment);
+        transaction.commit();
+    }
 }

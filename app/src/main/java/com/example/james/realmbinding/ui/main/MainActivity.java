@@ -24,10 +24,13 @@ import com.example.james.realmbinding.ui.base.BaseActivity;
 import com.example.james.realmbinding.ui.progress.ViewProgressActivity;
 import com.example.james.realmbinding.ui.scan.OcrCaptureActivity;
 import com.example.james.realmbinding.ui.scan.utils.DetectedGestureArrayList;
+import com.example.james.realmbinding.utils.ActivityUtils;
 import com.example.james.realmbinding.utils.Constants;
 import com.example.james.realmbinding.ui.record.RecordWOD;
 
 import org.joda.time.DateTime;
+
+import javax.inject.Inject;
 
 import static com.example.james.realmbinding.utils.Constants.SCANNED_EXERCISE;
 import static com.example.james.realmbinding.utils.Constants.SCANNED_TIME;
@@ -37,6 +40,12 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 
     private Context context;
     private SmoothActionBarDrawerToggle smoothToggle;
+
+    @Inject
+    MainActivityFrag mainActivityFrag;
+
+    @Inject
+    MainActivityFragTwo mainActivityFragTwo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,7 +74,15 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        //TODO - implement today's wod funcitonality for main screen
+        MainActivityFrag cachedFrag =
+                (MainActivityFrag) getSupportFragmentManager().findFragmentById(R.id.contentFrame);
+
+        if (cachedFrag == null) {
+            ActivityUtils.addFragmentToActivity(getSupportFragmentManager(),
+                    mainActivityFrag, R.id.contentFrame);
+        }
+
+        //TODO - implement today's wod functionality for main screen
     }
 
     @Override
@@ -105,6 +122,11 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         startActivityForResult(i, Constants.SCAN_WOD);
     }
 
+    public void viewHome() {
+        ActivityUtils.replaceFragmentInActivity(getSupportFragmentManager(),
+                mainActivityFrag, R.id.contentFrame);
+    }
+
     public void recordWod(){
         Intent i = new Intent(context, RecordWOD.class);
         startActivity(i);
@@ -113,6 +135,11 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     public void viewProgress() {
         Intent i = new Intent(context, ViewProgressActivity.class);
         startActivity(i);
+    }
+
+    public void viewTools() {
+        ActivityUtils.replaceFragmentInActivity(getSupportFragmentManager(),
+                mainActivityFragTwo, R.id.contentFrame);
     }
 
     @Override
@@ -165,6 +192,14 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         int id = item.getItemId();
 
         switch (id) {
+            case R.id.nav_home:
+                smoothToggle.runWhenIdle(new Runnable() {
+                    @Override
+                    public void run() {
+                        viewHome();
+                    }
+                });
+                break;
             case R.id.nav_record_wod:
                 smoothToggle.runWhenIdle(new Runnable() {
                     @Override
@@ -178,6 +213,14 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
                     @Override
                     public void run() {
                         viewProgress();
+                    }
+                });
+                break;
+            case R.id.nav_tools:
+                smoothToggle.runWhenIdle(new Runnable() {
+                    @Override
+                    public void run() {
+                        viewTools();
                     }
                 });
                 break;

@@ -3,6 +3,11 @@
 
     <group android:checkableBehavior="single">
         <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="@string/lbl_menu_home" />
+
+        <item
             android:id="@+id/nav_record_wod"
             android:icon="@drawable/ic_assignment_turned_in_black_24dp"
             android:title="@string/lbl_menu_record_a_wod" />
