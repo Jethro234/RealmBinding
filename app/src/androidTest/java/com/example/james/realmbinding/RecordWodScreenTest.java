@@ -1,13 +1,10 @@
 package com.example.james.realmbinding;
 
-import static android.support.test.espresso.action.ViewActions.pressBack;
-import static android.support.test.espresso.action.ViewActions.pressImeActionButton;
+import static android.support.test.espresso.action.ViewActions.closeSoftKeyboard;
 import static android.support.test.espresso.action.ViewActions.typeText;
 import static android.support.test.espresso.assertion.ViewAssertions.doesNotExist;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 
-import android.support.test.espresso.Espresso;
-import android.support.test.espresso.ViewAssertion;
 import android.support.test.espresso.ViewInteraction;
 import android.support.test.espresso.matcher.BoundedMatcher;
 import android.support.test.rule.ActivityTestRule;
@@ -87,9 +84,9 @@ public class RecordWodScreenTest {
         ViewInteraction btn_add_wod = onView(withId(R.id.btn_add_wod));
 
         // Add additional information
-        txt_weight.perform(typeText("30"), pressImeActionButton());
-        txt_wod_details.perform(typeText("Murph"), pressBack());
-        txt_wod_time.perform(typeText("20:13"), pressBack());
+        txt_weight.perform(typeText("30"), closeSoftKeyboard());
+        txt_wod_details.perform(typeText("Murph"), closeSoftKeyboard());
+        txt_wod_time.perform(typeText("20:13"), closeSoftKeyboard());
 
         btn_add_wod.perform(click());
     }
