@@ -9,7 +9,7 @@ import javax.inject.Inject;
  * Created by buxtonj on 13/12/2017.
  */
 
-public class MainActivityPresenter extends BasePresenter implements MainActivityMvp {
+public class MainActivityPresenter extends BasePresenter implements MainMvpPresenter {
 
     private final static String TAG = MainActivityPresenter.class.getSimpleName();
     private WorkoutDao workoutDao;
@@ -17,5 +17,17 @@ public class MainActivityPresenter extends BasePresenter implements MainActivity
     @Inject
     public MainActivityPresenter(MainActivity mvpView) {
         super(mvpView);
+    }
+
+    @Override
+    public void onDrawerOptionHomeClick() {
+        ((MainMvpView)getMvpView()).closeNavigationDrawer();
+        ((MainMvpView)getMvpView()).showHomeFragment();
+    }
+
+    @Override
+    public void onDrawerOptionToolsClick() {
+        ((MainMvpView)getMvpView()).closeNavigationDrawer();
+        ((MainMvpView)getMvpView()).showToolsFragment();
     }
 }

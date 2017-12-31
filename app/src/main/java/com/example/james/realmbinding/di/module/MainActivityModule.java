@@ -2,8 +2,8 @@ package com.example.james.realmbinding.di.module;
 
 import com.example.james.realmbinding.di.ActivityScoped;
 import com.example.james.realmbinding.ui.main.MainActivityFrag;
-import com.example.james.realmbinding.ui.main.MainActivityFragTwo;
-import com.example.james.realmbinding.ui.main.MainActivityMvp;
+import com.example.james.realmbinding.ui.main.ToolsFragment;
+import com.example.james.realmbinding.ui.main.MainMvpPresenter;
 import com.example.james.realmbinding.ui.main.MainActivityPresenter;
 
 import dagger.Binds;
@@ -20,10 +20,10 @@ public abstract class MainActivityModule {
     abstract MainActivityFrag mainActivityFrag();
 
     @ContributesAndroidInjector
-    abstract MainActivityFragTwo mainActivityFragTwo();
+    abstract ToolsFragment toolsFragment();
 
     @ActivityScoped
     @Binds
-    abstract MainActivityMvp mainActivityMvp(MainActivityPresenter mainActivityPresenter);
+    abstract MainMvpPresenter mainActivityMvp(MainActivityPresenter mainActivityPresenter);
 
 }

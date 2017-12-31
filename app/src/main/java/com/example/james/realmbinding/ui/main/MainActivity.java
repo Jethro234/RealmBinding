@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.view.Gravity;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -13,7 +14,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-import com.example.james.realmbinding.MvpView;
 import com.example.james.realmbinding.R;
 import com.example.james.realmbinding.data.WorkoutDaoImpl;
 import com.example.james.realmbinding.data.interfaces.RealmCallback;
@@ -30,32 +30,43 @@ import org.joda.time.DateTime;
 
 import javax.inject.Inject;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 import static com.example.james.realmbinding.utils.Constants.SCANNED_EXERCISE;
 import static com.example.james.realmbinding.utils.Constants.SCANNED_TIME;
 import static com.example.james.realmbinding.utils.Constants.SCAN_WOD_BUNDLE_KEY;
 
-public class MainActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener, RealmCallback, MvpView {
+public class MainActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener, RealmCallback, MainMvpView {
 
     private Context context;
     private SmoothActionBarDrawerToggle smoothToggle;
+
+    @BindView(R.id.toolbar) Toolbar toolbar;
+    @BindView(R.id.fab) FloatingActionButton fab;
+    @BindView(R.id.drawer_layout) DrawerLayout drawer_layout;
+    @BindView(R.id.nav_view) NavigationView navigationView;
 
     @Inject
     MainActivityFrag mainActivityFrag;
 
     @Inject
-    MainActivityFragTwo mainActivityFragTwo;
+    ToolsFragment toolsFragment;
+
+    @Inject
+    MainMvpPresenter mainMvpPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
+        setUnBinder(ButterKnife.bind(this));
+
         setSupportActionBar(toolbar);
 
         context = this;
 
-        FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -69,7 +80,6 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         drawer.setDrawerListener(smoothToggle);
         smoothToggle.syncState();
 
-        NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
         MainActivityFrag cachedFrag =
@@ -120,9 +130,16 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         startActivityForResult(i, Constants.SCAN_WOD);
     }
 
-    public void viewHome() {
+    @Override
+    public void showHomeFragment() {
         ActivityUtils.replaceFragmentInActivity(getSupportFragmentManager(),
                 mainActivityFrag, R.id.contentFrame);
+    }
+
+    @Override
+    public void showToolsFragment() {
+        ActivityUtils.replaceFragmentInActivity(getSupportFragmentManager(),
+                toolsFragment, R.id.contentFrame);
     }
 
     public void recordWod(){
@@ -135,11 +152,6 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         startActivity(i);
     }
 
-    public void viewTools() {
-        ActivityUtils.replaceFragmentInActivity(getSupportFragmentManager(),
-                mainActivityFragTwo, R.id.contentFrame);
-    }
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -148,8 +160,6 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
                 Bundle scan_wod_bundle = data.getBundleExtra(SCAN_WOD_BUNDLE_KEY);
                 DetectedGestureArrayList confirmedExercises = new DetectedGestureArrayList(scan_wod_bundle.getStringArrayList(SCANNED_EXERCISE));
                 DetectedGestureArrayList confirmedTime = new DetectedGestureArrayList(scan_wod_bundle.getStringArrayList(SCANNED_TIME));
-
-
 
                 // Obtain realm instance
                 WorkoutDaoImpl workoutDao = new WorkoutDaoImpl(context);
@@ -188,15 +198,9 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
-
         switch (id) {
             case R.id.nav_home:
-                smoothToggle.runWhenIdle(new Runnable() {
-                    @Override
-                    public void run() {
-                        viewHome();
-                    }
-                });
+                mainMvpPresenter.onDrawerOptionHomeClick();
                 break;
             case R.id.nav_record_wod:
                 smoothToggle.runWhenIdle(new Runnable() {
@@ -215,18 +219,26 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
                 });
                 break;
             case R.id.nav_tools:
-                smoothToggle.runWhenIdle(new Runnable() {
-                    @Override
-                    public void run() {
-                        viewTools();
-                    }
-                });
+                mainMvpPresenter.onDrawerOptionToolsClick();
                 break;
         }
 
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @Override
+    public void closeNavigationDrawer() {
+        drawer_layout.closeDrawer(Gravity.START);
+    }
+
+    @Override
+    public void lockDrawer() {
+
+    }
+
+    @Override
+    public void unlockDrawer() {
+
     }
 
     @Override

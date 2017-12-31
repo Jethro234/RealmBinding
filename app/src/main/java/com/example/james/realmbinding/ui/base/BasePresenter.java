@@ -24,6 +24,10 @@ public abstract class BasePresenter<V extends MvpView> implements MvpPresenter<V
         onAttach(this.mvpView);
     }
 
+    public V getMvpView() {
+        return mvpView;
+    }
+
     @Override
     public void onAttach(V mvpView) {
         this.mvpView = mvpView;
