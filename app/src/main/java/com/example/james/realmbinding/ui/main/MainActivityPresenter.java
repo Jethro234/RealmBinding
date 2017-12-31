@@ -26,6 +26,18 @@ public class MainActivityPresenter extends BasePresenter implements MainMvpPrese
     }
 
     @Override
+    public void onDrawerOptionRecordWODClick() {
+        ((MainMvpView)getMvpView()).closeNavigationDrawer();
+        ((MainMvpView)getMvpView()).showRecordWodActivity();
+    }
+
+    @Override
+    public void onDrawerOptionViewProgressClick() {
+        ((MainMvpView)getMvpView()).closeNavigationDrawer();
+        ((MainMvpView)getMvpView()).showViewProgressActivity();
+    }
+
+    @Override
     public void onDrawerOptionToolsClick() {
         ((MainMvpView)getMvpView()).closeNavigationDrawer();
         ((MainMvpView)getMvpView()).showToolsFragment();

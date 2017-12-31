@@ -77,7 +77,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         smoothToggle = new SmoothActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.setDrawerListener(smoothToggle);
+        drawer.addDrawerListener(smoothToggle);
         smoothToggle.syncState();
 
         navigationView.setNavigationItemSelectedListener(this);
@@ -137,19 +137,19 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     }
 
     @Override
+    public void showRecordWodActivity() {
+        startActivity(RecordWOD.getRecordWodActIntent(this));
+    }
+
+    @Override
     public void showToolsFragment() {
         ActivityUtils.replaceFragmentInActivity(getSupportFragmentManager(),
                 toolsFragment, R.id.contentFrame);
     }
 
-    public void recordWod(){
-        Intent i = new Intent(context, RecordWOD.class);
-        startActivity(i);
-    }
-
-    public void viewProgress() {
-        Intent i = new Intent(context, ViewProgressActivity.class);
-        startActivity(i);
+    @Override
+    public void showViewProgressActivity() {
+        startActivity(ViewProgressActivity.getViewProgressActIntent(this));
     }
 
     @Override
@@ -203,20 +203,10 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
                 mainMvpPresenter.onDrawerOptionHomeClick();
                 break;
             case R.id.nav_record_wod:
-                smoothToggle.runWhenIdle(new Runnable() {
-                    @Override
-                    public void run() {
-                        recordWod();
-                    }
-                });
+                mainMvpPresenter.onDrawerOptionRecordWODClick();
                 break;
             case R.id.nav_view_progress:
-                smoothToggle.runWhenIdle(new Runnable() {
-                    @Override
-                    public void run() {
-                        viewProgress();
-                    }
-                });
+                mainMvpPresenter.onDrawerOptionViewProgressClick();
                 break;
             case R.id.nav_tools:
                 mainMvpPresenter.onDrawerOptionToolsClick();

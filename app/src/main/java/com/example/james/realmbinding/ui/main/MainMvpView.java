@@ -18,5 +18,9 @@ public interface MainMvpView extends MvpView {
 
     void showHomeFragment();
 
+    void showRecordWodActivity();
+
+    void showViewProgressActivity();
+
     void showToolsFragment();
 }

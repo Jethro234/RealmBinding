@@ -1,6 +1,7 @@
 package com.example.james.realmbinding.ui.record;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -50,6 +51,10 @@ public class RecordWOD extends BaseActivity implements RealmCallback, MvpView {
     private Context context;
     private Workout workout;
     private RecordWODPresenter recordWODPresenter;
+
+    public static Intent getRecordWodActIntent(Context context) {
+        return new Intent(context, RecordWOD.class);
+    }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
