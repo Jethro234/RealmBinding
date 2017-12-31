@@ -1,5 +1,7 @@
 package com.example.james.realmbinding.ui.progress;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
@@ -28,10 +30,14 @@ import butterknife.ButterKnife;
 
 public class ViewProgressActivity extends BaseActivity implements MvpView {
 
+    @BindView(R.id.toolbar) Toolbar toolbar;
+
     @Inject
     ViewProgressFrag viewProgressFrag;
 
-    @BindView(R.id.toolbar) Toolbar toolbar;
+    public static Intent getViewProgressActIntent(Context context) {
+        return new Intent(context, ViewProgressActivity.class);
+    }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
