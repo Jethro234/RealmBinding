@@ -89,8 +89,6 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
             ActivityUtils.addFragmentToActivity(getSupportFragmentManager(),
                     mainActivityFrag, R.id.contentFrame);
         }
-
-        //TODO - implement today's wod functionality for main screen
     }
 
     @Override
@@ -117,9 +115,12 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        switch (id) {
+            case R.id.reload_questions:
+                mainActivityFrag.reloadQuestions();
+                break;
+            case R.id.action_settings:
+                break;
         }
 
         return super.onOptionsItemSelected(item);

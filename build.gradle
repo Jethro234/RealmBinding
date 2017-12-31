@@ -28,4 +28,5 @@ ext {
     butterKnifeVersion = '8.8.1'
     supportLibraryVersion = '26.1.0'
     dagger2Version = '2.11'
+    placeholderviewVersion = '0.7.2'
 }
