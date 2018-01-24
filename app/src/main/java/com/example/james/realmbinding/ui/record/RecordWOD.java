@@ -60,9 +60,12 @@ public class RecordWOD extends BaseActivity implements RealmCallback, RecordMvpV
 
         setSupportActionBar(toolbar);
 
+        //todo: add presenter to dagger
         recordWODPresenter = new RecordWODPresenter(RecordWOD.this);
 
         context = this;
+
+        //todo: add fragment to record wod page
 
         // Get Resources
         Resources res = getResources();
