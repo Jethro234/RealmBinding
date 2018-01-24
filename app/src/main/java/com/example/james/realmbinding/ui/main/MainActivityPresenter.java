@@ -1,5 +1,6 @@
 package com.example.james.realmbinding.ui.main;
 
+import com.example.james.realmbinding.MvpView;
 import com.example.james.realmbinding.data.WorkoutDao;
 import com.example.james.realmbinding.ui.base.BasePresenter;
 
@@ -12,7 +13,7 @@ import javax.inject.Inject;
 public class MainActivityPresenter extends BasePresenter implements MainMvpPresenter {
 
     private final static String TAG = MainActivityPresenter.class.getSimpleName();
-    private WorkoutDao workoutDao;
+    private MainMvpView mainMvpView;
 
     @Inject
     public MainActivityPresenter(MainActivity mvpView) {
@@ -20,26 +21,32 @@ public class MainActivityPresenter extends BasePresenter implements MainMvpPrese
     }
 
     @Override
+    public void onAttach(MvpView mvpView) {
+        super.onAttach(mvpView);
+        mainMvpView = (MainMvpView) mvpView;
+    }
+
+    @Override
     public void onDrawerOptionHomeClick() {
-        ((MainMvpView)getMvpView()).closeNavigationDrawer();
-        ((MainMvpView)getMvpView()).showHomeFragment();
+        mainMvpView.closeNavigationDrawer();
+        mainMvpView.showHomeFragment();
     }
 
     @Override
     public void onDrawerOptionRecordWODClick() {
-        ((MainMvpView)getMvpView()).closeNavigationDrawer();
-        ((MainMvpView)getMvpView()).showRecordWodActivity();
+        mainMvpView.closeNavigationDrawer();
+        mainMvpView.showRecordWodActivity();
     }
 
     @Override
     public void onDrawerOptionViewProgressClick() {
-        ((MainMvpView)getMvpView()).closeNavigationDrawer();
-        ((MainMvpView)getMvpView()).showViewProgressActivity();
+        mainMvpView.closeNavigationDrawer();
+        mainMvpView.showViewProgressActivity();
     }
 
     @Override
     public void onDrawerOptionToolsClick() {
-        ((MainMvpView)getMvpView()).closeNavigationDrawer();
-        ((MainMvpView)getMvpView()).showToolsFragment();
+        mainMvpView.closeNavigationDrawer();
+        mainMvpView.showToolsFragment();
     }
 }
