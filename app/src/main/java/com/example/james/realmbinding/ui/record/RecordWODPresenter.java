@@ -11,7 +11,7 @@ import com.example.james.realmbinding.MvpView;
  * Created by jimmy on 22/10/2017.
  */
 
-public class RecordWODPresenter extends BasePresenter {
+public class RecordWODPresenter extends BasePresenter implements RecordMvpPresenter{
 
     private final static String TAG = RecordWODPresenter.class.getSimpleName();
     private WorkoutDao workoutDao;

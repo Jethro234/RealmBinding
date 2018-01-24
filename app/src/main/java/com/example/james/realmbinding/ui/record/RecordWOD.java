@@ -7,8 +7,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.util.Pair;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -24,11 +22,9 @@ import com.appeaser.sublimepickerlibrary.recurrencepicker.SublimeRecurrencePicke
 import com.example.james.realmbinding.R;
 import com.example.james.realmbinding.data.interfaces.RealmCallback;
 import com.example.james.realmbinding.data.model.Workout;
-import com.example.james.realmbinding.MvpView;
 import com.example.james.realmbinding.ui.base.BaseActivity;
 import com.example.james.realmbinding.ui.calendar.SublimePickerFragment;
-
-import org.joda.time.DateTime;
+import com.example.james.realmbinding.utils.DateTimeUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -37,7 +33,7 @@ import butterknife.ButterKnife;
  * Project: Workout Logger App
  * Created by James on 07-Aug-16.
  */
-public class RecordWOD extends BaseActivity implements RealmCallback, MvpView {
+public class RecordWOD extends BaseActivity implements RealmCallback, RecordMvpView {
     // Bind the views
     @BindView(R.id.spinner_wod_exercise) Spinner spinnerWodExercise;
     @BindView(R.id.spinner_wod_sets) Spinner spinnerWodSets;
@@ -85,6 +81,13 @@ public class RecordWOD extends BaseActivity implements RealmCallback, MvpView {
         wodExercisesAdapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
         spinnerWodSets.setAdapter(wodSetsAdapter);
 
+        txt_wod_date.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                displayCalender(context);
+            }
+        });
+
         btn_addWod.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -101,7 +104,7 @@ public class RecordWOD extends BaseActivity implements RealmCallback, MvpView {
     @Override
     protected void onResume() {
         super.onResume();
-        displayCalender(context);
+        updateWodDate(DateTimeUtils.getCurrentDate());
     }
 
     @Override
@@ -112,14 +115,18 @@ public class RecordWOD extends BaseActivity implements RealmCallback, MvpView {
 
     @Override
     public void Success() {
-        Toast.makeText(context, "Record added", Toast.LENGTH_SHORT).show();
+        Toast.makeText(context, getString(R.string.record_wod), Toast.LENGTH_SHORT).show();
         finish();
+    }
+
+    @Override
+    public void updateWodDate(String dateTime) {
+        txt_wod_date.setText(dateTime);
     }
 
     SublimePickerFragment.Callback mFragmentCallback = new SublimePickerFragment.Callback() {
         @Override
         public void onCancelled() {
-            finish();
         }
 
         @Override
@@ -127,10 +134,12 @@ public class RecordWOD extends BaseActivity implements RealmCallback, MvpView {
                                             SublimeRecurrencePicker.RecurrenceOption recurrenceOption,
                                             String recurrenceRule) {
 
-            DateTime dateTime = new DateTime(selectedDate.getFirstDate().getTime());
+            String formattedDate = DateTimeUtils.formatDate(selectedDate.getFirstDate().getTime());
+
             // Create the workout object with the datetime selected
-            workout = new Workout(String.format("%s", dateTime.toLocalDate().toString()));
-            txt_wod_date.setText(workout.getWodDateTime());
+            workout = new Workout(String.format("%s", formattedDate));
+
+            updateWodDate(workout.getWodDateTime());
         }
     };
 
