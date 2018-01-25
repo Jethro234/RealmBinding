@@ -2,18 +2,11 @@ package com.example.james.realmbinding.ui.record;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.util.Pair;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.appeaser.sublimepickerlibrary.datepicker.SelectedDate;
@@ -24,7 +17,6 @@ import com.example.james.realmbinding.data.interfaces.RealmCallback;
 import com.example.james.realmbinding.data.model.Workout;
 import com.example.james.realmbinding.ui.base.BaseActivity;
 import com.example.james.realmbinding.ui.calendar.SublimePickerFragment;
-import com.example.james.realmbinding.ui.main.MainActivityFrag;
 import com.example.james.realmbinding.utils.ActivityUtils;
 import com.example.james.realmbinding.utils.DateTimeUtils;
 
@@ -37,17 +29,20 @@ import butterknife.ButterKnife;
  * Project: Workout Logger App
  * Created by James on 07-Aug-16.
  */
-public class RecordWOD extends BaseActivity implements RealmCallback {
+public class RecordWODActivity extends BaseActivity implements RealmCallback,RecordMvpView {
     @BindView(R.id.toolbar) Toolbar toolbar;
 
     @Inject
     RecordWODFrag recordWODFrag;
 
+    @Inject
+    RecordMvpPresenter recordMvpPresenter;
+
     private Context context;
     private Workout workout;
 
     public static Intent getRecordWodActIntent(Context context) {
-        return new Intent(context, RecordWOD.class);
+        return new Intent(context, RecordWODActivity.class);
     }
 
     @Override
@@ -74,7 +69,7 @@ public class RecordWOD extends BaseActivity implements RealmCallback {
     @Override
     protected void onResume() {
         super.onResume();
-        recordWODFrag.updateWodDate(DateTimeUtils.getCurrentDate());
+        updateWodDate(DateTimeUtils.getCurrentDate());
     }
 
     @Override
@@ -104,9 +99,14 @@ public class RecordWOD extends BaseActivity implements RealmCallback {
             // Create the workout object with the datetime selected
             workout = new Workout(String.format("%s", formattedDate));
 
-            recordWODFrag.updateWodDate(workout.getWodDateTime());
+            updateWodDate(workout.getWodDateTime());
         }
     };
+
+    @Override
+    public void updateWodDate(String dateTime) {
+
+    }
 
     public void displayCalender(Context context) {
         // DialogFragment to host SublimePicker

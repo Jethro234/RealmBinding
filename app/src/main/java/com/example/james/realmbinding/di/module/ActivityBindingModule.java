@@ -3,7 +3,7 @@ package com.example.james.realmbinding.di.module;
 import com.example.james.realmbinding.di.ActivityScoped;
 import com.example.james.realmbinding.ui.main.MainActivity;
 import com.example.james.realmbinding.ui.progress.ViewProgressActivity;
-import com.example.james.realmbinding.ui.record.RecordWOD;
+import com.example.james.realmbinding.ui.record.RecordWODActivity;
 
 import dagger.Module;
 import dagger.android.ContributesAndroidInjector;
@@ -25,5 +25,5 @@ public abstract class ActivityBindingModule {
 
     @ActivityScoped
     @ContributesAndroidInjector(modules = RecordWODModule.class)
-    abstract RecordWOD recordWOD();
+    abstract RecordWODActivity recordWOD();
 }

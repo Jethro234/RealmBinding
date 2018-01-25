@@ -39,7 +39,7 @@
                 android:value="com.example.james.realmbinding.ui.main.MainActivity" />
         </activity>
         <activity
-            android:name=".ui.record.RecordWOD"
+            android:name=".ui.record.RecordWODActivity"
             android:label="@string/lbl_record_a_wod"
             android:launchMode="singleTop"
             android:parentActivityName=".ui.main.MainActivity">

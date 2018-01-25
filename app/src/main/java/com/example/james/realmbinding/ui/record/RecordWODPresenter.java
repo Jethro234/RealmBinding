@@ -7,16 +7,24 @@ import com.example.james.realmbinding.data.model.Workout;
 import com.example.james.realmbinding.ui.base.BasePresenter;
 import com.example.james.realmbinding.MvpView;
 
+import javax.inject.Inject;
+
 /**
  * Created by jimmy on 22/10/2017.
  */
 
-public class RecordWODPresenter extends BasePresenter implements RecordMvpPresenter{
+public class RecordWODPresenter extends BasePresenter implements RecordMvpPresenter {
 
     private final static String TAG = RecordWODPresenter.class.getSimpleName();
     private WorkoutDao workoutDao;
 
-    public RecordWODPresenter(MvpView mvpView) {
+    @Inject
+    public RecordWODPresenter(RecordWODActivity mvpView) {
+        super(mvpView);
+    }
+
+    @Override
+    public void onAttach(MvpView mvpView) {
         super.onAttach(mvpView);
         workoutDao = new WorkoutDaoImpl(super.getContext());
     }

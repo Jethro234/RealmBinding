@@ -20,11 +20,11 @@ import com.example.james.realmbinding.data.interfaces.RealmCallback;
 import com.example.james.realmbinding.data.model.Workout;
 import com.example.james.realmbinding.ui.base.BaseActivity;
 import com.example.james.realmbinding.ui.progress.ViewProgressActivity;
+import com.example.james.realmbinding.ui.record.RecordWODActivity;
 import com.example.james.realmbinding.ui.scan.OcrCaptureActivity;
 import com.example.james.realmbinding.ui.scan.utils.DetectedGestureArrayList;
 import com.example.james.realmbinding.utils.ActivityUtils;
 import com.example.james.realmbinding.utils.Constants;
-import com.example.james.realmbinding.ui.record.RecordWOD;
 
 import org.joda.time.DateTime;
 
@@ -139,7 +139,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 
     @Override
     public void showRecordWodActivity() {
-        startActivity(RecordWOD.getRecordWodActIntent(this));
+        startActivity(RecordWODActivity.getRecordWodActIntent(this));
     }
 
     @Override

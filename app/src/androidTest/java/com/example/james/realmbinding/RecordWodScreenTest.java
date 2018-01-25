@@ -11,7 +11,7 @@ import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 import android.view.View;
 
-import com.example.james.realmbinding.ui.record.RecordWOD;
+import com.example.james.realmbinding.ui.record.RecordWODActivity;
 
 import org.junit.Rule;
 import org.junit.Test;
@@ -34,8 +34,8 @@ import android.widget.TextView;
 public class RecordWodScreenTest {
 
     @Rule
-    public ActivityTestRule<RecordWOD> recordWODActivityTestRule =
-            new ActivityTestRule<>(RecordWOD.class);
+    public ActivityTestRule<RecordWODActivity> recordWODActivityTestRule =
+            new ActivityTestRule<>(RecordWODActivity.class);
 
     public static BoundedMatcher<View, TextView> matchesPattern(final String pattern, final String view) {
         return new BoundedMatcher<View, TextView>(TextView.class) {

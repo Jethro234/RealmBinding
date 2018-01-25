@@ -27,7 +27,10 @@ import butterknife.ButterKnife;
  * Created by jimmy on 25/01/2018.
  */
 
-public class RecordWODFrag extends BaseFragment implements RecordMvpView {
+public class RecordWODFrag extends BaseFragment {
+
+    @Inject
+    RecordMvpPresenter recordMvpPresenter;
 
     // Bind the views
     @BindView(R.id.spinner_wod_exercise) Spinner spinnerWodExercise;
@@ -107,8 +110,4 @@ public class RecordWODFrag extends BaseFragment implements RecordMvpView {
         super.onDestroy();
     }
 
-    @Override
-    public void updateWodDate(String dateTime) {
-        txt_wod_date.setText(dateTime);
-    }
 }
