@@ -24,6 +24,6 @@ public abstract class ActivityBindingModule {
     abstract MainActivity mainActivity();
 
     @ActivityScoped
-    @ContributesAndroidInjector()
+    @ContributesAndroidInjector(modules = RecordWODModule.class)
     abstract RecordWOD recordWOD();
 }

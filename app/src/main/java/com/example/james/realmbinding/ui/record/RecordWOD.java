@@ -24,7 +24,11 @@ import com.example.james.realmbinding.data.interfaces.RealmCallback;
 import com.example.james.realmbinding.data.model.Workout;
 import com.example.james.realmbinding.ui.base.BaseActivity;
 import com.example.james.realmbinding.ui.calendar.SublimePickerFragment;
+import com.example.james.realmbinding.ui.main.MainActivityFrag;
+import com.example.james.realmbinding.utils.ActivityUtils;
 import com.example.james.realmbinding.utils.DateTimeUtils;
+
+import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -33,20 +37,14 @@ import butterknife.ButterKnife;
  * Project: Workout Logger App
  * Created by James on 07-Aug-16.
  */
-public class RecordWOD extends BaseActivity implements RealmCallback, RecordMvpView {
-    // Bind the views
-    @BindView(R.id.spinner_wod_exercise) Spinner spinnerWodExercise;
-    @BindView(R.id.spinner_wod_sets) Spinner spinnerWodSets;
-    @BindView(R.id.btn_add_wod) Button btn_addWod;
-    @BindView(R.id.txt_wod_date) TextView txt_wod_date;
+public class RecordWOD extends BaseActivity implements RealmCallback {
     @BindView(R.id.toolbar) Toolbar toolbar;
-    @BindView(R.id.txt_weight) EditText txt_wod_weight;
-    @BindView(R.id.txt_wod_details) EditText txt_wod_details;
-    @BindView(R.id.txt_wod_time) EditText txt_wod_time;
+
+    @Inject
+    RecordWODFrag recordWODFrag;
 
     private Context context;
     private Workout workout;
-    private RecordWODPresenter recordWODPresenter;
 
     public static Intent getRecordWodActIntent(Context context) {
         return new Intent(context, RecordWOD.class);
@@ -61,53 +59,22 @@ public class RecordWOD extends BaseActivity implements RealmCallback, RecordMvpV
         setSupportActionBar(toolbar);
 
         //todo: add presenter to dagger
-        recordWODPresenter = new RecordWODPresenter(RecordWOD.this);
 
         context = this;
 
-        //todo: add fragment to record wod page
+        RecordWODFrag cachedFrag =
+                (RecordWODFrag) getSupportFragmentManager().findFragmentById(R.id.contentFrame);
 
-        // Get Resources
-        Resources res = getResources();
-        final String[] WodArray = res.getStringArray(R.array.skills_array);
-        final String[] WodSetsArray= res.getStringArray(R.array.sets_array);
-
-        //Set up the spinner
-        final ArrayAdapter<String> wodExercisesAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item,
-                WodArray);
-        wodExercisesAdapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
-        spinnerWodExercise.setAdapter(wodExercisesAdapter);
-
-        //Set up the sets spinner
-        final ArrayAdapter<String> wodSetsAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item,
-                WodSetsArray);
-        wodExercisesAdapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
-        spinnerWodSets.setAdapter(wodSetsAdapter);
-
-        txt_wod_date.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                displayCalender(context);
-            }
-        });
-
-        btn_addWod.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                workout.setWodSets(spinnerWodSets.getSelectedItem().toString());
-                workout.setWodExercise(spinnerWodExercise.getSelectedItem().toString());
-                workout.setWodWeight(txt_wod_weight.getText().toString());
-                workout.setWodDetails(txt_wod_details.getText().toString());
-                workout.setWodTime(txt_wod_time.getText().toString());
-                recordWODPresenter.insertOrUpdateWorkout(workout, (RealmCallback)context);
-            }
-        });
+        if (cachedFrag == null) {
+            ActivityUtils.addFragmentToActivity(getSupportFragmentManager(),
+                    recordWODFrag, R.id.contentFrame);
+        }
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        updateWodDate(DateTimeUtils.getCurrentDate());
+        recordWODFrag.updateWodDate(DateTimeUtils.getCurrentDate());
     }
 
     @Override
@@ -120,11 +87,6 @@ public class RecordWOD extends BaseActivity implements RealmCallback, RecordMvpV
     public void Success() {
         Toast.makeText(context, getString(R.string.record_wod), Toast.LENGTH_SHORT).show();
         finish();
-    }
-
-    @Override
-    public void updateWodDate(String dateTime) {
-        txt_wod_date.setText(dateTime);
     }
 
     SublimePickerFragment.Callback mFragmentCallback = new SublimePickerFragment.Callback() {
@@ -142,7 +104,7 @@ public class RecordWOD extends BaseActivity implements RealmCallback, RecordMvpV
             // Create the workout object with the datetime selected
             workout = new Workout(String.format("%s", formattedDate));
 
-            updateWodDate(workout.getWodDateTime());
+            recordWODFrag.updateWodDate(workout.getWodDateTime());
         }
     };
 
@@ -190,6 +152,5 @@ public class RecordWOD extends BaseActivity implements RealmCallback, RecordMvpV
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        recordWODPresenter.onDetach();
     }
 }
