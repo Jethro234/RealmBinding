@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,10 +12,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.james.realmbinding.R;
 import com.example.james.realmbinding.data.interfaces.RealmCallback;
+import com.example.james.realmbinding.data.model.Workout;
 import com.example.james.realmbinding.ui.base.BaseFragment;
+import com.example.james.realmbinding.ui.calendar.SublimePickerFragment;
+import com.example.james.realmbinding.utils.DateTimeUtils;
 
 import javax.inject.Inject;
 
@@ -27,10 +30,10 @@ import butterknife.ButterKnife;
  * Created by jimmy on 25/01/2018.
  */
 
-public class RecordWODFrag extends BaseFragment {
+public class RecordWODFrag extends BaseFragment implements RealmCallback, RecordMvpView {
 
     @Inject
-    RecordMvpPresenter recordMvpPresenter;
+    RecordWODPresenter recordWODPresenter;
 
     // Bind the views
     @BindView(R.id.spinner_wod_exercise) Spinner spinnerWodExercise;
@@ -44,6 +47,8 @@ public class RecordWODFrag extends BaseFragment {
     private Context context;
     private Resources res;
 
+    private Workout workout;
+
     @Inject
     public RecordWODFrag() {
     }
@@ -51,6 +56,7 @@ public class RecordWODFrag extends BaseFragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        workout = new Workout();
     }
 
     @Nullable
@@ -81,19 +87,19 @@ public class RecordWODFrag extends BaseFragment {
         txt_wod_date.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //displayCalender(context);
+                recordWODPresenter.displayCalender(context, workout);
             }
         });
 
         btn_addWod.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*workout.setWodSets(spinnerWodSets.getSelectedItem().toString());
+                workout.setWodSets(spinnerWodSets.getSelectedItem().toString());
                 workout.setWodExercise(spinnerWodExercise.getSelectedItem().toString());
                 workout.setWodWeight(txt_wod_weight.getText().toString());
                 workout.setWodDetails(txt_wod_details.getText().toString());
                 workout.setWodTime(txt_wod_time.getText().toString());
-                recordWODPresenter.insertOrUpdateWorkout(workout, (RealmCallback)context);*/
+                recordWODPresenter.insertOrUpdateWorkout(workout, (RealmCallback)context);
             }
         });
 
@@ -103,11 +109,35 @@ public class RecordWODFrag extends BaseFragment {
     @Override
     public void onResume() {
         super.onResume();
+        recordWODPresenter.onAttach(this);
+        updateWodDate(DateTimeUtils.getCurrentDate());
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
+    }
+
+    @Override
+    public void updateWodDate(String dateTime) {
+        txt_wod_date.setText(dateTime);
+    }
+
+    @Override
+    public void showDateTimePicker(SublimePickerFragment sublimePickerFrag) {
+        sublimePickerFrag.show(getActivity().getSupportFragmentManager(), "SUBLIME_PICKER");
+    }
+
+    @Override
+    public void Failure(Throwable e, String errorMessage) {
+        Toast.makeText(context, errorMessage, Toast.LENGTH_SHORT).show();
+        e.printStackTrace();
+    }
+
+    @Override
+    public void Success() {
+        Toast.makeText(context, getString(R.string.record_wod), Toast.LENGTH_SHORT).show();
+        getActivity().finish();
     }
 
 }
