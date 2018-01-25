@@ -11,6 +11,8 @@ import java.util.List;
  */
 public interface WorkoutDao {
     List<Workout> queryWorkout(long id);
+
     void deleteWorkout(Workout workout, RealmCallback realmCallback);
+
     void insertOrUpdateWorkout(Workout workout, RealmCallback realmCallback);
 }

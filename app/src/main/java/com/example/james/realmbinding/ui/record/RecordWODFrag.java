@@ -56,7 +56,8 @@ public class RecordWODFrag extends BaseFragment implements RealmCallback, Record
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        workout = new Workout();
+        // Get new workout object
+        workout = recordWODPresenter.getWorkout();
     }
 
     @Nullable
@@ -65,6 +66,8 @@ public class RecordWODFrag extends BaseFragment implements RealmCallback, Record
         View root = inflater.inflate(R.layout.record_wod_frag, container, false);
 
         setUnBinder(ButterKnife.bind(this, root));
+
+        recordWODPresenter.onAttach(this);
 
         context = root.getContext();
         res = getResources();
@@ -94,12 +97,13 @@ public class RecordWODFrag extends BaseFragment implements RealmCallback, Record
         btn_addWod.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                workout.setWodSets(spinnerWodSets.getSelectedItem().toString());
-                workout.setWodExercise(spinnerWodExercise.getSelectedItem().toString());
-                workout.setWodWeight(txt_wod_weight.getText().toString());
-                workout.setWodDetails(txt_wod_details.getText().toString());
-                workout.setWodTime(txt_wod_time.getText().toString());
-                recordWODPresenter.insertOrUpdateWorkout(workout, (RealmCallback)context);
+                String sets = spinnerWodSets.getSelectedItem().toString();
+                String exercise = spinnerWodExercise.getSelectedItem().toString();
+                String weight = txt_wod_weight.getText().toString();
+                String details = txt_wod_details.getText().toString();
+                String time = txt_wod_time.getText().toString();
+
+                recordWODPresenter.addWOD(sets, exercise, weight, details, time);
             }
         });
 
@@ -109,7 +113,6 @@ public class RecordWODFrag extends BaseFragment implements RealmCallback, Record
     @Override
     public void onResume() {
         super.onResume();
-        recordWODPresenter.onAttach(this);
         updateWodDate(DateTimeUtils.getCurrentDate());
     }
 

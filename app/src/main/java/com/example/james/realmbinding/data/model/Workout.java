@@ -1,5 +1,7 @@
 package com.example.james.realmbinding.data.model;
 
+import com.example.james.realmbinding.utils.DateTimeUtils;
+
 import io.realm.Realm;
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
@@ -31,6 +33,7 @@ public class Workout extends RealmObject{
     public Workout() {
         this.id = (Realm.getDefaultInstance().where(Workout.class).max("id") != null)
                 ? Realm.getDefaultInstance().where(Workout.class).max("id").longValue() + 1 : 0;
+        this.wodDateTime = DateTimeUtils.getCurrentDate();
     }
 
     public Workout(String wodDateTime) {

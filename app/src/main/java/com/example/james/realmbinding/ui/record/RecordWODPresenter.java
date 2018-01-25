@@ -2,6 +2,7 @@ package com.example.james.realmbinding.ui.record;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.util.Pair;
 import android.widget.Toast;
@@ -30,15 +31,37 @@ public class RecordWODPresenter extends BasePresenter implements RecordMvpPresen
     private RecordMvpView recordMvpView;
     @Nullable
     private WorkoutDao workoutDao;
+    @NonNull
+    private Workout workout;
 
     @Inject
-    public RecordWODPresenter(@Nullable WorkoutDao workoutDao) {
+    public RecordWODPresenter(@Nullable WorkoutDao workoutDao, @NonNull Workout workout) {
         this.workoutDao = workoutDao;
+        this.workout = workout;
     }
 
     @Override
     public void onAttach(MvpView mvpView) {
         recordMvpView = (RecordMvpView) mvpView;
+    }
+
+    @NonNull
+    public Workout getWorkout() {
+        return workout;
+    }
+
+    public void addWOD(String sets, String exercises, String weight, String details, String time) {
+        Workout workout = createWorkout(sets, exercises, weight, details, time);
+        insertOrUpdateWorkout(workout, (RealmCallback) recordMvpView);
+    }
+
+    private Workout createWorkout(String sets, String exercise, String weight, String details, String time) {
+        workout.setWodSets(sets);
+        workout.setWodExercise(exercise);
+        workout.setWodWeight(weight);
+        workout.setWodDetails(details);
+        workout.setWodTime(time);
+        return workout;
     }
 
     public void insertOrUpdateWorkout(Workout workout, RealmCallback realmCallback) {
