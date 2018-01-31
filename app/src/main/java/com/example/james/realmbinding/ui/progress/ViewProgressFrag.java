@@ -3,6 +3,7 @@ package com.example.james.realmbinding.ui.progress;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -26,12 +27,13 @@ import butterknife.ButterKnife;
  * Created by buxtonj on 11/12/2017.
  */
 
-public class ViewProgressFrag extends BaseFragment {
+public class ViewProgressFrag extends BaseFragment implements ViewProgressMvpView {
 
     @Inject
-    ViewProgressMvp viewProgressPresenter;
+    ViewProgressPresenter viewProgressPresenter;
 
     @BindView(R.id.my_recycler_view) RecyclerView recyclerView;
+    @BindView(R.id.swipe_refresh) SwipeRefreshLayout swipe_refresh;
 
     private Context context;
     private WorkoutAdapter workoutAdapter;
@@ -53,10 +55,14 @@ public class ViewProgressFrag extends BaseFragment {
 
         setUnBinder(ButterKnife.bind(this, root));
 
+        viewProgressPresenter.onAttach(this);
+
         context = root.getContext();
 
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
         recyclerView.setAdapter(workoutAdapter);
+
+        swipe_refresh.setOnRefreshListener(viewProgressPresenter.getRefreshWorkoutsListener());
 
         List<Workout> workouts = viewProgressPresenter.getRecordedWorkouts();
         workoutAdapter.refreshData(workouts);
@@ -72,5 +78,11 @@ public class ViewProgressFrag extends BaseFragment {
     @Override
     public void onResume() {
         super.onResume();
+    }
+
+    @Override
+    public void refreshWorkouts(List<Workout> workouts) {
+        swipe_refresh.setRefreshing(false);
+        workoutAdapter.refreshData(workouts);
     }
 }

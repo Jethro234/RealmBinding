@@ -1,5 +1,8 @@
 package com.example.james.realmbinding.ui.progress;
 
+import android.support.v4.widget.SwipeRefreshLayout;
+
+import com.example.james.realmbinding.MvpView;
 import com.example.james.realmbinding.data.WorkoutDao;
 import com.example.james.realmbinding.data.WorkoutDaoImpl;
 import com.example.james.realmbinding.data.model.Workout;
@@ -16,6 +19,7 @@ import javax.inject.Inject;
 public class ViewProgressPresenter extends BasePresenter implements ViewProgressMvp {
 
     private final static String TAG = ViewProgressPresenter.class.getSimpleName();
+    private ViewProgressMvpView viewProgressMvpView;
     private WorkoutDao workoutDao;
 
     @Inject
@@ -25,7 +29,28 @@ public class ViewProgressPresenter extends BasePresenter implements ViewProgress
     }
 
     @Override
+    public void onAttach(MvpView mvpView) {
+        //TODO Remove the injection of activity
+        super.onAttach(mvpView);
+        viewProgressMvpView = (ViewProgressMvpView) mvpView;
+    }
+
+    @Override
     public List<Workout> getRecordedWorkouts() {
         return workoutDao.queryWorkout(-1);
+    }
+
+    @Override
+    public SwipeRefreshLayout.OnRefreshListener getRefreshWorkoutsListener() {
+        return new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                refreshWorkouts();
+            }
+        };
+    }
+
+    private void refreshWorkouts() {
+        viewProgressMvpView.refreshWorkouts(getRecordedWorkouts());
     }
 }
