@@ -80,13 +80,9 @@ public class WorkoutAdapter extends RecyclerView.Adapter<BaseViewHolder> {
 
     @Override
     public BaseViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        if (viewType == TYPE_HEADER) {
-            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.adapter_filter_bar, parent, false);
-            return new WorkoutAdapter.Filter(view);
-        } else {
-            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.workout_row, parent, false);
-            return new WorkoutAdapter.ViewHolder(view);
-        }
+        View view = LayoutInflater.from(parent.getContext()).inflate(getLayout(viewType), parent, false);
+
+        return (isHeaderViewType(viewType)) ? new WorkoutAdapter.Filter(view) : new WorkoutAdapter.ViewHolder(view);
     }
 
     @Override
@@ -95,6 +91,14 @@ public class WorkoutAdapter extends RecyclerView.Adapter<BaseViewHolder> {
             ViewHolder viewHolder = (ViewHolder)holder;
             viewHolder.setDetails(workoutList.get(position));
         }
+    }
+
+    private int getLayout(int viewType) {
+        return (isHeaderViewType(viewType)) ? R.layout.adapter_filter_bar : R.layout.workout_row;
+    }
+
+    private boolean isHeaderViewType(int viewType) {
+        return (viewType == TYPE_HEADER);
     }
 
     @Override

@@ -12,7 +12,6 @@ import android.view.ViewGroup;
 
 import com.example.james.realmbinding.R;
 import com.example.james.realmbinding.data.model.Workout;
-import com.example.james.realmbinding.di.ActivityScoped;
 import com.example.james.realmbinding.ui.base.BaseFragment;
 
 import java.util.ArrayList;
@@ -59,9 +58,10 @@ public class ViewProgressFrag extends BaseFragment implements ViewProgressMvpVie
 
         context = root.getContext();
 
-        recyclerView.setLayoutManager(new LinearLayoutManager(context));
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context);
+        recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(workoutAdapter);
-
+        recyclerView.setHasFixedSize(true);
         swipe_refresh.setOnRefreshListener(viewProgressPresenter.getRefreshWorkoutsListener());
 
         List<Workout> workouts = viewProgressPresenter.getRecordedWorkouts();
