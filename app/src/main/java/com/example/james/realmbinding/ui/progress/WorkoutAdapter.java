@@ -111,6 +111,11 @@ public class WorkoutAdapter extends RecyclerView.Adapter<BaseViewHolder> {
         return TYPE_WORKOUT;
     }
 
+    private void setWorkoutList(List<Workout> workoutList) {
+        this.workoutList.clear();
+        this.workoutList.addAll(workoutList);
+    }
+
     private boolean isPositionHeader(int position) {
         return position == 0;
     }
@@ -126,11 +131,11 @@ public class WorkoutAdapter extends RecyclerView.Adapter<BaseViewHolder> {
     }
 
     void refreshData(List<Workout> workouts) {
+        //TODO put this work on background thread (RxJava2)
         final WorkoutDiffCallback workoutDiffCallback = new WorkoutDiffCallback(this.workoutList, workouts);
         final DiffUtil.DiffResult diffResult = DiffUtil.calculateDiff(workoutDiffCallback);
 
-        this.workoutList.clear();
-        this.workoutList.addAll(workouts);
+        setWorkoutList(workouts);
         diffResult.dispatchUpdatesTo(this);
     }
 }
