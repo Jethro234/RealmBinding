@@ -1,5 +1,6 @@
 package com.example.james.realmbinding.ui.progress;
 
+import android.support.v7.util.DiffUtil;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -12,6 +13,7 @@ import android.widget.TextView;
 import com.example.james.realmbinding.R;
 import com.example.james.realmbinding.data.model.Workout;
 import com.example.james.realmbinding.ui.base.BaseViewHolder;
+import com.example.james.realmbinding.ui.progress.callback.WorkoutDiffCallback;
 
 import java.util.List;
 
@@ -28,10 +30,10 @@ public class WorkoutAdapter extends RecyclerView.Adapter<BaseViewHolder> {
 
     private List<Workout> workoutList;
 
-    public static class Filter extends BaseViewHolder {
+    static class Filter extends BaseViewHolder {
         @BindView(R.id.filter_bar) EditText filter_bar;
 
-        public Filter(View itemView) {
+        Filter(View itemView) {
             super(itemView);
             //TODO implement filter functionality
             filter_bar.addTextChangedListener(new TextWatcher() {
@@ -53,14 +55,14 @@ public class WorkoutAdapter extends RecyclerView.Adapter<BaseViewHolder> {
         }
     }
 
-    public static class ViewHolder extends BaseViewHolder {
+     static class ViewHolder extends BaseViewHolder {
         @BindView(R.id.list_item_wod_date) TextView list_item_wod_date;
         @BindView(R.id.list_item_wod_skill) TextView list_item_wod_skill;
         @BindView(R.id.list_item_wod_sets) TextView list_item_wod_sets;
         @BindView(R.id.list_item_wod_details) TextView list_item_wod_details;
         @BindView(R.id.list_item_wod_time) TextView list_item_wod_time;
 
-        public ViewHolder(View v) {
+        ViewHolder(View v) {
             super(v);
         }
 
@@ -73,7 +75,8 @@ public class WorkoutAdapter extends RecyclerView.Adapter<BaseViewHolder> {
         }
     }
 
-    public WorkoutAdapter(List<Workout> workoutList) {
+    // Constructor
+    WorkoutAdapter(List<Workout> workoutList) {
         this.workoutList = workoutList;
     }
 
@@ -122,8 +125,12 @@ public class WorkoutAdapter extends RecyclerView.Adapter<BaseViewHolder> {
         return super.getItemId(position);
     }
 
-    public void refreshData(List<Workout> workouts) {
-        this.workoutList = workouts;
-        notifyDataSetChanged();
+    void refreshData(List<Workout> workouts) {
+        final WorkoutDiffCallback workoutDiffCallback = new WorkoutDiffCallback(this.workoutList, workouts);
+        final DiffUtil.DiffResult diffResult = DiffUtil.calculateDiff(workoutDiffCallback);
+
+        this.workoutList.clear();
+        this.workoutList.addAll(workouts);
+        diffResult.dispatchUpdatesTo(this);
     }
 }

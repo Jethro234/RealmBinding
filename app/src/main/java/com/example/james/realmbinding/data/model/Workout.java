@@ -107,4 +107,37 @@ public class Workout extends RealmObject{
     public void setWodTime(String wodTime) {
         this.wodTime = wodTime;
     }
+
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + (int) id;
+        result = 31 * result + wodDetails.hashCode();
+        result = 31 * result + wodExercise.hashCode();
+        result = 31 * result + wodWeight.hashCode();
+        result = 31 * result + wodDateTime.hashCode();
+        result = 31 * result + wodSets.hashCode();
+        result = 31 * result + wodTime.hashCode();
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == this) return true;
+
+        if (!(o instanceof Workout)) {
+            return false;
+        }
+
+        Workout workout = (Workout) o;
+
+        return workout.getId() == id &&
+                (workout.getWodDetails() != null) ? workout.getWodDetails().equals(wodDetails) : wodDetails == null &&
+                (workout.getWodExercise() != null) ? workout.getWodExercise().equals(wodExercise) : wodExercise == null &&
+                (workout.getWodWeight() != null) ? workout.getWodWeight().equals(wodWeight) : wodWeight == null &&
+                (workout.getWodDateTime() != null) ? workout.getWodDateTime().equals(wodDateTime) : wodDateTime == null &&
+                (workout.getWodSets() != null) ? workout.getWodSets().equals(wodSets) : wodSets == null &&
+                (workout.getWodTime() != null) ? workout.getWodTime().equals(wodTime) : wodTime == null;
+
+    }
 }
