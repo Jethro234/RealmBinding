@@ -4,20 +4,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.widget.Toast;
 
 import com.example.james.realmbinding.R;
-import com.example.james.realmbinding.data.model.Workout;
-import com.example.james.realmbinding.di.ActivityScoped;
 import com.example.james.realmbinding.ui.base.BaseActivity;
-import com.example.james.realmbinding.MvpView;
 import com.example.james.realmbinding.utils.ActivityUtils;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.inject.Inject;
 
@@ -29,7 +20,7 @@ import butterknife.ButterKnife;
  * Created by James on 14-Aug-16.
  */
 
-public class ViewProgressActivity extends BaseActivity implements ViewProgressMvpView {
+public class ViewProgressActivity extends BaseActivity {
 
     @BindView(R.id.toolbar) Toolbar toolbar;
 
@@ -60,10 +51,5 @@ public class ViewProgressActivity extends BaseActivity implements ViewProgressMv
     @Override
     protected void onDestroy() {
         super.onDestroy();
-    }
-
-    @Override
-    public void refreshWorkouts(List<Workout> workouts) {
-        Toast.makeText(this, "Shouldn't callback here!", Toast.LENGTH_SHORT).show();
     }
 }
