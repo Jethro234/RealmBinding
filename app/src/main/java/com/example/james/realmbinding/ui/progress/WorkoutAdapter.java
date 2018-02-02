@@ -1,6 +1,5 @@
 package com.example.james.realmbinding.ui.progress;
 
-import android.support.v7.util.DiffUtil;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -13,7 +12,6 @@ import android.widget.TextView;
 import com.example.james.realmbinding.R;
 import com.example.james.realmbinding.data.model.Workout;
 import com.example.james.realmbinding.ui.base.BaseViewHolder;
-import com.example.james.realmbinding.ui.progress.callback.WorkoutDiffCallback;
 
 import java.util.List;
 
@@ -111,7 +109,11 @@ public class WorkoutAdapter extends RecyclerView.Adapter<BaseViewHolder> {
         return TYPE_WORKOUT;
     }
 
-    private void setWorkoutList(List<Workout> workoutList) {
+    List<Workout> getWorkoutList() {
+        return workoutList;
+    }
+
+    void setWorkoutList(List<Workout> workoutList) {
         this.workoutList.clear();
         this.workoutList.addAll(workoutList);
     }
@@ -128,14 +130,5 @@ public class WorkoutAdapter extends RecyclerView.Adapter<BaseViewHolder> {
     @Override
     public long getItemId(int position) {
         return super.getItemId(position);
-    }
-
-    void refreshData(List<Workout> workouts) {
-        //TODO put this work on background thread (RxJava2)
-        final WorkoutDiffCallback workoutDiffCallback = new WorkoutDiffCallback(this.workoutList, workouts);
-        final DiffUtil.DiffResult diffResult = DiffUtil.calculateDiff(workoutDiffCallback);
-
-        setWorkoutList(workouts);
-        diffResult.dispatchUpdatesTo(this);
     }
 }

@@ -1,5 +1,7 @@
 package com.example.james.realmbinding.ui.progress;
 
+import android.support.v7.util.DiffUtil;
+
 import com.example.james.realmbinding.MvpView;
 import com.example.james.realmbinding.data.model.Workout;
 
@@ -10,5 +12,6 @@ import java.util.List;
  */
 
 public interface ViewProgressMvpView extends MvpView {
-    void refreshWorkouts(List<Workout> workouts);
+    void updateWorkoutsList(List<Workout> workouts);
+    void displayWorkouts(DiffUtil.DiffResult diffResult, List<Workout> workouts);
 }

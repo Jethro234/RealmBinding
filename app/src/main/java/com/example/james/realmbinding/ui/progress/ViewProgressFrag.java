@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.util.DiffUtil;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -27,6 +28,8 @@ import butterknife.ButterKnife;
  */
 
 public class ViewProgressFrag extends BaseFragment implements ViewProgressMvpView {
+
+    private static final String TAG = ViewProgressFrag.class.getSimpleName();
 
     @Inject
     ViewProgressPresenter viewProgressPresenter;
@@ -65,7 +68,7 @@ public class ViewProgressFrag extends BaseFragment implements ViewProgressMvpVie
         swipe_refresh.setOnRefreshListener(viewProgressPresenter.getRefreshWorkoutsListener());
 
         List<Workout> workouts = viewProgressPresenter.getRecordedWorkouts();
-        workoutAdapter.refreshData(workouts);
+        updateWorkoutsList(workouts);
 
         return root;
     }
@@ -81,8 +84,14 @@ public class ViewProgressFrag extends BaseFragment implements ViewProgressMvpVie
     }
 
     @Override
-    public void refreshWorkouts(List<Workout> workouts) {
+    public void updateWorkoutsList(final List<Workout> workouts) {
         swipe_refresh.setRefreshing(false);
-        workoutAdapter.refreshData(workouts);
+        viewProgressPresenter.calculateWorkoutListDiff(workoutAdapter.getWorkoutList(), workouts);
+    }
+
+    @Override
+    public void displayWorkouts(DiffUtil.DiffResult diffResult, List<Workout> workouts) {
+        workoutAdapter.setWorkoutList(workouts);
+        diffResult.dispatchUpdatesTo(workoutAdapter);
     }
 }

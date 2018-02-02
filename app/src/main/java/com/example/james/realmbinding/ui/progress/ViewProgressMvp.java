@@ -14,4 +14,5 @@ import java.util.List;
 public interface ViewProgressMvp extends MvpView {
     List<Workout> getRecordedWorkouts();
     SwipeRefreshLayout.OnRefreshListener getRefreshWorkoutsListener();
+    void calculateWorkoutListDiff(final List<Workout> oldWorkouts, final List<Workout> newWorkouts);
 }
