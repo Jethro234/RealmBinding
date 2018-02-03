@@ -71,7 +71,7 @@ public class ViewProgressPresenter extends BasePresenter implements ViewProgress
 
     @Override
     public void calculateWorkoutListDiff(final List<Workout> oldWorkouts, final List<Workout> newWorkouts) {
-        getMvpView().showLoading();
+        //getMvpView().showLoading();
 
         final Map<String, DiffUtil.DiffResult> diffMap = new HashMap<>();
         final List<Workout> completedList = new ArrayList<>();
@@ -104,7 +104,7 @@ public class ViewProgressPresenter extends BasePresenter implements ViewProgress
                     @Override
                     public void onComplete() {
                         Log.d(TAG, "calculateWorkoutListDiff: OnComplete");
-                        getMvpView().hideLoading();
+                        //getMvpView().hideLoading();
 
                         DiffUtil.DiffResult diffResult = diffMap.get("diffResult");
                         viewProgressMvpView.displayWorkouts(diffResult, completedList);
