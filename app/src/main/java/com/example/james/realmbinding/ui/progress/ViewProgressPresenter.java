@@ -12,6 +12,7 @@ import com.example.james.realmbinding.data.WorkoutDao;
 import com.example.james.realmbinding.data.model.Workout;
 import com.example.james.realmbinding.ui.base.BasePresenter;
 import com.example.james.realmbinding.ui.progress.callback.WorkoutDiffCallback;
+import com.example.james.realmbinding.utils.rx.SchedulerProvider;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -38,10 +39,13 @@ public class ViewProgressPresenter extends BasePresenter implements ViewProgress
     private ViewProgressMvpView viewProgressMvpView;
     @NonNull
     private WorkoutDao workoutDao;
+    @NonNull
+    private SchedulerProvider schedulerProvider;
 
     @Inject
-    public ViewProgressPresenter(@NonNull WorkoutDao workoutDao) {
+    public ViewProgressPresenter(@NonNull WorkoutDao workoutDao, @NonNull SchedulerProvider schedulerProvider) {
         this.workoutDao = workoutDao;
+        this.schedulerProvider = schedulerProvider;
     }
 
     @Override
@@ -78,8 +82,8 @@ public class ViewProgressPresenter extends BasePresenter implements ViewProgress
 
         //TODO make this cleaner!
         Observable.just(newWorkouts)
-                .subscribeOn(Schedulers.computation())
-                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(schedulerProvider.computation())
+                .observeOn(schedulerProvider.ui())
                 .subscribe(new Observer<List<Workout>>() {
                     @Override
                     public void onSubscribe(Disposable d) {

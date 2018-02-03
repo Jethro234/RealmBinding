@@ -9,6 +9,8 @@ import com.example.james.realmbinding.ui.progress.ViewProgressActivity;
 import com.example.james.realmbinding.ui.progress.ViewProgressFrag;
 import com.example.james.realmbinding.ui.progress.ViewProgressMvp;
 import com.example.james.realmbinding.ui.progress.ViewProgressPresenter;
+import com.example.james.realmbinding.utils.rx.AppSchedulerProvider;
+import com.example.james.realmbinding.utils.rx.SchedulerProvider;
 
 import javax.annotation.Nullable;
 
@@ -29,6 +31,13 @@ public abstract class ViewProgressModule {
     @ActivityScoped
     static WorkoutDao provideWorkoutDao(ViewProgressActivity viewProgressActivity) {
         return new WorkoutDaoImpl(viewProgressActivity);
+    }
+
+    @Provides
+    @NonNull
+    @ActivityScoped
+    static SchedulerProvider provideSchedulerProvider() {
+        return new AppSchedulerProvider();
     }
 
     @ContributesAndroidInjector
