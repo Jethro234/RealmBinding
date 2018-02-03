@@ -1,6 +1,7 @@
 package com.example.james.realmbinding.ui.base;
 
 import android.content.Context;
+import android.support.v4.app.Fragment;
 
 import com.example.james.realmbinding.MvpPresenter;
 import com.example.james.realmbinding.MvpView;
@@ -10,7 +11,7 @@ import com.example.james.realmbinding.MvpView;
  * Created by jimmy on 22/10/2017.
  */
 
-public abstract class BasePresenter<V extends MvpView> implements MvpPresenter<V> {
+public class BasePresenter<V extends MvpView> implements MvpPresenter<V> {
 
     private static final String TAG = BasePresenter.class.getSimpleName();
     private V mvpView;
@@ -40,6 +41,6 @@ public abstract class BasePresenter<V extends MvpView> implements MvpPresenter<V
 
     @Override
     public Context getContext() {
-        return (Context) mvpView;
+        return (mvpView instanceof Fragment) ? ((Fragment) mvpView).getActivity() : (Context) mvpView;
     }
 }

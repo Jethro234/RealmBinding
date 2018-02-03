@@ -71,6 +71,10 @@
     <string name="lbl_menu_tools">Tools</string>
     <string name="lbl_menu_share">Share</string>
 
+    <!-- Progress Dialog Labels -->
+    <string name="default_progress_title">Please Wait</string>
+    <string name="default_progress_message">Loading&#8230;</string>
+
     <!-- WOD Sets -->
     <string-array name="sets_array">
         <item>1 Rep MAX</item>

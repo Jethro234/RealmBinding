@@ -5,4 +5,6 @@ package com.example.james.realmbinding;
  */
 
 public interface MvpView {
+    void showLoading();
+    void hideLoading();
 }

@@ -1,7 +1,11 @@
 package com.example.james.realmbinding.ui.base;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+
+import com.example.james.realmbinding.MvpView;
+import com.example.james.realmbinding.utils.CommonUtils;
 
 import butterknife.Unbinder;
 import dagger.android.support.DaggerFragment;
@@ -10,7 +14,9 @@ import dagger.android.support.DaggerFragment;
  * Created by buxtonj on 11/12/2017.
  */
 
-public abstract class BaseFragment extends DaggerFragment {
+public abstract class BaseFragment extends DaggerFragment implements MvpView {
+
+    private ProgressDialog progressDialog;
 
     private Unbinder unBinder;
 
@@ -28,6 +34,19 @@ public abstract class BaseFragment extends DaggerFragment {
         super.onDestroy();
         if (unBinder != null) {
             unBinder.unbind();
+        }
+    }
+
+    @Override
+    public void showLoading() {
+        hideLoading();
+        progressDialog = CommonUtils.showLoadingDialog(getContext());
+    }
+
+    @Override
+    public void hideLoading() {
+        if (progressDialog != null && progressDialog.isShowing()) {
+            progressDialog.cancel();
         }
     }
 }

@@ -5,6 +5,8 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
 
+import com.example.james.realmbinding.MvpView;
+
 import butterknife.Unbinder;
 import dagger.android.support.DaggerAppCompatActivity;
 
@@ -12,7 +14,7 @@ import dagger.android.support.DaggerAppCompatActivity;
  * Created by jimmy on 22/10/2017.
  */
 
-public abstract class BaseActivity extends DaggerAppCompatActivity {
+public abstract class BaseActivity extends DaggerAppCompatActivity implements MvpView {
     private ActionBar actionBar;
 
     private Unbinder unBinder;
@@ -38,5 +40,15 @@ public abstract class BaseActivity extends DaggerAppCompatActivity {
         if (unBinder != null) {
             unBinder.unbind();
         }
+    }
+
+    @Override
+    public void showLoading() {
+
+    }
+
+    @Override
+    public void hideLoading() {
+
     }
 }

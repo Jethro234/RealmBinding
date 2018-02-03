@@ -85,12 +85,13 @@ public class ViewProgressFrag extends BaseFragment implements ViewProgressMvpVie
 
     @Override
     public void updateWorkoutsList(final List<Workout> workouts) {
-        swipe_refresh.setRefreshing(false);
         viewProgressPresenter.calculateWorkoutListDiff(workoutAdapter.getWorkoutList(), workouts);
     }
 
     @Override
     public void displayWorkouts(DiffUtil.DiffResult diffResult, List<Workout> workouts) {
+        swipe_refresh.setRefreshing(false);
+
         workoutAdapter.setWorkoutList(workouts);
         diffResult.dispatchUpdatesTo(workoutAdapter);
     }
