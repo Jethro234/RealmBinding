@@ -47,7 +47,7 @@ public class ViewProgressFrag extends BaseFragment implements ViewProgressMvpVie
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        workoutAdapter = new WorkoutAdapter(new ArrayList<Workout>());
+        workoutAdapter = new WorkoutAdapter(new ArrayList<>());
     }
 
     @Nullable

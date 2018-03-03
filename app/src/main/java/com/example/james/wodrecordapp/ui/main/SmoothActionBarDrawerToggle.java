@@ -34,9 +34,4 @@ public class SmoothActionBarDrawerToggle extends ActionBarDrawerToggle {
             runnable = null;
         }
     }
-
-    public void runWhenIdle(Runnable runnable) {
-        this.runnable = runnable;
-    }
-
 }

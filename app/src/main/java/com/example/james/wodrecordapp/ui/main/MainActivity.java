@@ -67,12 +67,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 
         context = this;
 
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                scanWod();
-            }
-        });
+        fab.setOnClickListener((View v) -> scanWod());
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         smoothToggle = new SmoothActionBarDrawerToggle(
