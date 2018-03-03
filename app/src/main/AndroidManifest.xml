@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.james.realmbinding">
+    package="com.example.james.wodrecordapp">
 
     <uses-permission android:name="android.permission.CAMERA" />
 
@@ -11,14 +11,14 @@
         android:xlargeScreens="true" />
 
     <application
-        android:name=".ControlApplication"
+        android:name="com.example.james.wodrecordapp.ControlApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".ui.splash.SplashActivity"
+            android:name="com.example.james.wodrecordapp.ui.splash.SplashActivity"
             android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -27,34 +27,34 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".ui.main.MainActivity" />
+        <activity android:name="com.example.james.wodrecordapp.ui.main.MainActivity" />
 
         <activity
-            android:name=".ui.scan.OcrCaptureActivity"
+            android:name="com.example.james.wodrecordapp.ui.scan.OcrCaptureActivity"
             android:label="Scan Wod"
             android:launchMode="singleTop"
-            android:parentActivityName=".ui.main.MainActivity">
+            android:parentActivityName="com.example.james.wodrecordapp.ui.main.MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.james.realmbinding.ui.main.MainActivity" />
+                android:value="com.example.james.wodrecordapp.ui.main.MainActivity" />
         </activity>
         <activity
-            android:name=".ui.record.RecordWODActivity"
+            android:name="com.example.james.wodrecordapp.ui.record.RecordWODActivity"
             android:label="@string/lbl_record_a_wod"
             android:launchMode="singleTop"
-            android:parentActivityName=".ui.main.MainActivity">
+            android:parentActivityName="com.example.james.wodrecordapp.ui.main.MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.james.realmbinding.ui.main.MainActivity" />
+                android:value="com.example.james.wodrecordapp.ui.main.MainActivity" />
         </activity>
         <activity
-            android:name=".ui.progress.ViewProgressActivity"
+            android:name="com.example.james.wodrecordapp.ui.progress.ViewProgressActivity"
             android:label="@string/lbl_view_progress"
             android:launchMode="singleTop"
-            android:parentActivityName=".ui.main.MainActivity">
+            android:parentActivityName="com.example.james.wodrecordapp.ui.main.MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.james.realmbinding.ui.main.MainActivity" />
+                android:value="com.example.james.wodrecordapp.ui.main.MainActivity" />
         </activity>
     </application>
 
