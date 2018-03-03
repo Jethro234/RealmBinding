@@ -22,6 +22,10 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 }
 
 configurations.all {
@@ -39,7 +43,6 @@ dependencies {
     implementation "com.android.support:animated-vector-drawable:$rootProject.supportLibraryVersion"
     implementation "com.android.support:palette-v7:$rootProject.supportLibraryVersion"
     implementation "com.android.support:gridlayout-v7:$rootProject.supportLibraryVersion"
-
     implementation "com.jakewharton:butterknife:$rootProject.butterKnifeVersion"
     annotationProcessor "com.jakewharton:butterknife-compiler:$rootProject.butterKnifeVersion"
 
@@ -59,18 +62,16 @@ dependencies {
 
     // swipe view
     implementation "com.mindorks:placeholderview:$rootProject.placeholderviewVersion"
-
     implementation 'com.appeaser.sublimepickerlibrary:sublimepickerlibrary:2.0.0'
     implementation 'joda-time:joda-time:2.9.9'
     implementation 'com.google.android.gms:play-services-vision:11.6.0'
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
-
     testImplementation 'junit:junit:4.12'
 
     // Android Testing Support Library's runner and rules
-    androidTestImplementation "com.android.support.test:runner:1.0.1"
-    androidTestImplementation "com.android.support.test:rules:1.0.1"
+    androidTestImplementation 'com.android.support.test:runner:1.0.1'
+    androidTestImplementation 'com.android.support.test:rules:1.0.1'
 
     // Espresso UI testing dependencies
-    androidTestImplementation "com.android.support.test.espresso:espresso-core:3.0.1"
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
 }
