@@ -81,9 +81,9 @@ public class MainActivityFrag extends BaseFragment {
     }
 
     public void reloadQuestions() {
-        WODResponse response = mainMvpPresenter.getListOfWods();
+        mainMvpPresenter.getListOfWods();
 
-        for (WOD wod : response.wods) {
+        /*for (WOD wod : response.wods) {
             wod_cards_container.addView(new WodCard(wod));
         }
 
@@ -94,7 +94,7 @@ public class MainActivityFrag extends BaseFragment {
 
         wod_cards_container.setAnimation(animation);
         animation.setDuration(100);
-        animation.start();
+        animation.start();*/
     }
 
     @Override

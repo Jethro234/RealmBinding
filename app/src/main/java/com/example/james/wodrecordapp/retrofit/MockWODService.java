@@ -13,6 +13,7 @@ import java.io.InputStream;
 
 /**
  * Created by jimmy on 04/03/2018.
+ * This will be used to simulate a web request for the WOD json.
  */
 
 public class MockWODService {
@@ -28,16 +29,6 @@ public class MockWODService {
             return jsonString;
         }  catch (IOException e) {
             e.printStackTrace();
-        }
-        return null;
-    }
-
-    public static JSONArray getWODJson(Context context) {
-        try {
-            JSONObject jsonObject = new JSONObject(getWODs(context));
-            return jsonObject.getJSONArray(Constants.WOSJSONArray);
-        } catch (JSONException ex) {
-            ex.printStackTrace();
         }
         return null;
     }
