@@ -9,4 +9,7 @@ public class Constants {
     public static final String SCAN_WOD_BUNDLE_KEY = "scanned_wod_bundle_key";
     public static final String SCANNED_EXERCISE = "scanned_exercise";
     public static final String SCANNED_TIME = "scanned_time";
+
+    // Mock Retrofit Constants
+    public static final String WOSJSONArray = "wods";
 }

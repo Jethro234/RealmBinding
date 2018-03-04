@@ -13,11 +13,6 @@
     </style>
 
     <!-- Columns Button theme -->
-    <style name="BaseButtonTheme">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:padding">@dimen/btn_padding</item>
-    </style>
 
     <!-- Standard Text View -->
     <style name="StandardTextView">
@@ -30,21 +25,8 @@
     </style>
 
     <!-- Text View Lighter Gray-->
-    <style name="TextLightGray" parent="StandardTextView">
-        <item name="android:textColor">@color/lightGray</item>
-    </style>
 
     <!-- Main Menu Button theme -->
-    <style name="MainMenuButtonTheme" parent="BaseButtonTheme">
-        <item name="android:layout_height">@dimen/btn_height</item>
-        <item name="android:layout_width">@dimen/btn_width</item>
-        <item name="android:layout_weight">1</item>
-    </style>
-
-    <style name="AppTheme.NoActionBar">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
-    </style>
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 

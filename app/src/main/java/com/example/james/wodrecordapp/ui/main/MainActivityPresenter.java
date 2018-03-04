@@ -1,7 +1,9 @@
 package com.example.james.wodrecordapp.ui.main;
 
 import com.example.james.wodrecordapp.MvpView;
+import com.example.james.wodrecordapp.retrofit.MockWODService;
 import com.example.james.wodrecordapp.ui.base.BasePresenter;
+import com.google.gson.Gson;
 
 import javax.inject.Inject;
 
@@ -13,6 +15,9 @@ public class MainActivityPresenter extends BasePresenter implements MainMvpPrese
 
     private final static String TAG = MainActivityPresenter.class.getSimpleName();
     private MainMvpView mainMvpView;
+
+    @Inject
+    Gson gson;
 
     @Inject
     public MainActivityPresenter(MainActivity mvpView) {
@@ -47,5 +52,10 @@ public class MainActivityPresenter extends BasePresenter implements MainMvpPrese
     public void onDrawerOptionToolsClick() {
         mainMvpView.closeNavigationDrawer();
         mainMvpView.showToolsFragment();
+    }
+
+    @Override
+    public WODResponse getListOfWods() {
+        return gson.fromJson(MockWODService.getWODs(getContext()), WODResponse.class);
     }
 }

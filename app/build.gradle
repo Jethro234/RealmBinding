@@ -26,6 +26,7 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+    sourceSets { main { resources.srcDirs = ['src/main/resources', 'src/main/resources/'] } }
 }
 
 configurations.all {
@@ -56,6 +57,12 @@ dependencies {
     compileOnly 'javax.annotation:jsr250-api:1.0'
     implementation 'javax.inject:javax.inject:1'
 
+    // Retrofit
+    implementation "com.squareup.retrofit2:retrofit:$rootProject.retrofit"
+    implementation "com.squareup.retrofit2:converter-gson:$rootProject.gsonConverterVersion"
+    implementation "com.google.code.gson:gson:$rootProject.gsonVersion"
+    implementation 'com.squareup.okhttp3:okhttp:3.10.0'
+
     // RxJava 2
     implementation 'io.reactivex.rxjava2:rxjava:2.1.7'
     implementation 'io.reactivex.rxjava2:rxandroid:2.0.1'
@@ -64,7 +71,7 @@ dependencies {
     implementation "com.mindorks:placeholderview:$rootProject.placeholderviewVersion"
     implementation 'com.appeaser.sublimepickerlibrary:sublimepickerlibrary:2.0.0'
     implementation 'joda-time:joda-time:2.9.9'
-    implementation 'com.google.android.gms:play-services-vision:11.6.0'
+    implementation 'com.google.android.gms:play-services-vision:11.8.0'
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
     testImplementation 'junit:junit:4.12'
 

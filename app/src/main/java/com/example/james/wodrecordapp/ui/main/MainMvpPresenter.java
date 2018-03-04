@@ -13,4 +13,6 @@ public interface MainMvpPresenter extends MvpPresenter {
     void onDrawerOptionRecordWODClick();
     void onDrawerOptionViewProgressClick();
     void onDrawerOptionToolsClick();
+
+    WODResponse getListOfWods();
 }

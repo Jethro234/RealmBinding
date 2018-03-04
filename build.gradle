@@ -29,4 +29,7 @@ ext {
     supportLibraryVersion = '26.1.0'
     dagger2Version = '2.11'
     placeholderviewVersion = '0.7.2'
+    retrofit = '2.3.0'
+    gsonVersion = '2.8.0'
+    gsonConverterVersion = '2.3.0'
 }

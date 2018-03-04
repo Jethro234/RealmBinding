@@ -1,0 +1,22 @@
+{
+  "wods": [
+    {
+      "name":"Murph",
+      "details":"100 Pull Ups, 200 Push Ups, 300 Squats",
+      "type":"FT",
+      "datetime":"2017-03-04T10:36:38Z"
+    },
+    {
+      "name":"Angie",
+      "details":"100 Pull Ups, 100 Push Ups, 100 Sit Ups, 100 Squats",
+      "type":"FT",
+      "datetime":"2017-04-04T10:36:38Z"
+    },
+    {
+      "name":"Chelsea",
+      "details":"5 Pull Ups, 10 Push Ups, 15 Squats",
+      "type":"EMOM (30 Minutes)",
+      "datetime":"2017-05-04T10:36:38Z"
+    }
+  ]
+}

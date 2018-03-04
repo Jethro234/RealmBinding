@@ -15,9 +15,6 @@ import com.example.james.wodrecordapp.utils.ScreenUtils;
 import com.mindorks.placeholderview.SwipeDecor;
 import com.mindorks.placeholderview.SwipePlaceHolderView;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.inject.Inject;
 
 import butterknife.BindView;
@@ -30,6 +27,9 @@ import butterknife.ButterKnife;
 public class MainActivityFrag extends BaseFragment {
 
     @BindView(R.id.wod_cards_container) SwipePlaceHolderView wod_cards_container;
+
+    @Inject
+    MainMvpPresenter mainMvpPresenter;
 
     private Context context;
 
@@ -81,16 +81,10 @@ public class MainActivityFrag extends BaseFragment {
     }
 
     public void reloadQuestions() {
-        //todo: implement a better way for adding wod card
-        List<WodCard> wodCardList = new ArrayList<>();
-        wodCardList.add(new WodCard());
-        wodCardList.add(new WodCard());
-        wodCardList.add(new WodCard());
-        wodCardList.add(new WodCard());
-        wodCardList.add(new WodCard());
+        WODResponse response = mainMvpPresenter.getListOfWods();
 
-        for (WodCard wodCard : wodCardList) {
-            wod_cards_container.addView(wodCard);
+        for (WOD wod : response.wods) {
+            wod_cards_container.addView(new WodCard(wod));
         }
 
         ScaleAnimation animation = new ScaleAnimation(

@@ -5,6 +5,7 @@ import android.app.Application;
 import com.example.james.wodrecordapp.ControlApplication;
 import com.example.james.wodrecordapp.di.module.ActivityBindingModule;
 import com.example.james.wodrecordapp.di.module.ApplicationModule;
+import com.example.james.wodrecordapp.di.module.WebServiceModule;
 
 import javax.inject.Singleton;
 
@@ -18,7 +19,7 @@ import dagger.android.support.AndroidSupportInjectionModule;
  */
 
 @Singleton
-@Component(modules = {ApplicationModule.class,
+@Component(modules = {ApplicationModule.class, WebServiceModule.class,
         ActivityBindingModule.class,
         AndroidSupportInjectionModule.class})
 public interface ApplicationComponent extends AndroidInjector<ControlApplication> {
