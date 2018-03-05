@@ -1,23 +1,19 @@
 package com.example.james.wodrecordapp.ui.main;
 
 import android.app.ProgressDialog;
-import android.support.annotation.NonNull;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.example.james.wodrecordapp.MvpView;
 import com.example.james.wodrecordapp.retrofit.MockWODService;
 import com.example.james.wodrecordapp.ui.base.BasePresenter;
 import com.google.gson.Gson;
 
-import java.util.concurrent.TimeUnit;
+import java.util.concurrent.Callable;
 
 import javax.inject.Inject;
 
 import io.reactivex.Single;
-import io.reactivex.SingleObserver;
 import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
 /**
@@ -75,9 +71,12 @@ public class MainActivityPresenter extends BasePresenter implements MainMvpPrese
         progressDialog.setMessage("Please wait...");
         progressDialog.show();
 
-        // Delay is only used to simulate the wait time from a web request
-        Single<WODResponse> wodResponseSingle = Single.just(gson.fromJson(MockWODService.getWODs(getContext()), WODResponse.class))
-                .delay(10000, TimeUnit.MILLISECONDS);
+        Single<WODResponse> wodResponseSingle = Single.fromCallable(new Callable<WODResponse>() {
+            @Override
+            public WODResponse call() throws Exception {
+                return gson.fromJson(MockWODService.getWODs(getContext()), WODResponse.class);
+            }
+        });
 
         wodResponseSingle
                 .subscribeOn(Schedulers.io())
@@ -87,8 +86,7 @@ public class MainActivityPresenter extends BasePresenter implements MainMvpPrese
                         //TODO Throw these results back to view
                         Log.d(TAG, String.format("I have %d wods", wodResponse.wods.size()));
                         progressDialog.dismiss();
-                    }
-                    else {
+                    } else {
                         throwable.printStackTrace();
                     }
                 });
