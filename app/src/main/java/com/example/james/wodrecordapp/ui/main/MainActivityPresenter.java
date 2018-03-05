@@ -71,12 +71,8 @@ public class MainActivityPresenter extends BasePresenter implements MainMvpPrese
         progressDialog.setMessage("Please wait...");
         progressDialog.show();
 
-        Single<WODResponse> wodResponseSingle = Single.fromCallable(new Callable<WODResponse>() {
-            @Override
-            public WODResponse call() throws Exception {
-                return gson.fromJson(MockWODService.getWODs(getContext()), WODResponse.class);
-            }
-        });
+        Single<WODResponse> wodResponseSingle = Single.fromCallable(() ->
+                gson.fromJson(MockWODService.getWODs(getContext()), WODResponse.class));
 
         wodResponseSingle
                 .subscribeOn(Schedulers.io())
