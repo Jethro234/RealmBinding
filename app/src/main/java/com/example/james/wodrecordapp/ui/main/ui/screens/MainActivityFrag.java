@@ -4,6 +4,9 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -23,7 +26,7 @@ import butterknife.ButterKnife;
  * Created by buxtonj on 13/12/2017.
  */
 
-public class MainActivityFrag extends BaseFragment {
+public class MainActivityFrag extends BaseFragment implements MainMvpView {
 
     @BindView(R.id.wod_cards_container) SwipePlaceHolderView wod_cards_container;
 
@@ -39,6 +42,7 @@ public class MainActivityFrag extends BaseFragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
     }
 
     @Nullable
@@ -58,6 +62,29 @@ public class MainActivityFrag extends BaseFragment {
     @Override
     public void onResume() {
         super.onResume();
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        inflater.inflate(R.menu.home_fragment, menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        switch (id) {
+            case R.id.reload_questions:
+                reloadQuestions();
+                break;
+            case R.id.action_settings:
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     private void setupCardContainerView() {
@@ -94,10 +121,5 @@ public class MainActivityFrag extends BaseFragment {
         wod_cards_container.setAnimation(animation);
         animation.setDuration(100);
         animation.start();*/
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
     }
 }

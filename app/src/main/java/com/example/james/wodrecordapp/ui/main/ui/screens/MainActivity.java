@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v4.app.Fragment;
 import android.view.Gravity;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -23,10 +22,6 @@ import com.example.james.wodrecordapp.ui.base.BaseActivity;
 import com.example.james.wodrecordapp.ui.base.BaseFragment;
 import com.example.james.wodrecordapp.ui.main.customviews.SmoothActionBarDrawerToggle;
 import com.example.james.wodrecordapp.ui.main.ui.presenter.MainMvpPresenter;
-import com.example.james.wodrecordapp.ui.main.ui.screens.MainActivityFrag;
-import com.example.james.wodrecordapp.ui.main.ui.screens.MainMvpView;
-import com.example.james.wodrecordapp.ui.main.ui.screens.ToolsFragment;
-import com.example.james.wodrecordapp.ui.progress.ViewProgressActivity;
 import com.example.james.wodrecordapp.ui.record.RecordWODFrag;
 import com.example.james.wodrecordapp.ui.scan.OcrCaptureActivity;
 import com.example.james.wodrecordapp.ui.scan.utils.DetectedGestureArrayList;
@@ -44,7 +39,7 @@ import static com.example.james.wodrecordapp.utils.Constants.SCANNED_EXERCISE;
 import static com.example.james.wodrecordapp.utils.Constants.SCANNED_TIME;
 import static com.example.james.wodrecordapp.utils.Constants.SCAN_WOD_BUNDLE_KEY;
 
-public class MainActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener, RealmCallback, MainMvpView {
+public class MainActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener, RealmCallback {
 
     private Context context;
     private SmoothActionBarDrawerToggle smoothToggle;
@@ -97,31 +92,6 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         } else {
             super.onBackPressed();
         }
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main_activity, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        switch (id) {
-            case R.id.reload_questions:
-                mainActivityFrag.reloadQuestions();
-                break;
-            case R.id.action_settings:
-                break;
-        }
-
-        return super.onOptionsItemSelected(item);
     }
 
     public void scanWod() {
