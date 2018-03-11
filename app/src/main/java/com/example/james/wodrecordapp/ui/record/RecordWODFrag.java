@@ -76,13 +76,13 @@ public class RecordWODFrag extends BaseFragment implements RealmCallback, Record
         final String[] WodSetsArray= res.getStringArray(R.array.sets_array);
 
         //Set up the spinner
-        final ArrayAdapter<String> wodExercisesAdapter = new ArrayAdapter<>(context, android.R.layout.simple_spinner_item,
+        final ArrayAdapter<String> wodExercisesAdapter = new ArrayAdapter<>(context, android.R.layout.simple_spinner_dropdown_item,
                 WodArray);
         wodExercisesAdapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
         spinnerWodExercise.setAdapter(wodExercisesAdapter);
 
         //Set up the sets spinner
-        final ArrayAdapter<String> wodSetsAdapter = new ArrayAdapter<>(context, android.R.layout.simple_spinner_item,
+        final ArrayAdapter<String> wodSetsAdapter = new ArrayAdapter<>(context, android.R.layout.simple_spinner_dropdown_item,
                 WodSetsArray);
         wodExercisesAdapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
         spinnerWodSets.setAdapter(wodSetsAdapter);
