@@ -1,4 +1,4 @@
-package com.example.james.wodrecordapp.ui.main;
+package com.example.james.wodrecordapp.ui.main.model;
 
 import com.google.gson.annotations.SerializedName;
 

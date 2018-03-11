@@ -11,8 +11,6 @@ import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 import android.view.View;
 
-import com.example.james.wodrecordapp.ui.record.RecordWODActivity;
-
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -26,6 +24,8 @@ import static android.support.test.espresso.matcher.ViewMatchers.withId;
 
 import android.widget.TextView;
 
+import com.example.james.wodrecordapp.ui.main.ui.screens.MainActivity;
+
 /**
  * Created by jimmy on 28/10/2017.
  */
@@ -34,8 +34,8 @@ import android.widget.TextView;
 public class RecordWodScreenTest {
 
     @Rule
-    public ActivityTestRule<RecordWODActivity> recordWODActivityTestRule =
-            new ActivityTestRule<>(RecordWODActivity.class);
+    public ActivityTestRule<MainActivity> recordWODActivityTestRule =
+            new ActivityTestRule<>(MainActivity.class);
 
     public static BoundedMatcher<View, TextView> matchesPattern(final String pattern, final String view) {
         return new BoundedMatcher<View, TextView>(TextView.class) {

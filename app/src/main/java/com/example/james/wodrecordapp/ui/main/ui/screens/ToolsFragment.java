@@ -1,4 +1,4 @@
-package com.example.james.wodrecordapp.ui.main;
+package com.example.james.wodrecordapp.ui.main.ui.screens;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 
 import com.example.james.wodrecordapp.R;
 import com.example.james.wodrecordapp.ui.base.BaseFragment;
+import com.example.james.wodrecordapp.ui.main.ui.presenter.MainActivityPresenter;
 
 import javax.inject.Inject;
 

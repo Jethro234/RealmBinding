@@ -32,9 +32,6 @@ import butterknife.ButterKnife;
 
 public class RecordWODFrag extends BaseFragment implements RealmCallback, RecordMvpView {
 
-    @Inject
-    RecordWODPresenter recordWODPresenter;
-
     // Bind the views
     @BindView(R.id.spinner_wod_exercise) Spinner spinnerWodExercise;
     @BindView(R.id.spinner_wod_sets) Spinner spinnerWodSets;
@@ -43,6 +40,7 @@ public class RecordWODFrag extends BaseFragment implements RealmCallback, Record
     @BindView(R.id.txt_weight) EditText txt_wod_weight;
     @BindView(R.id.txt_wod_details) EditText txt_wod_details;
     @BindView(R.id.txt_wod_time) EditText txt_wod_time;
+
 
     private Context context;
     private Resources res;
@@ -57,7 +55,7 @@ public class RecordWODFrag extends BaseFragment implements RealmCallback, Record
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         // Get new workout object
-        workout = recordWODPresenter.getWorkout();
+        //workout = recordWODPresenter.getWorkout();
     }
 
     @Nullable
@@ -67,7 +65,7 @@ public class RecordWODFrag extends BaseFragment implements RealmCallback, Record
 
         setUnBinder(ButterKnife.bind(this, root));
 
-        recordWODPresenter.onAttach(this);
+        //recordWODPresenter.onAttach(this);
 
         context = root.getContext();
         res = getResources();
@@ -87,24 +85,18 @@ public class RecordWODFrag extends BaseFragment implements RealmCallback, Record
         wodExercisesAdapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
         spinnerWodSets.setAdapter(wodSetsAdapter);
 
-        txt_wod_date.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                recordWODPresenter.displayCalender(context, workout);
-            }
+        txt_wod_date.setOnClickListener((View v) -> {
+            //recordWODPresenter.displayCalender(context, workout);
         });
 
-        btn_addWod.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String sets = spinnerWodSets.getSelectedItem().toString();
-                String exercise = spinnerWodExercise.getSelectedItem().toString();
-                String weight = txt_wod_weight.getText().toString();
-                String details = txt_wod_details.getText().toString();
-                String time = txt_wod_time.getText().toString();
+        btn_addWod.setOnClickListener((View v) -> {
+            String sets = spinnerWodSets.getSelectedItem().toString();
+            String exercise = spinnerWodExercise.getSelectedItem().toString();
+            String weight = txt_wod_weight.getText().toString();
+            String details = txt_wod_details.getText().toString();
+            String time = txt_wod_time.getText().toString();
 
-                recordWODPresenter.addWOD(sets, exercise, weight, details, time);
-            }
+            //recordWODPresenter.addWOD(sets, exercise, weight, details, time);
         });
 
         return root;

@@ -5,9 +5,12 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.util.Log;
 
+import com.example.james.wodrecordapp.MvpView;
 import com.example.james.wodrecordapp.R;
 import com.example.james.wodrecordapp.data.interfaces.RealmCallback;
 import com.example.james.wodrecordapp.data.model.Workout;
+import com.example.james.wodrecordapp.ui.base.BaseActivity;
+import com.example.james.wodrecordapp.ui.base.BaseFragment;
 
 import java.util.List;
 
@@ -22,8 +25,9 @@ public class WorkoutDaoImpl implements WorkoutDao {
     private Context context;
     private Resources res;
 
-    public WorkoutDaoImpl(Context context) {
-        this.context = context;
+    public WorkoutDaoImpl(MvpView mvpView) {
+        this.context = (mvpView instanceof BaseFragment) ? ((BaseFragment) mvpView).getContext()
+                : ((BaseActivity) mvpView).getBaseContext();
         this.res = context.getResources();
     }
 

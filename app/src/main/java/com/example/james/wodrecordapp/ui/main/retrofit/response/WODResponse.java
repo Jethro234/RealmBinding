@@ -1,5 +1,6 @@
-package com.example.james.wodrecordapp.ui.main;
+package com.example.james.wodrecordapp.ui.main.retrofit.response;
 
+import com.example.james.wodrecordapp.ui.main.model.WOD;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
@@ -10,5 +11,5 @@ import java.util.List;
 
 public class WODResponse {
     @SerializedName("wods")
-    List<WOD> wods;
+    public List<WOD> wods;
 }

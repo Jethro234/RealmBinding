@@ -1,4 +1,4 @@
-package com.example.james.wodrecordapp.ui.main;
+package com.example.james.wodrecordapp.ui.main.ui.presenter;
 
 import com.example.james.wodrecordapp.MvpPresenter;
 import com.example.james.wodrecordapp.di.ActivityScoped;

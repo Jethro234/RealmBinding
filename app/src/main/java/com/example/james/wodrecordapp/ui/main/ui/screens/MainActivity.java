@@ -1,4 +1,4 @@
-package com.example.james.wodrecordapp.ui.main;
+package com.example.james.wodrecordapp.ui.main.ui.screens;
 
 import android.content.Context;
 import android.content.Intent;
@@ -18,18 +18,20 @@ import com.example.james.wodrecordapp.R;
 import com.example.james.wodrecordapp.data.WorkoutDaoImpl;
 import com.example.james.wodrecordapp.data.interfaces.RealmCallback;
 import com.example.james.wodrecordapp.data.model.Workout;
-import com.example.james.wodrecordapp.retrofit.MockWODService;
 import com.example.james.wodrecordapp.ui.base.BaseActivity;
+import com.example.james.wodrecordapp.ui.main.customviews.SmoothActionBarDrawerToggle;
+import com.example.james.wodrecordapp.ui.main.ui.presenter.MainMvpPresenter;
+import com.example.james.wodrecordapp.ui.main.ui.screens.MainActivityFrag;
+import com.example.james.wodrecordapp.ui.main.ui.screens.MainMvpView;
+import com.example.james.wodrecordapp.ui.main.ui.screens.ToolsFragment;
 import com.example.james.wodrecordapp.ui.progress.ViewProgressActivity;
-import com.example.james.wodrecordapp.ui.record.RecordWODActivity;
+import com.example.james.wodrecordapp.ui.record.RecordWODFrag;
 import com.example.james.wodrecordapp.ui.scan.OcrCaptureActivity;
 import com.example.james.wodrecordapp.ui.scan.utils.DetectedGestureArrayList;
 import com.example.james.wodrecordapp.utils.ActivityUtils;
 import com.example.james.wodrecordapp.utils.Constants;
 
 import org.joda.time.DateTime;
-import org.json.JSONArray;
-import org.json.JSONObject;
 
 import javax.inject.Inject;
 
@@ -52,6 +54,9 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 
     @Inject
     MainActivityFrag mainActivityFrag;
+
+    @Inject
+    RecordWODFrag recordWODFrag;
 
     @Inject
     ToolsFragment toolsFragment;
@@ -137,7 +142,8 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 
     @Override
     public void showRecordWodActivity() {
-        startActivity(RecordWODActivity.getRecordWodActIntent(this));
+        ActivityUtils.replaceFragmentInActivity(getSupportFragmentManager(),
+                recordWODFrag, R.id.contentFrame);
     }
 
     @Override
@@ -161,7 +167,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
                 DetectedGestureArrayList confirmedTime = new DetectedGestureArrayList(scan_wod_bundle.getStringArrayList(SCANNED_TIME));
 
                 // Obtain realm instance
-                WorkoutDaoImpl workoutDao = new WorkoutDaoImpl(context);
+                WorkoutDaoImpl workoutDao = new WorkoutDaoImpl(this);
 
                 Workout workout = new Workout();
 

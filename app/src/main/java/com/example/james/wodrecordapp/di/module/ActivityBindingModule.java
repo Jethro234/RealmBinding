@@ -1,9 +1,8 @@
 package com.example.james.wodrecordapp.di.module;
 
 import com.example.james.wodrecordapp.di.ActivityScoped;
-import com.example.james.wodrecordapp.ui.main.MainActivity;
+import com.example.james.wodrecordapp.ui.main.ui.screens.MainActivity;
 import com.example.james.wodrecordapp.ui.progress.ViewProgressActivity;
-import com.example.james.wodrecordapp.ui.record.RecordWODActivity;
 
 import dagger.Module;
 import dagger.android.ContributesAndroidInjector;
@@ -22,8 +21,4 @@ public abstract class ActivityBindingModule {
     @ActivityScoped
     @ContributesAndroidInjector(modules = MainActivityModule.class)
     abstract MainActivity mainActivity();
-
-    @ActivityScoped
-    @ContributesAndroidInjector(modules = RecordWODModule.class)
-    abstract RecordWODActivity recordWOD();
 }

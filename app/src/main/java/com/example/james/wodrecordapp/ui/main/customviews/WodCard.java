@@ -1,8 +1,9 @@
-package com.example.james.wodrecordapp.ui.main;
+package com.example.james.wodrecordapp.ui.main.customviews;
 
 import android.widget.TextView;
 
 import com.example.james.wodrecordapp.R;
+import com.example.james.wodrecordapp.ui.main.model.WOD;
 import com.mindorks.placeholderview.annotations.Layout;
 import com.mindorks.placeholderview.annotations.NonReusable;
 import com.mindorks.placeholderview.annotations.Resolve;

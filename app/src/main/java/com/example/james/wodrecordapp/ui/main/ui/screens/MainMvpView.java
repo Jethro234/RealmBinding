@@ -1,4 +1,4 @@
-package com.example.james.wodrecordapp.ui.main;
+package com.example.james.wodrecordapp.ui.main.ui.screens;
 
 import com.example.james.wodrecordapp.MvpView;
 

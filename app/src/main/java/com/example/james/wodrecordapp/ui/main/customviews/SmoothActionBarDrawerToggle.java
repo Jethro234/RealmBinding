@@ -1,4 +1,4 @@
-package com.example.james.wodrecordapp.ui.main;
+package com.example.james.wodrecordapp.ui.main.customviews;
 
 import android.app.Activity;
 import android.support.v4.widget.DrawerLayout;

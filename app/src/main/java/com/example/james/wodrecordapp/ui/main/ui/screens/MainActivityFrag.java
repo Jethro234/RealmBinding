@@ -1,4 +1,4 @@
-package com.example.james.wodrecordapp.ui.main;
+package com.example.james.wodrecordapp.ui.main.ui.screens;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -6,11 +6,10 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.ScaleAnimation;
 
 import com.example.james.wodrecordapp.R;
 import com.example.james.wodrecordapp.ui.base.BaseFragment;
+import com.example.james.wodrecordapp.ui.main.ui.presenter.MainMvpPresenter;
 import com.example.james.wodrecordapp.utils.ScreenUtils;
 import com.mindorks.placeholderview.SwipeDecor;
 import com.mindorks.placeholderview.SwipePlaceHolderView;
