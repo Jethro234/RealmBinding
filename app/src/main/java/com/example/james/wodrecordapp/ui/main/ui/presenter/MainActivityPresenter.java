@@ -24,7 +24,6 @@ import io.reactivex.schedulers.Schedulers;
 public class MainActivityPresenter extends BasePresenter implements MainMvpPresenter {
 
     private final static String TAG = MainActivityPresenter.class.getSimpleName();
-    private MainMvpView mainMvpView;
 
     @Inject
     Gson gson;
@@ -37,7 +36,6 @@ public class MainActivityPresenter extends BasePresenter implements MainMvpPrese
     @Override
     public void onAttach(MvpView mvpView) {
         super.onAttach(mvpView);
-        mainMvpView = (MainMvpView) mvpView;
     }
 
     @Override
