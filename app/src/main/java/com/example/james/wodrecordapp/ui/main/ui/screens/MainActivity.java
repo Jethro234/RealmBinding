@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.Fragment;
 import android.view.Gravity;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -19,6 +20,7 @@ import com.example.james.wodrecordapp.data.WorkoutDaoImpl;
 import com.example.james.wodrecordapp.data.interfaces.RealmCallback;
 import com.example.james.wodrecordapp.data.model.Workout;
 import com.example.james.wodrecordapp.ui.base.BaseActivity;
+import com.example.james.wodrecordapp.ui.base.BaseFragment;
 import com.example.james.wodrecordapp.ui.main.customviews.SmoothActionBarDrawerToggle;
 import com.example.james.wodrecordapp.ui.main.ui.presenter.MainMvpPresenter;
 import com.example.james.wodrecordapp.ui.main.ui.screens.MainActivityFrag;
@@ -46,23 +48,17 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 
     private Context context;
     private SmoothActionBarDrawerToggle smoothToggle;
+    private BaseFragment selectedFragment;
 
     @BindView(R.id.toolbar) Toolbar toolbar;
     @BindView(R.id.fab) FloatingActionButton fab;
     @BindView(R.id.drawer_layout) DrawerLayout drawer_layout;
     @BindView(R.id.nav_view) NavigationView navigationView;
 
-    @Inject
-    MainActivityFrag mainActivityFrag;
-
-    @Inject
-    RecordWODFrag recordWODFrag;
-
-    @Inject
-    ToolsFragment toolsFragment;
-
-    @Inject
-    MainMvpPresenter mainMvpPresenter;
+    @Inject MainActivityFrag mainActivityFrag;
+    @Inject RecordWODFrag recordWODFrag;
+    @Inject ToolsFragment toolsFragment;
+    @Inject MainMvpPresenter mainMvpPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,10 +73,9 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 
         fab.setOnClickListener((View v) -> scanWod());
 
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         smoothToggle = new SmoothActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.addDrawerListener(smoothToggle);
+                this, drawer_layout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer_layout.addDrawerListener(smoothToggle);
         smoothToggle.syncState();
 
         navigationView.setNavigationItemSelectedListener(this);
@@ -135,29 +130,6 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     }
 
     @Override
-    public void showHomeFragment() {
-        ActivityUtils.replaceFragmentInActivity(getSupportFragmentManager(),
-                mainActivityFrag, R.id.contentFrame);
-    }
-
-    @Override
-    public void showRecordWodActivity() {
-        ActivityUtils.replaceFragmentInActivity(getSupportFragmentManager(),
-                recordWODFrag, R.id.contentFrame);
-    }
-
-    @Override
-    public void showToolsFragment() {
-        ActivityUtils.replaceFragmentInActivity(getSupportFragmentManager(),
-                toolsFragment, R.id.contentFrame);
-    }
-
-    @Override
-    public void showViewProgressActivity() {
-        startActivity(ViewProgressActivity.getViewProgressActIntent(this));
-    }
-
-    @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == Constants.SCAN_WOD) {
@@ -205,44 +177,32 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         int id = item.getItemId();
         switch (id) {
             case R.id.nav_home:
-                mainMvpPresenter.onDrawerOptionHomeClick();
+                selectedFragment = mainActivityFrag;
                 break;
             case R.id.nav_record_wod:
-                mainMvpPresenter.onDrawerOptionRecordWODClick();
+                selectedFragment = recordWODFrag;
                 break;
             case R.id.nav_view_progress:
-                mainMvpPresenter.onDrawerOptionViewProgressClick();
                 break;
             case R.id.nav_tools:
-                mainMvpPresenter.onDrawerOptionToolsClick();
+                selectedFragment = toolsFragment;
                 break;
         }
+
+        drawer_layout.closeDrawer(Gravity.START);
 
         return true;
     }
 
     @Override
-    public void closeNavigationDrawer() {
-        drawer_layout.closeDrawer(Gravity.START);
+    public void setSupportActionBar(Toolbar toolbar) {
+        super.setSupportActionBar(toolbar);
     }
 
-    @Override
-    public void lockDrawer() {
-
-    }
-
-    @Override
-    public void unlockDrawer() {
-
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
+    public void replaceFragment() {
+        if (selectedFragment != null) {
+            ActivityUtils.replaceFragmentInActivity(getSupportFragmentManager(),
+                    selectedFragment, R.id.contentFrame);
+        }
     }
 }

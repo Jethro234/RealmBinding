@@ -41,30 +41,6 @@ public class MainActivityPresenter extends BasePresenter implements MainMvpPrese
     }
 
     @Override
-    public void onDrawerOptionHomeClick() {
-        mainMvpView.closeNavigationDrawer();
-        mainMvpView.showHomeFragment();
-    }
-
-    @Override
-    public void onDrawerOptionRecordWODClick() {
-        mainMvpView.closeNavigationDrawer();
-        mainMvpView.showRecordWodActivity();
-    }
-
-    @Override
-    public void onDrawerOptionViewProgressClick() {
-        mainMvpView.closeNavigationDrawer();
-        mainMvpView.showViewProgressActivity();
-    }
-
-    @Override
-    public void onDrawerOptionToolsClick() {
-        mainMvpView.closeNavigationDrawer();
-        mainMvpView.showToolsFragment();
-    }
-
-    @Override
     public void getListOfWods() {
         Log.d(TAG, "Getting WODs");
         //TODO Make a global method to display progress dialogs

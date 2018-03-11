@@ -6,32 +6,34 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
+import com.example.james.wodrecordapp.ui.main.ui.screens.MainActivity;
+
 /**
  * Created by buxtonj on 11/12/2017.
  */
 
 public class SmoothActionBarDrawerToggle extends ActionBarDrawerToggle {
 
-    private Runnable runnable;
+    private MainActivity mainActivity;
 
     public SmoothActionBarDrawerToggle(Activity activity, DrawerLayout drawerLayout, Toolbar toolbar, int openDrawerContentDescRes, int closeDrawerContentDescRes) {
         super(activity, drawerLayout, toolbar, openDrawerContentDescRes, closeDrawerContentDescRes);
+        mainActivity = (MainActivity) activity;
     }
 
     @Override
     public void onDrawerOpened(View drawerView) {
         super.onDrawerOpened(drawerView);
     }
+
     @Override
     public void onDrawerClosed(View view) {
         super.onDrawerClosed(view);
+        mainActivity.replaceFragment();
     }
+
     @Override
     public void onDrawerStateChanged(int newState) {
         super.onDrawerStateChanged(newState);
-        if (runnable != null && newState == DrawerLayout.STATE_IDLE) {
-            runnable.run();
-            runnable = null;
-        }
     }
 }

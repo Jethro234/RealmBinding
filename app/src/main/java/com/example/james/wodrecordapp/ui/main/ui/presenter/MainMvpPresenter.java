@@ -9,10 +9,6 @@ import com.example.james.wodrecordapp.di.ActivityScoped;
 
 @ActivityScoped
 public interface MainMvpPresenter extends MvpPresenter {
-    void onDrawerOptionHomeClick();
-    void onDrawerOptionRecordWODClick();
-    void onDrawerOptionViewProgressClick();
-    void onDrawerOptionToolsClick();
 
     void getListOfWods();
 }

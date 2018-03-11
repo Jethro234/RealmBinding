@@ -7,17 +7,5 @@ import com.example.james.wodrecordapp.MvpView;
  */
 
 public interface MainMvpView extends MvpView {
-    void closeNavigationDrawer();
 
-    void lockDrawer();
-
-    void unlockDrawer();
-
-    void showHomeFragment();
-
-    void showRecordWodActivity();
-
-    void showViewProgressActivity();
-
-    void showToolsFragment();
 }
