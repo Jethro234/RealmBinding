@@ -53,7 +53,6 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     @Inject MainActivityFrag mainActivityFrag;
     @Inject RecordWODFrag recordWODFrag;
     @Inject ToolsFragment toolsFragment;
-    @Inject MainMvpPresenter mainMvpPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

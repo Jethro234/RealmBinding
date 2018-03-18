@@ -34,11 +34,6 @@ public class MainActivityPresenter extends BasePresenter implements MainMvpPrese
     }
 
     @Override
-    public void onAttach(MvpView mvpView) {
-        super.onAttach(mvpView);
-    }
-
-    @Override
     public void getListOfWods() {
         Log.d(TAG, "Getting WODs");
         //TODO Make a global method to display progress dialogs
