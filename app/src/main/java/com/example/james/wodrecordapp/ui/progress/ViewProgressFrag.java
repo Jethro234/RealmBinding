@@ -57,8 +57,6 @@ public class ViewProgressFrag extends BaseFragment implements ViewProgressMvpVie
 
         setUnBinder(ButterKnife.bind(this, root));
 
-        viewProgressPresenter.onAttach(this);
-
         context = root.getContext();
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context);

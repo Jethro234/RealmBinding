@@ -47,12 +47,6 @@ public class ViewProgressPresenter extends BasePresenter implements ViewProgress
     }
 
     @Override
-    public void onAttach(MvpView mvpView) {
-        super.onAttach(mvpView);
-        viewProgressMvpView = (ViewProgressMvpView) mvpView;
-    }
-
-    @Override
     public List<Workout> getRecordedWorkouts() {
         return workoutDao.queryWorkout(-1);
     }

@@ -42,11 +42,6 @@ public class RecordWODPresenter extends BasePresenter implements RecordMvpPresen
         this.workout = workout;
     }
 
-    @Override
-    public void onAttach(MvpView mvpView) {
-        recordMvpView = (RecordMvpView) mvpView;
-    }
-
     @NonNull
     public Workout getWorkout() {
         return workout;

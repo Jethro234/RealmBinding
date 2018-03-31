@@ -1,6 +1,7 @@
 package com.example.james.wodrecordapp.ui.main.ui.di;
 
 import android.support.annotation.NonNull;
+import android.support.v7.app.AppCompatActivity;
 
 import com.example.james.wodrecordapp.MvpView;
 import com.example.james.wodrecordapp.data.WorkoutDao;
@@ -9,6 +10,7 @@ import com.example.james.wodrecordapp.data.model.Workout;
 import com.example.james.wodrecordapp.di.ActivityScoped;
 import com.example.james.wodrecordapp.di.FragmentScoped;
 import com.example.james.wodrecordapp.di.module.BaseActivityModule;
+import com.example.james.wodrecordapp.ui.main.ui.MainActivity;
 import com.example.james.wodrecordapp.ui.main.ui.screens.MainActivityFrag;
 import com.example.james.wodrecordapp.ui.main.ui.screens.ToolsFrag;
 import com.example.james.wodrecordapp.ui.main.ui.presenterbinders.MainMvpPresenter;
@@ -61,5 +63,9 @@ public abstract class MainActivityModule {
     @ActivityScoped
     @Binds
     abstract RecordMvpPresenter recordMvpPresenter(RecordWODPresenter recordWODPresenter);
+
+    @Binds
+    @ActivityScoped
+    abstract AppCompatActivity appCompatActivity(MainActivity mainActivity);
 
 }
