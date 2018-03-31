@@ -17,10 +17,10 @@ import butterknife.ButterKnife;
  * Created by buxtonj on 13/12/2017.
  */
 
-public class ToolsFragment extends BaseFragment {
+public class ToolsFrag extends BaseFragment {
 
     @Inject
-    public ToolsFragment() {
+    public ToolsFrag() {
     }
 
     @Override

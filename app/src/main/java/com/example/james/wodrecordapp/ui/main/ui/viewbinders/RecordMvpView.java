@@ -1,4 +1,4 @@
-package com.example.james.wodrecordapp.ui.record;
+package com.example.james.wodrecordapp.ui.main.ui.viewbinders;
 
 import com.example.james.wodrecordapp.MvpView;
 import com.example.james.wodrecordapp.ui.calendar.SublimePickerFragment;

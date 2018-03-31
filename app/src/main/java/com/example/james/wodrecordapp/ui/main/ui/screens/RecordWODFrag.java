@@ -1,4 +1,4 @@
-package com.example.james.wodrecordapp.ui.record;
+package com.example.james.wodrecordapp.ui.main.ui.screens;
 
 import android.content.Context;
 import android.content.res.Resources;
@@ -19,6 +19,7 @@ import com.example.james.wodrecordapp.data.interfaces.RealmCallback;
 import com.example.james.wodrecordapp.data.model.Workout;
 import com.example.james.wodrecordapp.ui.base.BaseFragment;
 import com.example.james.wodrecordapp.ui.calendar.SublimePickerFragment;
+import com.example.james.wodrecordapp.ui.main.ui.viewbinders.RecordMvpView;
 import com.example.james.wodrecordapp.utils.DateTimeUtils;
 
 import javax.inject.Inject;

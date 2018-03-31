@@ -1,4 +1,4 @@
-package com.example.james.wodrecordapp.ui.record;
+package com.example.james.wodrecordapp.ui.main.ui.presenter;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -16,6 +16,8 @@ import com.example.james.wodrecordapp.data.model.Workout;
 import com.example.james.wodrecordapp.ui.base.BasePresenter;
 import com.example.james.wodrecordapp.MvpView;
 import com.example.james.wodrecordapp.ui.calendar.SublimePickerFragment;
+import com.example.james.wodrecordapp.ui.main.ui.presenterbinders.RecordMvpPresenter;
+import com.example.james.wodrecordapp.ui.main.ui.viewbinders.RecordMvpView;
 import com.example.james.wodrecordapp.utils.DateTimeUtils;
 
 import javax.annotation.Nullable;

@@ -21,8 +21,8 @@ import com.example.james.wodrecordapp.ui.base.BaseActivity;
 import com.example.james.wodrecordapp.ui.base.BaseFragment;
 import com.example.james.wodrecordapp.ui.main.customviews.SmoothActionBarDrawerToggle;
 import com.example.james.wodrecordapp.ui.main.ui.screens.MainActivityFrag;
-import com.example.james.wodrecordapp.ui.main.ui.screens.ToolsFragment;
-import com.example.james.wodrecordapp.ui.record.RecordWODFrag;
+import com.example.james.wodrecordapp.ui.main.ui.screens.ToolsFrag;
+import com.example.james.wodrecordapp.ui.main.ui.screens.RecordWODFrag;
 import com.example.james.wodrecordapp.ui.scan.OcrCaptureActivity;
 import com.example.james.wodrecordapp.ui.scan.utils.DetectedGestureArrayList;
 import com.example.james.wodrecordapp.utils.ActivityUtils;
@@ -54,7 +54,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     MainActivityFrag mainActivityFrag;
     @Inject RecordWODFrag recordWODFrag;
     @Inject
-    ToolsFragment toolsFragment;
+    ToolsFrag toolsFrag;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -156,7 +156,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
             case R.id.nav_view_progress:
                 break;
             case R.id.nav_tools:
-                selectedFragment = toolsFragment;
+                selectedFragment = toolsFrag;
                 break;
         }
 
