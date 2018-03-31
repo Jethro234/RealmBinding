@@ -1,4 +1,4 @@
-package com.example.james.wodrecordapp.di.module;
+package com.example.james.wodrecordapp.ui.main.ui.di;
 
 import android.support.annotation.NonNull;
 

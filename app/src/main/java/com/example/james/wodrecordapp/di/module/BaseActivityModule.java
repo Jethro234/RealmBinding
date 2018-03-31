@@ -1,6 +1,7 @@
 package com.example.james.wodrecordapp.di.module;
 
 import com.example.james.wodrecordapp.di.ActivityScoped;
+import com.example.james.wodrecordapp.ui.main.ui.di.MainActivityModule;
 import com.example.james.wodrecordapp.ui.main.ui.screens.MainActivity;
 import com.example.james.wodrecordapp.ui.progress.ViewProgressActivity;
 
@@ -12,13 +13,7 @@ import dagger.android.ContributesAndroidInjector;
  */
 
 @Module
-public abstract class ActivityBindingModule {
+public abstract class BaseActivityModule {
 
-    @ActivityScoped
-    @ContributesAndroidInjector(modules = ViewProgressModule.class)
-    abstract ViewProgressActivity viewProgressActivity();
 
-    @ActivityScoped
-    @ContributesAndroidInjector(modules = MainActivityModule.class)
-    abstract MainActivity mainActivity();
 }

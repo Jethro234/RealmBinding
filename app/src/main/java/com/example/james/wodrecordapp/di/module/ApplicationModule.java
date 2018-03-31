@@ -4,17 +4,23 @@ import android.app.Application;
 import android.content.Context;
 
 import com.example.james.wodrecordapp.ControlApplication;
+import com.example.james.wodrecordapp.di.ActivityScoped;
+import com.example.james.wodrecordapp.ui.main.ui.di.MainActivityModule;
+import com.example.james.wodrecordapp.ui.main.ui.screens.MainActivity;
+import com.example.james.wodrecordapp.ui.progress.ViewProgressActivity;
 
 import javax.inject.Singleton;
 
 import dagger.Binds;
 import dagger.Module;
+import dagger.android.ContributesAndroidInjector;
+import dagger.android.support.AndroidSupportInjectionModule;
 
 /**
  * Created by jimmy on 19/11/2017.
  */
 
-@Module
+@Module(includes = AndroidSupportInjectionModule.class)
 public abstract class ApplicationModule {
     @Binds
     @Singleton
@@ -31,4 +37,12 @@ public abstract class ApplicationModule {
     //expose Application as an injectable context
     @Binds
     abstract Context bindContext(ControlApplication application);
+
+    @ActivityScoped
+    @ContributesAndroidInjector(modules = MainActivityModule.class)
+    abstract MainActivity mainActivity();
+
+    @ActivityScoped
+    @ContributesAndroidInjector(modules = ViewProgressModule.class)
+    abstract ViewProgressActivity viewProgressActivity();
 }
