@@ -1,6 +1,5 @@
 package com.example.james.wodrecordapp.ui.main.ui.screens;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -9,7 +8,6 @@ import android.view.ViewGroup;
 
 import com.example.james.wodrecordapp.R;
 import com.example.james.wodrecordapp.ui.base.BaseFragment;
-import com.example.james.wodrecordapp.ui.main.ui.presenter.MainActivityPresenter;
 
 import javax.inject.Inject;
 
@@ -20,11 +18,6 @@ import butterknife.ButterKnife;
  */
 
 public class ToolsFragment extends BaseFragment {
-
-    @Inject
-    MainActivityPresenter mainActivityPresenter;
-
-    private Context context;
 
     @Inject
     public ToolsFragment() {
@@ -41,8 +34,6 @@ public class ToolsFragment extends BaseFragment {
         View root = inflater.inflate(R.layout.tools_frag, container, false);
 
         setUnBinder(ButterKnife.bind(this, root));
-
-        context = root.getContext();
 
         return root;
     }
