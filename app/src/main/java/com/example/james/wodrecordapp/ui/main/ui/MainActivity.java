@@ -50,11 +50,9 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     @BindView(R.id.drawer_layout) DrawerLayout drawer_layout;
     @BindView(R.id.nav_view) NavigationView navigationView;
 
-    @Inject
-    MainActivityFrag mainActivityFrag;
+    @Inject MainActivityFrag mainActivityFrag;
     @Inject RecordWODFrag recordWODFrag;
-    @Inject
-    ToolsFrag toolsFrag;
+    @Inject ToolsFrag toolsFrag;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
