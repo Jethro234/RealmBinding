@@ -1,4 +1,4 @@
-package com.example.james.wodrecordapp.ui.main.ui.screens;
+package com.example.james.wodrecordapp.ui.main.ui;
 
 import android.content.Context;
 import android.content.Intent;
@@ -10,7 +10,6 @@ import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
@@ -21,7 +20,8 @@ import com.example.james.wodrecordapp.data.model.Workout;
 import com.example.james.wodrecordapp.ui.base.BaseActivity;
 import com.example.james.wodrecordapp.ui.base.BaseFragment;
 import com.example.james.wodrecordapp.ui.main.customviews.SmoothActionBarDrawerToggle;
-import com.example.james.wodrecordapp.ui.main.ui.presenter.MainMvpPresenter;
+import com.example.james.wodrecordapp.ui.main.ui.screens.MainActivityFrag;
+import com.example.james.wodrecordapp.ui.main.ui.screens.ToolsFragment;
 import com.example.james.wodrecordapp.ui.record.RecordWODFrag;
 import com.example.james.wodrecordapp.ui.scan.OcrCaptureActivity;
 import com.example.james.wodrecordapp.ui.scan.utils.DetectedGestureArrayList;
@@ -50,9 +50,11 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     @BindView(R.id.drawer_layout) DrawerLayout drawer_layout;
     @BindView(R.id.nav_view) NavigationView navigationView;
 
-    @Inject MainActivityFrag mainActivityFrag;
+    @Inject
+    MainActivityFrag mainActivityFrag;
     @Inject RecordWODFrag recordWODFrag;
-    @Inject ToolsFragment toolsFragment;
+    @Inject
+    ToolsFragment toolsFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

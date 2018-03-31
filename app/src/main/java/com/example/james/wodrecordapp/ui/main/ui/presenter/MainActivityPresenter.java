@@ -3,11 +3,10 @@ package com.example.james.wodrecordapp.ui.main.ui.presenter;
 import android.app.ProgressDialog;
 import android.util.Log;
 
-import com.example.james.wodrecordapp.MvpView;
 import com.example.james.wodrecordapp.retrofit.MockWODService;
 import com.example.james.wodrecordapp.ui.base.BasePresenter;
-import com.example.james.wodrecordapp.ui.main.ui.screens.MainActivity;
-import com.example.james.wodrecordapp.ui.main.ui.screens.MainMvpView;
+import com.example.james.wodrecordapp.ui.main.ui.presenterbinders.MainMvpPresenter;
+import com.example.james.wodrecordapp.ui.main.ui.MainActivity;
 import com.example.james.wodrecordapp.ui.main.retrofit.response.WODResponse;
 import com.google.gson.Gson;
 

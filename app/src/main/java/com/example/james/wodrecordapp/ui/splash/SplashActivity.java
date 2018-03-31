@@ -6,7 +6,7 @@ import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
-import com.example.james.wodrecordapp.ui.main.ui.screens.MainActivity;
+import com.example.james.wodrecordapp.ui.main.ui.MainActivity;
 
 /**
  * Created by jimmy on 08/10/2017.

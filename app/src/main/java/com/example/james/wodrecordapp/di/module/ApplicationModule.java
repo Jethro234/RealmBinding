@@ -6,7 +6,7 @@ import android.content.Context;
 import com.example.james.wodrecordapp.ControlApplication;
 import com.example.james.wodrecordapp.di.ActivityScoped;
 import com.example.james.wodrecordapp.ui.main.ui.di.MainActivityModule;
-import com.example.james.wodrecordapp.ui.main.ui.screens.MainActivity;
+import com.example.james.wodrecordapp.ui.main.ui.MainActivity;
 import com.example.james.wodrecordapp.ui.progress.ViewProgressActivity;
 
 import javax.inject.Singleton;

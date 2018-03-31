@@ -11,13 +11,11 @@ import com.example.james.wodrecordapp.di.FragmentScoped;
 import com.example.james.wodrecordapp.di.module.BaseActivityModule;
 import com.example.james.wodrecordapp.ui.main.ui.screens.MainActivityFrag;
 import com.example.james.wodrecordapp.ui.main.ui.screens.ToolsFragment;
-import com.example.james.wodrecordapp.ui.main.ui.presenter.MainMvpPresenter;
+import com.example.james.wodrecordapp.ui.main.ui.presenterbinders.MainMvpPresenter;
 import com.example.james.wodrecordapp.ui.main.ui.presenter.MainActivityPresenter;
 import com.example.james.wodrecordapp.ui.record.RecordMvpPresenter;
 import com.example.james.wodrecordapp.ui.record.RecordWODFrag;
 import com.example.james.wodrecordapp.ui.record.RecordWODPresenter;
-
-import javax.annotation.Nullable;
 
 import dagger.Binds;
 import dagger.Module;

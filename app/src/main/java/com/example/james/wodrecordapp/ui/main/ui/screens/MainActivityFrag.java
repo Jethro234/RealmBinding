@@ -12,7 +12,8 @@ import android.view.ViewGroup;
 
 import com.example.james.wodrecordapp.R;
 import com.example.james.wodrecordapp.ui.base.BaseFragment;
-import com.example.james.wodrecordapp.ui.main.ui.presenter.MainMvpPresenter;
+import com.example.james.wodrecordapp.ui.main.ui.presenterbinders.MainMvpPresenter;
+import com.example.james.wodrecordapp.ui.main.ui.viewbinders.MainMvpView;
 import com.example.james.wodrecordapp.utils.ScreenUtils;
 import com.mindorks.placeholderview.SwipeDecor;
 import com.mindorks.placeholderview.SwipePlaceHolderView;

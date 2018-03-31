@@ -6,7 +6,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
-import com.example.james.wodrecordapp.ui.main.ui.screens.MainActivity;
+import com.example.james.wodrecordapp.ui.main.ui.MainActivity;
 
 /**
  * Created by buxtonj on 11/12/2017.

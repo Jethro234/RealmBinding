@@ -24,7 +24,7 @@ import static android.support.test.espresso.matcher.ViewMatchers.withId;
 
 import android.widget.TextView;
 
-import com.example.james.wodrecordapp.ui.main.ui.screens.MainActivity;
+import com.example.james.wodrecordapp.ui.main.ui.MainActivity;
 
 /**
  * Created by jimmy on 28/10/2017.

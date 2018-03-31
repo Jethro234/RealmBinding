@@ -27,25 +27,25 @@
             </intent-filter>
         </activity>
 
-        <activity android:name="com.example.james.wodrecordapp.ui.main.ui.screens.MainActivity" />
+        <activity android:name="com.example.james.wodrecordapp.ui.main.ui.MainActivity" />
 
         <activity
             android:name="com.example.james.wodrecordapp.ui.scan.OcrCaptureActivity"
             android:label="Scan Wod"
             android:launchMode="singleTop"
-            android:parentActivityName="com.example.james.wodrecordapp.ui.main.ui.screens.MainActivity">
+            android:parentActivityName="com.example.james.wodrecordapp.ui.main.ui.MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.james.wodrecordapp.ui.main.ui.screens.MainActivity" />
+                android:value="com.example.james.wodrecordapp.ui.main.ui.MainActivity" />
         </activity>
         <activity
             android:name="com.example.james.wodrecordapp.ui.progress.ViewProgressActivity"
             android:label="@string/lbl_view_progress"
             android:launchMode="singleTop"
-            android:parentActivityName="com.example.james.wodrecordapp.ui.main.ui.screens.MainActivity">
+            android:parentActivityName="com.example.james.wodrecordapp.ui.main.ui.MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.james.wodrecordapp.ui.main.ui.screens.MainActivity" />
+                android:value="com.example.james.wodrecordapp.ui.main.ui.MainActivity" />
         </activity>
     </application>
 
