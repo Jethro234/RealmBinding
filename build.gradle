@@ -6,7 +6,7 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.0.1'
+        classpath 'com.android.tools.build:gradle:3.1.0'
         classpath "io.realm:realm-gradle-plugin:4.1.1"
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
@@ -27,7 +27,7 @@ task clean(type: Delete) {
 ext {
     butterKnifeVersion = '8.8.1'
     supportLibraryVersion = '26.1.0'
-    dagger2Version = '2.11'
+    dagger2Version = '2.14.1'
     placeholderviewVersion = '0.7.2'
     retrofit = '2.3.0'
     gsonVersion = '2.8.0'
