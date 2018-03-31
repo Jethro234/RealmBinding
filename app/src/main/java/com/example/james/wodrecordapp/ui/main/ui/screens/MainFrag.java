@@ -31,8 +31,7 @@ public class MainFrag extends BaseFragment implements MainMvpView {
 
     @BindView(R.id.wod_cards_container) SwipePlaceHolderView wod_cards_container;
 
-    @Inject
-    MainMvpPresenter mainMvpPresenter;
+    @Inject MainMvpPresenter mainMvpPresenter;
 
     private Context context;
 

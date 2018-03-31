@@ -27,7 +27,7 @@ public class ControlApplication extends Application implements HasActivityInject
     @Override
     public void onCreate() {
         super.onCreate();
-        DaggerApplicationComponent.builder().application(this).build().inject(this);
+        DaggerApplicationComponent.builder().create(this).inject(this);
 
         Realm.init(this);
         RealmConfiguration config = new RealmConfiguration.Builder()
