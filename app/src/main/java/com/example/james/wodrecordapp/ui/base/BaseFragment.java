@@ -3,18 +3,26 @@ package com.example.james.wodrecordapp.ui.base;
 import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 
 import com.example.james.wodrecordapp.MvpView;
 import com.example.james.wodrecordapp.utils.CommonUtils;
 
+import javax.inject.Inject;
+
 import butterknife.Unbinder;
-import dagger.android.support.DaggerFragment;
+import dagger.android.AndroidInjector;
+import dagger.android.DispatchingAndroidInjector;
+import dagger.android.support.AndroidSupportInjection;
+import dagger.android.support.HasSupportFragmentInjector;
 
 /**
  * Created by buxtonj on 11/12/2017.
  */
 
-public abstract class BaseFragment extends DaggerFragment implements MvpView {
+public abstract class BaseFragment extends Fragment implements MvpView, HasSupportFragmentInjector {
+
+    @Inject DispatchingAndroidInjector<Fragment> childFragmentInjector;
 
     private ProgressDialog progressDialog;
 
@@ -22,6 +30,7 @@ public abstract class BaseFragment extends DaggerFragment implements MvpView {
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
+        AndroidSupportInjection.inject(this);
         super.onCreate(savedInstanceState);
     }
 
@@ -35,6 +44,11 @@ public abstract class BaseFragment extends DaggerFragment implements MvpView {
         if (unBinder != null) {
             unBinder.unbind();
         }
+    }
+
+    @Override
+    public AndroidInjector<Fragment> supportFragmentInjector() {
+        return childFragmentInjector;
     }
 
     @Override
