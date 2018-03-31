@@ -1,6 +1,7 @@
 package com.example.james.wodrecordapp.ui.base;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -29,8 +30,13 @@ public abstract class BaseFragment extends Fragment implements MvpView, HasSuppo
     private Unbinder unBinder;
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
+    public void onAttach(Context context) {
         AndroidSupportInjection.inject(this);
+        super.onAttach(context);
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
 

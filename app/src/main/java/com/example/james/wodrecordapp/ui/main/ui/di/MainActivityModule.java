@@ -7,6 +7,8 @@ import com.example.james.wodrecordapp.data.WorkoutDao;
 import com.example.james.wodrecordapp.data.WorkoutDaoImpl;
 import com.example.james.wodrecordapp.data.model.Workout;
 import com.example.james.wodrecordapp.di.ActivityScoped;
+import com.example.james.wodrecordapp.di.FragmentScoped;
+import com.example.james.wodrecordapp.di.module.BaseActivityModule;
 import com.example.james.wodrecordapp.ui.main.ui.screens.MainActivityFrag;
 import com.example.james.wodrecordapp.ui.main.ui.screens.ToolsFragment;
 import com.example.james.wodrecordapp.ui.main.ui.presenter.MainMvpPresenter;
@@ -26,14 +28,18 @@ import dagger.android.ContributesAndroidInjector;
  * Created by buxtonj on 12/12/2017.
  */
 
-@Module
+@Module(includes = BaseActivityModule.class)
 public abstract class MainActivityModule {
+
+    @FragmentScoped
     @ContributesAndroidInjector
     abstract MainActivityFrag mainActivityFrag();
 
+    @FragmentScoped
     @ContributesAndroidInjector
     abstract ToolsFragment toolsFragment();
 
+    @FragmentScoped
     @ContributesAndroidInjector
     abstract RecordWODFrag recordWODFrag();
 
@@ -42,7 +48,6 @@ public abstract class MainActivityModule {
     abstract MainMvpPresenter mainActivityMvp(MainActivityPresenter mainActivityPresenter);
 
     @Provides
-    @Nullable
     @ActivityScoped
     static WorkoutDao provideWorkoutDao(MvpView mvpView) {
         return new WorkoutDaoImpl(mvpView);
