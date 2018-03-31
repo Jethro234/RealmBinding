@@ -14,7 +14,7 @@ import com.example.james.wodrecordapp.ui.main.ui.MainActivity;
 import com.example.james.wodrecordapp.ui.main.ui.screens.MainFrag;
 import com.example.james.wodrecordapp.ui.main.ui.screens.ToolsFrag;
 import com.example.james.wodrecordapp.ui.main.ui.presenterbinders.MainMvpPresenter;
-import com.example.james.wodrecordapp.ui.main.ui.presenter.MainActivityPresenter;
+import com.example.james.wodrecordapp.ui.main.ui.presenter.MainPresenter;
 import com.example.james.wodrecordapp.ui.main.ui.presenterbinders.RecordMvpPresenter;
 import com.example.james.wodrecordapp.ui.main.ui.screens.RecordWODFrag;
 import com.example.james.wodrecordapp.ui.main.ui.presenter.RecordWODPresenter;
@@ -45,7 +45,7 @@ public abstract class MainActivityModule {
 
     @ActivityScoped
     @Binds
-    abstract MainMvpPresenter mainActivityMvp(MainActivityPresenter mainActivityPresenter);
+    abstract MainMvpPresenter mainMvpPresenter(MainPresenter mainPresenter);
 
     @Provides
     @ActivityScoped

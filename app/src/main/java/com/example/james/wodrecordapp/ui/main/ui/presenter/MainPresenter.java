@@ -20,15 +20,15 @@ import io.reactivex.schedulers.Schedulers;
  * Created by buxtonj on 13/12/2017.
  */
 
-public class MainActivityPresenter extends BasePresenter implements MainMvpPresenter {
+public class MainPresenter extends BasePresenter implements MainMvpPresenter {
 
-    private final static String TAG = MainActivityPresenter.class.getSimpleName();
+    private final static String TAG = MainPresenter.class.getSimpleName();
 
     @Inject
     Gson gson;
 
     @Inject
-    public MainActivityPresenter(MainActivity mvpView) {
+    public MainPresenter(MainActivity mvpView) {
         super(mvpView);
     }
 
