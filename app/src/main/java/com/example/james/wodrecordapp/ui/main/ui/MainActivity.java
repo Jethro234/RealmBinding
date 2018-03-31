@@ -20,7 +20,7 @@ import com.example.james.wodrecordapp.data.model.Workout;
 import com.example.james.wodrecordapp.ui.base.BaseActivity;
 import com.example.james.wodrecordapp.ui.base.BaseFragment;
 import com.example.james.wodrecordapp.ui.main.customviews.SmoothActionBarDrawerToggle;
-import com.example.james.wodrecordapp.ui.main.ui.screens.MainActivityFrag;
+import com.example.james.wodrecordapp.ui.main.ui.screens.MainFrag;
 import com.example.james.wodrecordapp.ui.main.ui.screens.ToolsFrag;
 import com.example.james.wodrecordapp.ui.main.ui.screens.RecordWODFrag;
 import com.example.james.wodrecordapp.ui.scan.OcrCaptureActivity;
@@ -50,7 +50,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     @BindView(R.id.drawer_layout) DrawerLayout drawer_layout;
     @BindView(R.id.nav_view) NavigationView navigationView;
 
-    @Inject MainActivityFrag mainActivityFrag;
+    @Inject MainFrag mainFrag;
     @Inject RecordWODFrag recordWODFrag;
     @Inject ToolsFrag toolsFrag;
 
@@ -74,12 +74,12 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 
         navigationView.setNavigationItemSelectedListener(this);
 
-        MainActivityFrag cachedFrag =
-                (MainActivityFrag) getSupportFragmentManager().findFragmentById(R.id.contentFrame);
+        MainFrag cachedFrag =
+                (MainFrag) getSupportFragmentManager().findFragmentById(R.id.contentFrame);
 
         if (cachedFrag == null) {
             ActivityUtils.addFragmentToActivity(getSupportFragmentManager(),
-                    mainActivityFrag, R.id.contentFrame);
+                    mainFrag, R.id.contentFrame);
         }
     }
 
@@ -146,7 +146,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         int id = item.getItemId();
         switch (id) {
             case R.id.nav_home:
-                selectedFragment = mainActivityFrag;
+                selectedFragment = mainFrag;
                 break;
             case R.id.nav_record_wod:
                 selectedFragment = recordWODFrag;

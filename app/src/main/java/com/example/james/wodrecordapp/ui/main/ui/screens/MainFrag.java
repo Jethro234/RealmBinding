@@ -27,7 +27,7 @@ import butterknife.ButterKnife;
  * Created by buxtonj on 13/12/2017.
  */
 
-public class MainActivityFrag extends BaseFragment implements MainMvpView {
+public class MainFrag extends BaseFragment implements MainMvpView {
 
     @BindView(R.id.wod_cards_container) SwipePlaceHolderView wod_cards_container;
 
@@ -37,7 +37,7 @@ public class MainActivityFrag extends BaseFragment implements MainMvpView {
     private Context context;
 
     @Inject
-    public MainActivityFrag() {
+    public MainFrag() {
     }
 
     @Override

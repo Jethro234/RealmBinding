@@ -11,7 +11,7 @@ import com.example.james.wodrecordapp.di.ActivityScoped;
 import com.example.james.wodrecordapp.di.FragmentScoped;
 import com.example.james.wodrecordapp.di.module.BaseActivityModule;
 import com.example.james.wodrecordapp.ui.main.ui.MainActivity;
-import com.example.james.wodrecordapp.ui.main.ui.screens.MainActivityFrag;
+import com.example.james.wodrecordapp.ui.main.ui.screens.MainFrag;
 import com.example.james.wodrecordapp.ui.main.ui.screens.ToolsFrag;
 import com.example.james.wodrecordapp.ui.main.ui.presenterbinders.MainMvpPresenter;
 import com.example.james.wodrecordapp.ui.main.ui.presenter.MainActivityPresenter;
@@ -33,7 +33,7 @@ public abstract class MainActivityModule {
 
     @FragmentScoped
     @ContributesAndroidInjector
-    abstract MainActivityFrag mainActivityFrag();
+    abstract MainFrag mainFrag();
 
     @FragmentScoped
     @ContributesAndroidInjector
